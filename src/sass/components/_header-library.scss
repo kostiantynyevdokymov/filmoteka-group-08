@@ -49,8 +49,8 @@
 }
 .header-library__btn-wrap{
   position: absolute;  
-  top:30%;
-  left: 35%;
+  top:60%;
+  left: 30%;
   transition: translate(-50%, -50%);
   @include tab{
     left: 40%;
@@ -58,6 +58,12 @@
  @include desk{
     left: 45%;
 }
+}
+.header__logo--title{
+    display: none;
+    @include tab{
+    display: inline-flex;    
+    }
 }
 .header-list {
     @include center;
