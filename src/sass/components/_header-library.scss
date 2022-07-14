@@ -1,0 +1,58 @@
+.header-library {
+    text-align: center;
+    background-color: rgba(21, 21, 24, 0.4);
+    background-image: url(/src/images/my-library-mob.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 230px;
+
+    @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+        background-color: rgba(21, 21, 24, 0.4);
+        background-image: url(/src/images/my-library-mob-x2.jpg);
+    }
+
+    @include tab {
+        background-image: url(/src/images/my-library-tab.jpg);
+        height: 220px;
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-color: rgba(21, 21, 24, 0.4);
+            background-image: url(/src/images/my-library-tab-x2.jpg);
+        }
+    }
+
+    @include desk {
+        background-image: url(/src/images/my-library-desk.jpg);
+        height: 215px;
+        background-size: auto;
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-color: rgba(21, 21, 24, 0.4);
+            background-image: url(/src/images/my-library-desk-x2.jpg);
+            background-size: cover;
+        }
+    }
+}
+
+.logo__svg {   
+    
+}
+
+.navigation {
+    @include center;
+}
+
+.header-list__link{
+    color: #fff;
+}
+
+.header-library__btn-watched {
+    margin-right: 32px;
+}
