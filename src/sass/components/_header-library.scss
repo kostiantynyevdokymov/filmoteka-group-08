@@ -1,5 +1,10 @@
-.header-library {
-    text-align: center;
+.header-library{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 40px 20px;
+    // text-align: center;
     background-color: rgba(21, 21, 24, 0.4);
     background-image: url(/src/images/my-library-mob.jpg);
     background-repeat: no-repeat;
@@ -17,6 +22,7 @@
     @include tab {
         background-image: url(/src/images/my-library-tab.jpg);
         height: 220px;
+        padding: 40px 34px;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
@@ -29,6 +35,7 @@
     @include desk {
         background-image: url(/src/images/my-library-desk.jpg);
         height: 215px;
+        padding: 40px 20px;
         background-size: auto;
 
         @media (min-device-pixel-ratio: 2),
@@ -40,15 +47,24 @@
         }
     }
 }
-
-.logo__svg {   
-    
+.header-library__btn-wrap{
+  position: absolute;  
+  top:30%;
+  left: 35%;
+  transition: translate(-50%, -50%);
+  @include tab{
+    left: 40%;
+  }
+ @include desk{
+    left: 45%;
 }
-
-.navigation {
+}
+.header-list {
     @include center;
 }
-
+.header-list__item +.header-list__item{
+    margin-left: 40px;
+}
 .header-list__link{
     color: #fff;
 }
@@ -56,3 +72,4 @@
 .header-library__btn-watched {
     margin-right: 32px;
 }
+
