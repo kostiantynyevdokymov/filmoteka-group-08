@@ -1,11 +1,11 @@
 .header-library{
     position: relative;
     display: flex;
-    justify-content: center;
+    align-items:baseline;
     justify-content: space-between;
-    padding: 40px 20px;
-    // text-align: center;
-    background-color: rgba(21, 21, 24, 0.4);
+   
+    padding: 40px 20px;   
+    background-color: rgba(0, 0, 0, 0.56);
     background-image: url(/src/images/my-library-mob.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -15,7 +15,7 @@
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-        background-color: rgba(21, 21, 24, 0.4);
+        background-color: rgba(0, 0, 0, 0.56);
         background-image: url(/src/images/my-library-mob-x2.jpg);
     }
 
@@ -27,7 +27,7 @@
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            background-color: rgba(21, 21, 24, 0.4);
+            background-color: rgba(0, 0, 0, 0.56);
             background-image: url(/src/images/my-library-tab-x2.jpg);
         }
     }
@@ -41,22 +41,22 @@
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-            background-color: rgba(21, 21, 24, 0.4);
+            background-color: rgba(0, 0, 0, 0.56);
             background-image: url(/src/images/my-library-desk-x2.jpg);
             background-size: cover;
         }
     }
 }
-.header-library__btn-wrap{
+.header-library__btn-wrap{  
   position: absolute;  
   top:60%;
-  left: 30%;
+  left: 15%;
   transition: translate(-50%, -50%);
   @include tab{
-    left: 40%;
+    left: 30%;
   }
- @include desk{
-    left: 45%;
+  @include desk{
+    left: 40%;
 }
 }
 .header__logo--title{
@@ -67,18 +67,40 @@
 }
 .header-list {
     @include center;
-}
-.header-list__item +.header-list__item{
+
+&__item + &__item{
     margin-left: 40px;
+};
 }
 .header-list__link{
+    text-transform:uppercase;
     color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+
+}
+.header__logo--svg{
+    margin-right: 12px;
 }
 .header__logo--title{
     color: #fff;
-    margin-left: 12px;
+    font-weight: inherit;
+    font-size: 30px;
+    line-height: 35px;   
+    font-style: medium;
 }
-.header-library__btn-watched {
-    margin-right: 32px;
-}
-
+.header-library__btn{
+    text-transform: uppercase;
+    width: 130px;
+    height: 44px;
+    @include tab{
+    width: 152px;
+    &+& {
+            margin-left: 32px;
+        }       
+        &+& {
+                margin-left: 20px;
+            }           
+    }  
+    }
