@@ -1,4 +1,10 @@
 @import './base/_common';
+@import './base/colors';
+@import './utils/mixins';
+@import './base/reset';
+@import './utils/variables';
+@import './base/base-components';
+//components
 @import './components/_header';
 @import './components/_main';
 @import './components/_footer';

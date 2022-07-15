@@ -74,7 +74,7 @@
 }
 .header-list__link{
     text-transform:uppercase;
-    color: #fff;
+    color: $header-text-color;
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
@@ -84,7 +84,7 @@
     margin-right: 12px;
 }
 .header__logo--title{
-    color: #fff;
+    color: $header-text-color;
     font-weight: inherit;
     font-size: 30px;
     line-height: 35px;   
