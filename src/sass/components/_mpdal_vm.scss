@@ -1,3 +1,13 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+$header-text-color: #FFFFFF;
+
 .modal {
     background-image: url("/src/developers_photo/imagemodal.jpg");
     background-repeat: no-repeat;
@@ -19,11 +29,15 @@
         
             @media screen and (min-width: 768px) {
                 top: 208px;
+                width: 700px;
             }
+                        @media screen and (min-width: 768px) {
+                            width: 800px;
+                        }
 }
 @media screen and (min-width: 1280px) {
     .modal {
-        width: 528px;
+        width: 1100px;
         height: auto;
         top: 221px;
         padding-top: 38px;
@@ -34,11 +48,19 @@
 }
 .modal__hat {
     font-family: 'Roboto';
-        color: #FFFFFF;
-        font-size: 30px;
+        color: $header-text-color;
+        font-size: 45px;
         line-height: 35px;
+        text-align: center;
+        @media screen and (min-width: 768px) {
+font-size: 55px;
+    line-height: 40px;
+        }
 
-        
+                @media screen and (min-width: 1280px) {
+                    font-size: 75px;
+                        line-height: 50px;
+                }
 }
 .backdrop{
     overflow-y: scroll;
@@ -53,17 +75,69 @@
         
 }
 .modal__devName {
- color:#FFFFFF;
+ color:$header-text-color;
  font-family: 'Roboto';
+ font-size: 45px;
+ text-align: center;
+@media screen and (min-width: 768px) {
+
+ 
+}
 
 }
 .modal__devProf {
-    color: #FFFFFF;
+    color:$header-text-color;
         font-family: 'Roboto';
         font-style: italic;
+        font-size: 35px;
+        text-align: center;
 
 }
 .modal__description {
-    color: #FFFFFF;
+    color: $header-text-color;
         font-family: 'Roboto';
+        font-size: 30px;
+            text-align: center;
+}
+.modal__photo {
+    width: 100%;
+    height: auto;
+    @media screen and (min-width: 768px) {
+        width: 40%;
+    }
+        @media screen and (min-width: 1280px) {
+            width: 40%;
+            height: 200px;
+        }
+ }
+.modal__devList {
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+.modal__list__item {
+    
+    @media screen and (min-width: 768px) {
+    display: flex;
+
+    }
+        @media screen and (min-width: 1280px) {
+            width: 50% ;
+        }
+}
+.modal__list__item:not(:last-child) {
+    margin-bottom: 20px;
+}
+.modal__wraper {
+    @media screen and (min-width: 768px) {
+        width: 60%;
+    }
+}
+.modal__closeBtn {
+    border-radius: 50%;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
