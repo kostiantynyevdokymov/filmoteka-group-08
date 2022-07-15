@@ -1,6 +1,6 @@
-import pagination from 'pagination';
-import onPaginationClick from '../helpers/onPaginationClick';
-import * as apiServices from '../services/apiService';
+// import pagination from 'pagination';
+import onPaginationClick from './onPaginationClick';
+// import * as apiServices from '../services/apiService';
 // import refs from '../services/refs';
 
 const pagination = document.querySelector(".pagination");

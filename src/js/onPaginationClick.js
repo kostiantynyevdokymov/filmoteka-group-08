@@ -1,8 +1,8 @@
-import * as apiServices from '../services/apiService';
-import homePageMarkUp from '../views/HomePage';
-import { startSpin, stopSpin } from '../components/Spinner/Spinner';
-import refs from '../services/refs';
-import clickListener from './clickListener';
+// import * as apiServices from '../services/apiService';
+// import homePageMarkUp from '../views/HomePage';
+// import { startSpin, stopSpin } from '../components/Spinner/Spinner';
+// import refs from '../services/refs';
+// import clickListener from './clickListener';
 
 const onPaginationClick = (page) => {
   refs.warning.textContent = '';
