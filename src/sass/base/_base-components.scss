@@ -1,0 +1,27 @@
+ .current-page {
+     color: #FF001B;
+     display: block;
+     position: relative;
+  
+
+         &::after {
+             content: '';
+             width: 100%;
+             display: block;
+
+             position: absolute;
+             left: 0;
+             bottom: 0;
+
+             border: 2px solid #FF001B;
+             border-radius: 2px;
+
+             transform: scaleX(100%);
+             transition: transform $cubic 2500ms;
+         }
+
+         &:hover::after {
+             transition: transform 2500ms $cubic;
+             transform: scaleX(0);
+         }
+     }
