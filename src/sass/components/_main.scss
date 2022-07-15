@@ -1,0 +1,81 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    display: none;
+}
+
+.home-card__img {
+    width: 100%;
+    max-width: 280px;
+    height: 402px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 1px solid #000000;
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+            max-width: 336px;
+            height: 445px;
+        }
+    
+        @media screen and (min-width: 1280px) {
+            max-width: 395px;
+            height: 574px;
+        }
+}
+
+.card-info {
+    padding-top: 10px;
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        padding-top: 12px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        padding-top: 12px;
+    }
+}
+
+.card-info__title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: $dark-text-color;
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+            font-size: 12px;
+            line-height: 16px
+        }
+    
+        @media screen and (min-width: 1280px) {
+            font-size: 20px;
+            line-height: 24px
+        }
+}
+
+.card-info_descr {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: $accent-orange;
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+            font-size: 12px;
+            line-height: 16px
+        }
+    
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 24px
+    }
+}
+
