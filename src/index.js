@@ -1,2 +1,2 @@
 import './js/common'
-import './js/save-progress'
+import './js/pageInStorage'
