@@ -1,0 +1,161 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+$header-text-color: #FFFFFF;
+
+.modal {
+    background-image: url("/src/developers_photo/imagemodal.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+  
+    position: absolute;
+        top: 93px;
+        left: 50%;
+        transform: translate(-50%) scale(1);
+        width: 450px;
+        height: auto;
+    
+        padding: 40px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+                0px 2px 1px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+            @media screen and (min-width: 768px) {
+                top: 208px;
+                width: 700px;
+            }
+                        @media screen and (min-width: 768px) {
+                            width: 800px;
+                        }
+}
+@media screen and (min-width: 1280px) {
+    .modal {
+        width: 1100px;
+        height: auto;
+        top: 221px;
+        padding-top: 38px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 42px;
+    }
+}
+.modal__hat {
+    font-family: 'Roboto';
+        color: $header-text-color;
+        font-size: 45px;
+        line-height: 35px;
+        text-align: center;
+        margin-bottom: 50px;
+        @media screen and (min-width: 768px) {
+font-size: 55px;
+    line-height: 40px;
+        }
+
+                @media screen and (min-width: 1280px) {
+                    font-size: 75px;
+                        line-height: 50px;
+                }
+}
+.backdrop{
+    overflow-y: scroll;
+    position: fixed;
+        
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+}
+.modal__devName {
+ color:$header-text-color;
+ font-family: 'Roboto';
+ font-size: 45px;
+ text-align: center;
+@media screen and (min-width: 768px) {
+
+ 
+}
+
+}
+.modal__devProf {
+    color:$header-text-color;
+        font-family: 'Roboto';
+        font-style: italic;
+        font-size: 35px;
+        text-align: center;
+
+}
+.modal__description {
+    color: $header-text-color;
+        font-family: 'Roboto';
+        font-size: 30px;
+            text-align: center;
+}
+.modal__photo {
+    width: 100%;
+    height: auto;
+    @media screen and (min-width: 768px) {
+        width: 40%;
+    }
+        @media screen and (min-width: 1280px) {
+            width: 40%;
+            height: 200px;
+        }
+ }
+.modal__devList {
+    @media screen and (min-width: 1280px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+.modal__list__item {
+    
+    @media screen and (min-width: 768px) {
+    display: flex;
+
+    }
+        @media screen and (min-width: 1280px) {
+            width: 50% ;
+        }
+}
+.modal__list__item:not(:last-child) {
+    margin-bottom: 20px;
+}
+.modal__wraper {
+    @media screen and (min-width: 768px) {
+        width: 60%;
+    }
+}
+.modal__closeBtn {
+    border-radius: 50%;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+ #arrowTop {
+     height: 50px;
+     width: 14px;
+     color: red;
+     
+     position: fixed;
+    z-index: 4;
+     top: 10px;
+     left: 10px;
+     cursor: pointer;
+ }
+
+ ;
+
+ #arrowTop::before {
+     content: '▲';
+ }
