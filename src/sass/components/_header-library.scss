@@ -1,4 +1,5 @@
 .header-library{
+    display: none;
     position: relative;
     display: flex;
     align-items:baseline;
@@ -36,7 +37,7 @@
         background-image: url(../images/my-library-desk.jpg);       
         height: 215px;
         padding: 40px 20px;
-        background-size: auto;
+        background-size: cover;
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
