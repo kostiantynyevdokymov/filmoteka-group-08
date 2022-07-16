@@ -1,9 +1,6 @@
-<div class="home-container">
-    <h1>Best films</h1>
-    <ul class="home-list"></ul>
-</div>
+const libraryList = document.querySelector('.library-list');
 
-<!--
+const itemMarkUp = `
 <li class="library-item">
     <a href="#" class="home-link">
         <div class="home-card">
@@ -18,5 +15,8 @@
         </div>
     </a>
 </li>
--->
+`;
 
+async function renderLibMovies(arr) {
+    console.log(localStorage, 'localstoradge');
+}
