@@ -47,13 +47,13 @@
   color: rgba(0, 0, 0, 0.1);
 }
 
-.modal--movie {
+.modal-movie {
   @media screen and (min-width: 768px) {
     display: flex;
   }
 }
 
-.modal__movie--poster {
+.modal-movie__poster {
   width: 240px;
   height: 357px;
   margin-bottom: 20px;
@@ -71,7 +71,7 @@
   }
 }
 
-.modal__movie--title {
+.modal-movie__title {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.15;
@@ -83,17 +83,17 @@
   margin-bottom: 20px;
 }
 
-.modal__movie--about {
+.modal-movie__about {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
   margin-bottom: 20px;
 }
-.modal__movie--description {
+.modal-movie__description {
   margin-bottom: 15px;
 }
 
-.movie-table--title {
+.movie-table__title {
   color: #8c8c8c;
   font-weight: 500;
   font-size: 12px;
@@ -101,7 +101,7 @@
   padding-right: 30px;
 }
 
-.movie-table--info {
+.movie-table__info {
   color: #000000;
   font-weight: 500;
   font-size: 12px;
@@ -109,12 +109,12 @@
   text-align: left;
 }
 
-.modal__movie--buttons {
+.modal-movie__buttons {
   display: inline-block;
   justify-content: space-around;
 }
 
-.modal__movie--watched {
+.modal-movie__watched {
   color: $header-text-color;
   background-color: $accent-orange;
 
@@ -129,7 +129,7 @@
   margin-right: auto;
 }
 
-.modal__movie--queue {
+.modal-movie__queue {
   color: $dark-text-color;
   background-color: #fff;
   //   text-align: center;
