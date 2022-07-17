@@ -1,4 +1,4 @@
-import storage from './storage'
+import storage from './storage';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -20,13 +20,12 @@ formField.addEventListener('submit', event => {
   });
 });
 
-
-
-export function movieCards (movies) {
+export function movieCards(movies) {
   return movies
     .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
-        const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+      const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      const year = new Date(release_date).getFullYear();
+      return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -34,14 +33,14 @@ export function movieCards (movies) {
                     <p class="card-info_descr">
                         <span>${genres_ids}</span>
                         |
-                        <span>${release_date}</span>
+                        <span>${year}</span>
                     </p>
                 </div>
             </a>
         </li>`;
     })
     .join('');
-};
+}
 
 async function fetchMovies(movieName) {
   const searchParams = new URLSearchParams({
@@ -59,7 +58,7 @@ async function fetchMovies(movieName) {
     })
     .then(data => {
       return {
-        movies: data.results
+        movies: data.results,
       };
     });
-};
+}
