@@ -1,13 +1,18 @@
 <div class="backdrop is-hidden" data-modal>
-    <div class="modal-card">
-        <button type="button" class="modal__close-button" data-modal-close>
-            <svg class="close-icon" width="30" height="30">
-                <use href="./images/close.svg"></use>
-            </svg>
-        </button>
+  <div class="modal-card">
+    <button type="button" class="modal__close-button" data-modal-close>
+      <svg class="close-icon" width="30" height="30">
+        <use href="./images/close.svg"></use>
+      </svg>
+    </button>
 
-        <div class="modal-movie">
-            <img class="modal-movie__poster" src='./images/example-photo.jpg' alt="film-photo" />
+    <!-- 
+            809107
+
+            507086
+          -->
+    <div class="modal-movie" data-modal-movie-id="">
+      <!-- <img class="modal-movie__poster" src='./images/example-photo.jpg' alt="film-photo" />
             <div class="modal-movie__info">
                 <h2 class="modal-movie__title">A fistful of lead</h2>
                 <table class="movie-table">
@@ -34,7 +39,8 @@
                 </table>
                 <div class="modal-movie__about">
                     <p class="modal-movie__description">ABOUT</p>
-                    <p>Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the most
+                    <p class="modal-movie__text">Four of the West’s most infamous outlaws assemble to steal a huge stash
+                        of gold from the most
                         corrupt settlement of the
                         gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of
                         gold hide out in the
@@ -42,15 +48,13 @@
                         planning to hit the very same
                         bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled
                         with lead... they’ve
-                        been double crossed – but by who and how?</p>
+                        been double crossed – but by who and how? </p>
                 </div>
                 <div class="modal-movie__buttons">
-                    <button class="modal-movie__watched">ADD TO<br>WATHCED</button>
-                    <button class="modal-movie__queue">ADD TO <br> QUEUE</button>
+                    <button class="modal-movie__watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>
+                    <button class="modal-movie__queue" data-modal-add-to="queue">ADD TO <br> QUEUE</button>
                 </div>
-            </div>
-        </div>
-
-
+            </div> -->
     </div>
+  </div>
 </div>

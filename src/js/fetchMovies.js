@@ -1,3 +1,5 @@
+import storage from './storage'
+
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
@@ -12,16 +14,19 @@ formField.addEventListener('submit', event => {
     return alert('Empty field');
   }
   fetchMovies(movieName).then(({ movies }) => {
+    storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
   });
 });
 
-export function movieCards(movies) {
+
+
+export function movieCards (movies) {
   return movies
-    .map(({ poster_path, title, original_title, genres_ids, release_date }) => {
-      const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-      return `<li class="home-card js-modal-open">
+    .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
+        const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">

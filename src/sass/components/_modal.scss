@@ -1,11 +1,19 @@
 .backdrop {
   position: fixed;
   z-index: 1;
-  top: 0;
-  padding: 20px;
+
   width: 100vw;
   height: 100vh;
+
+  top: 0;
+  padding: 20px;
+
   background-color: rgba(0, 0, 0, 0.2);
+
+  // change
+
+  // transition: opacity 250ms $cubic, visibility 250ms $cubic;
+  // overflow-y: scroll;
 }
 
 .is-hidden {
@@ -16,13 +24,15 @@
   position: absolute;
   width: calc(100% - 40px);
   min-height: 700px;
-  padding: 20px;
-  background-color: #fff;
+  padding: 50px 20px;
+  background-color: $main-bg-color;
+  transition: transform 250ms $cubic;
 
   @media screen and (min-width: 768px) {
     width: 704px;
     min-height: 552px;
     padding: 40px 72px 40px 36px;
+    // transform: translate(-50%, -50%);
   }
 
   @media screen and (min-width: 1280px) {
@@ -37,10 +47,9 @@
   right: 25px;
   background-color: $main-bg-color;
 
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  color: black;
+  // display: flex;
+  // text-align: center;
+  // justify-content: center;
 }
 
 .close-icon {
@@ -102,7 +111,7 @@
 }
 
 .movie-table__info {
-  color: #000000;
+  color: $dark-text-color;
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
@@ -131,7 +140,7 @@
 
 .modal-movie__queue {
   color: $dark-text-color;
-  background-color: #fff;
+  background-color: $main-bg-color;
   //   text-align: center;
   //   justify-content: center;
 
@@ -143,5 +152,25 @@
   height: 44px;
   border-radius: 5px;
 
-  border: 2px solid black;
+  border: 1px solid $dark-text-color;
+}
+
+.modal-movie__text {
+  width: 240px;
+  height: 236px;
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(20 / 12);
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: $main-bg-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $accent-orange;
+  }
 }
