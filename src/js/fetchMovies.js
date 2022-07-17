@@ -1,15 +1,18 @@
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
+const spinner = document.querySelector('.spinner-loader');
 let movieName = '';
 
 formField.addEventListener('submit', event => {
   event.preventDefault();
+  spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim();
   if (movieName === '') {
     return alert('Empty field');
   }
   fetchMovies(movieName).then(({ movies }) => {
     homeList.innerHTML = movieCards(movies);
+    spinner.classList.add('is-hidden');
   });
 });
 
