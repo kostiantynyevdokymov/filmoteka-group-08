@@ -8,6 +8,7 @@ formField.addEventListener('submit', event => {
   spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim();
   if (movieName === '') {
+    spinner.classList.add('is-hidden');
     return alert('Empty field');
   }
   fetchMovies(movieName).then(({ movies }) => {
