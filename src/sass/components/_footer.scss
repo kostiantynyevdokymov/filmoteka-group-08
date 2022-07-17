@@ -2,18 +2,10 @@
     background-color: $accent-bg-color;
 }
 
-.footer__container {
-    text-align: center;
-    align-items: center;
-}
-
-.footer__rights {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.footer__rights-list {
+    justify-content: center;
     padding: 30px;
-}    
+}
 
 .footer__rights-item {
     font-family: 'Roboto';
@@ -22,15 +14,10 @@
     font-size: 14px;
     line-height: 16px;
     display: flex;
-    align-items: center;
     text-align: center; 
     color: $footer-text-color;
     margin-right: 10px;
     margin-bottom: 10px;
-
-    @include tab {
-        display: inline;
-    }
 }
 
 .footer__rights-item:nth-child(-n + 2) {
