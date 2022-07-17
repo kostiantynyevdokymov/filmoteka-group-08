@@ -21,6 +21,7 @@ formField.addEventListener('submit', event => {
 });
 
 
+
 export function movieCards (movies) {
   return movies
     .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
@@ -42,7 +43,7 @@ export function movieCards (movies) {
     .join('');
 };
 
-function fetchMovies (movieName){
+async function fetchMovies(movieName) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
