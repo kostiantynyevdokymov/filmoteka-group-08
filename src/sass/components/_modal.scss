@@ -98,6 +98,10 @@
 }
 
 .modal-movie__about {
+  // display: flex;
+
+  // justify-content: space-between;
+
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
@@ -160,6 +164,19 @@
   padding: 2px 9px 2px 9px;
   border-radius: 9.5px;
   color: $main-bg-color;
+}
+
+.modal-movie__box {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-height: 340px;
+  }
 }
 
 .modal-movie__buttons {
