@@ -1,3 +1,5 @@
+import storage from './storage'
+
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
@@ -12,6 +14,7 @@ formField.addEventListener('submit', event => {
     return alert('Empty field');
   }
   fetchMovies(movieName).then(({ movies }) => {
+    storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
   });
