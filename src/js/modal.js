@@ -3,14 +3,17 @@ const closeButton = document.querySelector('[data-modal-close]');
 const homeCards = document.querySelectorAll('.js-modal-open');
 
 // Тиць по 'js-modal-open' -> відкриває модалку
+
 homeCards.forEach(i => {
   i.addEventListener('click', openModal);
 });
 
 // Тиць по 'data-modal-close' ->закриває модалку
+
 closeButton.addEventListener('click', closeModal);
 
 //Press по Esc ->закриває модалку
+
 function pressEsc(e) {
   if (e.code === 'Escape') {
     closeModal();
@@ -18,6 +21,7 @@ function pressEsc(e) {
 }
 
 // Тиць по backdrop -> закриває модалку
+
 backdrop.addEventListener('click', BackdropClick);
 
 function BackdropClick(e) {
