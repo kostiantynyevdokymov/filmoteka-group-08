@@ -61,6 +61,16 @@ function getModalMovieMarkup(movieId) {
     overview,
   } = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
 
+  // movieId = movieId.toString();
+
+  const btnAddToWatched = isInLibrary('watched-list', movieId.toString())
+    ? `<button class="modal-movie__watched added" data-modal-add-to="watched">REMOVE FROM<br>WATCHED</button>`
+    : `<button class="modal-movie__watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>`;
+
+  const btnAddToQueue = isInLibrary('queue-list', movieId.toString())
+    ? `<button class="modal-movie__queue added" data-modal-add-to="queue">REMOVE FROM<br>QUEUE</button>`
+    : `<button class="modal-movie__queue" data-modal-add-to="queue">ADD TO<br>QUEUE</button>`;
+
   return `<img class="modal-movie__poster" src='https://image.tmdb.org/t/p/w500${poster_path}' alt="${title}" />
             <div class="modal-movie__info">
                 <h2 class="modal-movie__title">${title}</h2>
@@ -91,8 +101,8 @@ function getModalMovieMarkup(movieId) {
                     <p class="modal-movie__text">${overview}</p>
                 </div>
                 <div class="modal-movie__buttons">
-                    <button class="modal-movie__watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>
-                    <button class="modal-movie__queue" data-modal-add-to="queue">ADD TO <br> QUEUE</button>
+                    ${btnAddToWatched}
+                    ${btnAddToQueue}
                 </div>
             </div>`;
 }
@@ -111,15 +121,23 @@ function addMovieToLibrary(button) {
   // console.dir(value.id);
 
   let currentList = storage.load(key) || [];
-  console.dir(currentList);
+  // console.dir(currentList);
 
-  if (storage.load(key) && storage.load(key).some(movie => movie.id === value.id)) {
-    console.log('has');
+  if (storage.load(key) && isInLibrary(key, value.id.toString())) {
+    button.classList.remove('added');
+    console.log(button.innerHTML);
+    button.innerHTML = button.innerHTML.replace('REMOVE FROM', 'ADD TO');
     currentList = currentList.filter(movie => movie.id.toString() != value.id);
   } else {
-    console.log('add');
     currentList.push(value);
+    console.log(button.innerHTML);
+    button.innerHTML = button.innerHTML.replace('ADD TO', 'REMOVE FROM');
+    button.classList.add('added');
   }
 
   storage.save(key, currentList);
+}
+
+function isInLibrary(storageKey, valueId) {
+  return storage.load(storageKey)?.some(movie => movie.id.toString() === valueId);
 }
