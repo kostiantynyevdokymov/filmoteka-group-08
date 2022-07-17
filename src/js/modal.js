@@ -6,8 +6,10 @@ const cardsContainer = document.querySelector('.home-container');
 
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
-  if (e.target.closest('.js-modal-open'))
+  if (e.target.closest('.js-modal-open')) {
+    e.preventDefault();
     openModal(e.target.closest('.js-modal-open').dataset.cardMovieId);
+  }
 });
 
 // Тиць по 'data-modal-close' ->закриває модалку
@@ -38,7 +40,8 @@ function openModal(movieId) {
   document.addEventListener('keydown', pressEsc);
 
   backdrop.querySelector('.modal-movie').dataset.modalMovieId = movieId;
-  backdrop.querySelector('.modal-movie').innerHTML = getModalMovieMarkup(movieId);
+  backdrop.querySelector('.modal-movie').innerHTML =
+    getModalMovieMarkup(movieId);
   backdrop.classList.remove('is-hidden');
 }
 
@@ -96,6 +99,7 @@ function getModalMovieMarkup(movieId) {
                         <td class="movie-table__info">${genres_ids}</td>
                     </tr>
                 </table>
+                <div class="modal-movie__box">
                 <div class="modal-movie__about">
                     <p class="modal-movie__description">ABOUT</p>
                     <p class="modal-movie__text">${overview}</p>
@@ -103,6 +107,7 @@ function getModalMovieMarkup(movieId) {
                 <div class="modal-movie__buttons">
                     ${btnAddToWatched}
                     ${btnAddToQueue}
+                </div>
                 </div>
             </div>`;
 }
@@ -117,7 +122,9 @@ function addMovieToLibrary(button) {
   const key = button.dataset?.modalAddTo + '-list';
   const movieId = button.closest('.modal-movie').dataset.modalMovieId;
 
-  const value = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
+  const value = storage
+    .load('movies')
+    ?.find(movie => movie.id.toString() === movieId);
   // console.dir(value.id);
 
   let currentList = storage.load(key) || [];
@@ -139,5 +146,7 @@ function addMovieToLibrary(button) {
 }
 
 function isInLibrary(storageKey, valueId) {
-  return storage.load(storageKey)?.some(movie => movie.id.toString() === valueId);
+  return storage
+    .load(storageKey)
+    ?.some(movie => movie.id.toString() === valueId);
 }
