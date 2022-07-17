@@ -17,7 +17,7 @@ formField.addEventListener('submit', event => {
   });
 });
 
-function movieCards (movies) {
+export function movieCards (movies) {
   return movies
     .map(({ poster_path, title, original_title, genres_ids, release_date }) => {
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
