@@ -4,9 +4,6 @@
     margin-right: auto;
     padding: 20px 20px 0 20px;
     background-color: $main-bg-color;
-    background-image: url("/src/images/netuNichego.png");
-    background-position: center;
-    background-repeat: no-repeat;
     min-height: calc(100vh - 330px);
 
     @include tab {
@@ -25,7 +22,7 @@
 .library-container li {
     justify-content: center;
 
-@include mob {
+    @include mob {
         width: 280px;
 
         &:not(:last-child) {
@@ -34,10 +31,10 @@
     }
 
     @include tab {
-                width: 336px;
-                margin: 0;
+        width: 336px;
+        margin: 0;
 
-       &:not(:nth-last-child(-n+2)) {
+        &:not(:nth-last-child(-n+2)) {
             margin-bottom: 32px;
         }
     }
@@ -56,4 +53,10 @@
 .home-list {
     display: flex;
     flex-wrap: wrap;
+}
+
+.lib-bg-img {
+    background-image: url("/src/images/netuNichego.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
