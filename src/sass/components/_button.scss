@@ -1,0 +1,44 @@
+.button {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    border-radius: 5px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.header-library__btn {
+    color: $header-text-color;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+        background: $accent-orange;
+        box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    }  
+}  
+
+.modal__btn {
+    color: $dark-text-color;
+    background-color: $main-bg-color;
+    border-color: $dark-text-color;
+    
+    &:hover,
+    &:focus {
+        color: $header-text-color;
+        background: $accent-orange;        
+    }
+}
+
+.modal-close__btn {
+    width: 30px;
+    height: 30px;
+}

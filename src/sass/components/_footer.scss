@@ -1,0 +1,43 @@
+.footer {
+    background-color: $accent-bg-color;
+}
+
+.footer__rights-list {
+    justify-content: center;
+    padding: 30px;
+}
+
+.footer__rights-item {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    text-align: center; 
+    color: $footer-text-color;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.footer__rights-item:nth-child(-n + 2) {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        border: 1px solid $footer-text-color;
+        height: 14px;
+        right: -5px;
+        top: 0;
+    }
+}
+
+.footer__rights-link {
+    text-decoration: underline;
+    color: $footer-text-color;
+    transition: fill 250ms $cubic;
+    &:hover,
+    &:focus {
+        color: $accent-orange;
+    }
+}

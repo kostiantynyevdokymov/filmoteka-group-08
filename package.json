@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://glagolio.github.io/Filmoteka-group-08",
+  "homepage": "https://glagolio.github.io/filmoteka-group-08",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /Filmoteka-group-08/"
+    "build": "parcel build src/*.html --public-url /filmoteka-group-08/"
   },
   "repository": {
     "type": "git",
