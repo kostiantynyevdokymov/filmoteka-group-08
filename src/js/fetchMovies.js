@@ -18,10 +18,11 @@ formField.addEventListener('submit', event => {
 });
 
 function movieCards (movies) {
+  console.dir(movies);
   return movies
-    .map(({ poster_path, title, original_title, genres_ids, release_date }) => {
+    .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-        return `<li class="home-card js-modal-open">
+        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
