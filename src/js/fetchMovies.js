@@ -42,8 +42,7 @@ export function movieCards(movies) {
     .join('');
 }
 
-
-function fetchMovies(movieName) {
+async function fetchMovies(movieName) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
