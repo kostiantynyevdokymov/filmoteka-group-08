@@ -33,7 +33,7 @@ function backdropClick(e) {
     return;
   }
   if (e.target.nodeName === 'BUTTON') {
-    addMovieToLibrary(e.target);
+    addMovieToLibrary(e.target.closest('.movie-btn'));
   }
 }
 
@@ -69,15 +69,33 @@ function getModalMovieMarkup(movieId) {
 
   movieId = movieId.toString();
 
-  const btnAddToWatched = isInLibrary('watched-list', movieId.toString())
-    ? `<button class="modal-movie__watched added" data-modal-add-to="watched">REMOVE FROM<br>WATCHED</button>`
-    : `<button class="modal-movie__watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>`;
+  // const btnAddToWatched = isInLibrary('watched-list', movieId.toString())
+  //   ? `<button class="modal-movie__btn modal-movie_btn-watched added" data-modal-add-to="watched">REMOVE FROM<br>WATCHED</button>`
+  //   : `<button class="modal-movie__btn modal-movie__btn-watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>`;
 
-  const btnAddToQueue = isInLibrary('queue-list', movieId.toString())
-    ? `<button class="modal-movie__queue added" data-modal-add-to="queue">REMOVE FROM<br>QUEUE</button>`
-    : `<button class="modal-movie__queue" data-modal-add-to="queue">ADD TO<br>QUEUE</button>`;
+  // const btnAddToQueue = isInLibrary('queue-list', movieId.toString())
+  //   ? `<button class="modal-movie__btn modal-movie__btn-queue added" data-modal-add-to="queue">REMOVE FROM<br>QUEUE</button>`
+  //   : `<button class="modal-movie__btn modal-movie__btn-queue" data-modal-add-to="queue">ADD TO<br>QUEUE</button>`;
 
-  return `<img class="modal-movie__poster" src='https://image.tmdb.org/t/p/w500${poster_path}' alt="${title}" />
+  let addedClass = isInLibrary('watched-list', movieId.toString()) ? 'added' : '';
+  const btnAddToWatched = `<div class="modal-movie__btn movie-btn movie-btn--watched ${addedClass}" data-modal-add-to="watched">
+                          <div class="movie-btn__inner">
+                            <button class="remove">REMOVE FROM<br>WATCHED</button>
+                            <button class="add">ADD TO<br>WATCHED</button>
+                          </div>
+                        </div>`;
+
+  addedClass = isInLibrary('queue-list', movieId.toString()) ? 'added' : '';
+  const btnAddToQueue = `<div class="modal-movie__btn movie-btn movie-btn--queue ${addedClass}" data-modal-add-to="queue">
+                          <div class="movie-btn__inner">
+                            <button class="remove">REMOVE FROM<br>QUEUE</button>
+                            <button class="add">ADD TO<br>QUEUE</button>
+                          </div>
+                        </div>`;
+
+  return `<div class="modal-movie__poster">
+            <img src='https://image.tmdb.org/t/p/w500${poster_path}' alt="${title}" />
+          </div>
             <div class="modal-movie__info">
                 <h2 class="modal-movie__title">${title}</h2>
                 <table class="movie-table">
@@ -122,6 +140,7 @@ Modal buttons functionality
 ----------------------- */
 
 function addMovieToLibrary(button) {
+  console.dir(button);
   const key = button.dataset?.modalAddTo + '-list';
   const movieId = button.closest('.modal-movie').dataset.modalMovieId;
 
@@ -133,13 +152,9 @@ function addMovieToLibrary(button) {
 
   if (storage.load(key) && isInLibrary(key, value.id.toString())) {
     button.classList.remove('added');
-    console.log(button.innerHTML);
-    button.innerHTML = button.innerHTML.replace('REMOVE FROM', 'ADD TO');
     currentList = currentList.filter(movie => movie.id.toString() != value.id);
   } else {
     currentList.push(value);
-    console.log(button.innerHTML);
-    button.innerHTML = button.innerHTML.replace('ADD TO', 'REMOVE FROM');
     button.classList.add('added');
   }
 
