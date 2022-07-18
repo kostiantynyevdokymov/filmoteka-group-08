@@ -35,12 +35,12 @@
              }           
          }
     
-         .header-list__link {
-             text-transform: uppercase;
-             color: $header-text-color;
-             font-weight: 500;
-             font-size: 12px;
-             line-height: calc(14/12);
+         .header__link {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 1.16;
+                text-transform: uppercase;
+                color: $header-text-color;
     
          }
     
