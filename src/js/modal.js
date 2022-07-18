@@ -4,8 +4,6 @@ const backdrop = document.querySelector('[data-modal]');
 const closeButton = document.querySelector('[data-modal-close]');
 const cardsContainer = document.querySelector('.home-container');
 
-console.log('modal.js');
-
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
   if (e.target.closest('.js-modal-open')) {
@@ -140,7 +138,7 @@ Modal buttons functionality
 ----------------------- */
 
 function addMovieToLibrary(button) {
-  console.dir(button);
+  // console.dir(button);
   const key = button.dataset?.modalAddTo + '-list';
   const movieId = button.closest('.modal-movie').dataset.modalMovieId;
 
