@@ -1,4 +1,4 @@
-// import placeholder from './spinner';
+import placeholder from './spinner';
 
 const listElement = document.querySelector('.js-card');
 const paginationElement = document.getElementById('pagination');
