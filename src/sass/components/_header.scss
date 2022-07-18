@@ -48,17 +48,6 @@
     }
 }
 
-.header__logo-title {
-        display: none;
-    
-    @media screen and (min-width: 768px) {
-        display: inline-flex;  
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 1.16;
-            color: $header-text-color;
-    }
-}
 
 .header-list {
     display: flex;
