@@ -1,59 +1,73 @@
 .backdrop {
   position: fixed;
   z-index: 1;
-  top: 0;
-  padding: 20px;
+
   width: 100vw;
   height: 100vh;
+
+  top: 0;
+  padding: 20px;
+
   background-color: rgba(0, 0, 0, 0.2);
+
+  overflow-y: scroll;
 }
 
-// .is-hidden {
-//   display: none;
-// }
+.is-hidden {
+  display: none;
+}
 
 .modal-card {
   position: absolute;
   width: calc(100% - 40px);
   min-height: 700px;
-  padding: 20px;
-  background-color: #fff;
+  padding: 50px 20px;
+  background-color: $main-bg-color;
+  transition: transform 250ms $cubic;
 
   @media screen and (min-width: 768px) {
+    top: 50%;
+    left: 50%;
     width: 704px;
     min-height: 552px;
     padding: 40px 72px 40px 36px;
+    transform: translate(-50%, -50%) scale(1);
   }
 
   @media screen and (min-width: 1280px) {
     width: 806px;
     min-height: 558px;
+    padding: 40px 12px;
   }
 }
 
 .modal__close-button {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 8px;
+  right: 8px;
   background-color: $main-bg-color;
+  color: $dark-text-color;
 
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  color: black;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $accent-orange;
+  }
 }
 
 .close-icon {
-  color: rgba(0, 0, 0, 0.1);
+  fill: currentColor;
+  stroke: currentColor;
 }
 
-.modal--movie {
+.modal-movie {
   @media screen and (min-width: 768px) {
     display: flex;
   }
 }
 
-.modal__movie--poster {
+.modal-movie__poster {
   width: 240px;
   height: 357px;
   margin-bottom: 20px;
@@ -67,11 +81,11 @@
   @media screen and (min-width: 1280px) {
     width: 375px;
     min-height: 478px;
-    margin-right: 16px;
+    margin-right: 30px;
   }
 }
 
-.modal__movie--title {
+.modal-movie__title {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.15;
@@ -83,38 +97,96 @@
   margin-bottom: 20px;
 }
 
-.modal__movie--about {
+.modal-movie__about {
+  // display: flex;
+
+  // justify-content: space-between;
+
   font-weight: 500;
   font-size: 12px;
   line-height: 1.67;
   margin-bottom: 20px;
 }
-.modal__movie--description {
+.modal-movie__description {
   margin-bottom: 15px;
 }
 
-.movie-table--title {
+.modal-movie__text {
+  @media screen and (min-width: 768px) {
+    overflow-y: scroll;
+    max-height: 236px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-height: 160px;
+    width: 100%;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: $main-bg-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    margin-left: 5px;
+    background-color: $accent-orange;
+  }
+}
+
+.movie-table__title {
+  width: 100px;
   color: #8c8c8c;
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  padding-right: 30px;
+  // padding-right: 20px;
 }
 
-.movie-table--info {
-  color: #000000;
+.movie-table__info {
+  color: $dark-text-color;
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
   text-align: left;
+  max-width: 240px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 264px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 391px;
+  }
 }
 
-.modal__movie--buttons {
-  display: inline-block;
-  justify-content: space-around;
+.vote {
+  background-color: $accent-orange;
+  padding: 2px 9px 2px 9px;
+  border-radius: 9.5px;
+  color: $main-bg-color;
 }
 
-.modal__movie--watched {
+.modal-movie__box {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-height: 340px;
+  }
+}
+
+.modal-movie__buttons {
+  display: flex;
+}
+
+.modal-movie__watched {
+  cursor: pointer;
+  padding: 0px 10px;
+
   color: $header-text-color;
   background-color: $accent-orange;
 
@@ -126,12 +198,20 @@
   height: 44px;
   border-radius: 5px;
 
-  margin-right: auto;
+  margin-right: 20px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 125px;
+    padding: 0 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    min-width: 138px;
+  }
 }
 
-.modal__movie--queue {
+.modal-movie__queue {
   color: $dark-text-color;
-  background-color: #fff;
+  background-color: $main-bg-color;
   //   text-align: center;
   //   justify-content: center;
 
@@ -143,5 +223,33 @@
   height: 44px;
   border-radius: 5px;
 
-  border: 2px solid black;
+  border: 1px solid $dark-text-color;
+
+  @media screen and (min-width: 768px) {
+    min-width: 125px;
+    padding: 0 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    min-width: 138px;
+  }
 }
+
+// .modal-movie__text {
+//   width: 240px;
+//   height: 236px;
+//   overflow-y: scroll;
+//   overflow-x: auto;
+
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: calc(20 / 12);
+
+//   &::-webkit-scrollbar {
+//     width: 5px;
+//     background-color: $main-bg-color;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background-color: $accent-orange;
+//   }
+// }
