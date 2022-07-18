@@ -7,7 +7,7 @@
   .list {
     width: 100%;
     max-width: 768px;
-    background-color: #fff;
+    background-color: $main-bg-color;
     margin-top: 25px;
   }
 
@@ -44,18 +44,18 @@
     font-size: 12px;
     line-height: 1.33;
     font-style: normal;
-    background-color: #fff;
+    background-color: $main-bg-color;
   }
 
   button:hover {
-    background-color: #ff6b08;
-    color: #ffffff;
+    background-color: $accent-orange;
+    color: $header-text-color;
     border-radius: 5px;
   }
 
   button.active {
-    background-color: #ff6b08;
-    color: #ffffff;
+    background-color: $accent-orange;
+    color: $header-text-color;
     border-radius: 5px;
   }
 }
@@ -99,13 +99,13 @@
   margin: 5px;
   background-position: center;
   border: none;
-  background-color: #fff;
+  background-color: $main-bg-color;
   transition: background-color 0.25s ease-in;
   border-radius: 5px;
 
   &:hover {
-    background-color: #ff6b08;
-    color: #ffffff;
+    background-color: $accent-orange;
+    color: $header-text-color;
     border-radius: 5px;
   }
 
@@ -121,7 +121,7 @@
   margin: 5px;
 
   border: none;
-  background-color: #fff;
+  background-color: $main-bg-color;
   display: inline-block;
   text-align: center;
   padding: 10px 5px 1px 5px;
