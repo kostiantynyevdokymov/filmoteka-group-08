@@ -85,5 +85,6 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
       }
     )
     .join('');
+  storage.save('movies', results);
   homeList.insertAdjacentHTML('beforeend', mark);
 });
