@@ -48,6 +48,7 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
   const mark = results
     .map(
       ({
+        id,
         poster_path,
         title,
         original_title,
@@ -68,13 +69,11 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
           b = b.slice(0, 4);
         }
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-        return `<li class="home-card">
+        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
-                    <h2 class="card-info__title">${
-                      original_title || original_name
-                    }</h2>
+                    <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
                         <span>${genre_ids}</span>
                         |
