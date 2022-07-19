@@ -1,5 +1,6 @@
 import { storagePage } from './pageInStorage';
 // import { currentPage } from './pagination';
+import * as page from './pagination';
 
 
 const refs = {
@@ -13,7 +14,7 @@ const refs = {
     refs.visitCloseBtn.addEventListener("click", toggleModal);
     
 (() => {
-    if (currentPage == 1 || storagePage?.value === undefined) {
+    if (page.currentPage == 1 || storagePage?.value === undefined) {
         return 
     } else {        
         toggleModal();
@@ -22,7 +23,7 @@ const refs = {
 })();    
 
 function loadStoragePage() {     
-    currentPage = storagePage.value;
+    page.currentPage = storagePage.value;
     toggleModal();
 };
 
