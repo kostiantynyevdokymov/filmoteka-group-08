@@ -40,9 +40,16 @@ function openModal(movieId) {
   document.addEventListener('keydown', pressEsc);
 
   backdrop.querySelector('.modal-movie').dataset.modalMovieId = movieId;
-  backdrop.querySelector('.modal-movie').innerHTML = getModalMovieMarkup(movieId);
+  backdrop.querySelector('.modal-movie').innerHTML =
+    getModalMovieMarkup(movieId);
   document.body.style.overflow = 'hidden';
   backdrop.classList.remove('is-hidden');
+  const { vote_average } = getMovieFromLocalStorage(movieId);
+  outNum(vote_average, '#out');
+}
+
+function getMovieFromLocalStorage(movieId) {
+  return storage.load('movies')?.find(movie => movie.id.toString() === movieId);
 }
 
 // Як тільки закривається модалка -> знімаємо EventListener
@@ -63,7 +70,7 @@ function getModalMovieMarkup(movieId) {
     vote_count,
     popularity,
     overview,
-  } = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
+  } = getMovieFromLocalStorage(movieId);
 
   movieId = movieId.toString();
 
@@ -75,7 +82,9 @@ function getModalMovieMarkup(movieId) {
   //   ? `<button class="modal-movie__btn modal-movie__btn-queue added" data-modal-add-to="queue">REMOVE FROM<br>QUEUE</button>`
   //   : `<button class="modal-movie__btn modal-movie__btn-queue" data-modal-add-to="queue">ADD TO<br>QUEUE</button>`;
 
-  let addedClass = isInLibrary('watched-list', movieId.toString()) ? 'added' : '';
+  let addedClass = isInLibrary('watched-list', movieId.toString())
+    ? 'added'
+    : '';
   const btnAddToWatched = `<div class="modal-movie__btn movie-btn movie-btn--watched ${addedClass}" data-modal-add-to="watched">
                           <div class="movie-btn__inner">
                             <button class="remove">REMOVE FROM<br>WATCHED</button>
@@ -100,7 +109,7 @@ function getModalMovieMarkup(movieId) {
                     <tr>
                         <td class="movie-table__title">Vote / Votes</td>
                         <td class="movie-table__info">
-                            <span class="vote">${vote_average}</span>
+                            <span id="out" class="vote">${vote_average}</span>
                             <span>/</span>
                             <span class="votes">${vote_count}</span>
                         </td>
@@ -142,7 +151,9 @@ function addMovieToLibrary(button) {
   const key = button.dataset?.modalAddTo + '-list';
   const movieId = button.closest('.modal-movie').dataset.modalMovieId;
 
-  const value = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
+  const value = storage
+    .load('movies')
+    ?.find(movie => movie.id.toString() === movieId);
   // console.dir(value.id);
 
   let currentList = storage.load(key) || [];
@@ -160,5 +171,22 @@ function addMovieToLibrary(button) {
 }
 
 function isInLibrary(storageKey, valueId) {
-  return storage.load(storageKey)?.some(movie => movie.id.toString() === valueId);
+  return storage
+    .load(storageKey)
+    ?.some(movie => movie.id.toString() === valueId);
+}
+
+function outNum(num, elem) {
+  const time = 2500;
+  const step = 0.1;
+  let e = document.querySelector('#out');
+  n = 0;
+  let t = Math.round(time / (num / step));
+  let interval = setInterval(() => {
+    n = n + step;
+    if (n >= num) {
+      clearInterval(interval);
+    }
+    e.innerHTML = n.toFixed(1);
+  }, t);
 }
