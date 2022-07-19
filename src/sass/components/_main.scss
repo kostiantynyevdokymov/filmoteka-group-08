@@ -16,23 +16,26 @@ h1 {
 .home-card__img {
     width: 100%;
     max-width: 280px;
-    height: 402px;
+    // height: 402px;
     border-radius: 5px;
-    object-fit: cover;
+    object-fit: contain;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
             max-width: 336px;
-            height: 445px;
+            // height: 455px;
         }
     
         @media screen and (min-width: 1280px) {
             max-width: 395px;
-            height: 574px;
+            // height: 574px;
         }
 }
 
 .card-info {
     padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
         padding-top: 12px;
