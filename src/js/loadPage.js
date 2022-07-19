@@ -4,7 +4,7 @@ const MEDIA_TYPE = 'movie';
 const TIME_WINDOW = 'week';
 const homeList = document.querySelector('.home-list');
 
-async function fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW) {
+async function fetchFilmss(KEY, MEDIA_TYPE, TIME_WINDOW) {
   let response = await fetch(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${KEY}&media_type=${MEDIA_TYPE}&time_window=${TIME_WINDOW}`
   );
@@ -22,7 +22,7 @@ fetchGenres().then(({ genres }) => {
 });
 const values = storage.load('arrow');
 
-fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
+fetchFilmss(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
   results.poster_path;
 
   const mark = results
@@ -62,11 +62,11 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
           b = b.slice(0, 4);
         }
 
-        const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+        const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
         return `<li class="home-card">
             <a href="#" class="home-card__link">
                 <div class="card-info">
-                    <img class="home-card__img" src="${imgUrl}" alt="${title}">
+                    <img class="home-card__img" src="${imageUrl}" alt="${title}">
                     <h2 class="card-info__title">${
                       original_title || original_name
                     }</h2>
