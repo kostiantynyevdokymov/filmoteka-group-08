@@ -4,7 +4,7 @@ const MEDIA_TYPE = 'movie';
 const TIME_WINDOW = 'week';
 const homeList = document.querySelector('.home-list');
 
-async function fetchFilmss(KEY, MEDIA_TYPE, TIME_WINDOW) {
+async function fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW) {
   let response = await fetch(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${KEY}&media_type=${MEDIA_TYPE}&time_window=${TIME_WINDOW}`
   );
@@ -22,7 +22,7 @@ fetchGenres().then(({ genres }) => {
 });
 const values = storage.load('arrow');
 
-fetchFilmss(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
+fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
   results.poster_path;
 
   const mark = results
