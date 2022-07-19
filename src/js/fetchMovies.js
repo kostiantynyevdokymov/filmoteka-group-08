@@ -6,26 +6,26 @@ const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
 
-formField.addEventListener('submit', event => {
-  event.preventDefault();
-  textError.classList.add('is-hidden');
-  spinner.classList.remove('is-hidden');
-  movieName = formField.elements.query.value.trim();
-  if (movieName === '') {
-    spinner.classList.add('is-hidden');
-    return alert('Empty field');
-  }
-  fetchMovies(movieName).then(({ movies }) => {
-    if (movies.length === 0) {
+ formField.addEventListener('submit', event => {
+    event.preventDefault();
+    textError.classList.add('is-hidden');
+    spinner.classList.remove('is-hidden');
+    movieName = formField.elements.query.value.trim();
+    if (movieName === '') {
       spinner.classList.add('is-hidden');
-      textError.classList.remove('is-hidden');
-      return
+      return alert('Empty field');
     }
-    storage.save('movies', movies);
-    homeList.innerHTML = movieCards(movies);
-    spinner.classList.add('is-hidden');
+    fetchMovies(movieName).then(({ movies }) => {
+      if (movies.length === 0) {
+        spinner.classList.add('is-hidden');
+        textError.classList.remove('is-hidden');
+        return
+      }
+      storage.save('movies', movies);
+      homeList.innerHTML = movieCards(movies);
+      spinner.classList.add('is-hidden');
+    });
   });
-});
 
 export function movieCards(movies) {
   return movies
