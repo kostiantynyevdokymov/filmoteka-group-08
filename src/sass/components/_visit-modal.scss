@@ -15,40 +15,6 @@
         cursor: default;            
         background: $main-bg-color;            
 }
-
-.dialog__close-button {
-    display: inline-flexbox;
-    border: none;
-    cursor: pointer;
-    box-sizing: border-box;
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    margin-top: 5px;
-
-    background: $main-bg-color;
-    background-image: url(../images/close.svg);
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-
-    &:hover,
-    &:focus {
-        background: $main-bg-color;
-        background-image: url(../images/close.svg);        
-        background-size: 19px;
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-    }
-}
 .dialog__text{
     margin-bottom: 20px;
 }
