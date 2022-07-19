@@ -25,9 +25,11 @@ fetchGenres().then(({ genres }) => {
 });
 const values = storage.load('arrow');
 
+
   fetchFilms(API_URL_POPULAR).then(({ results }) => {
 
   results.poster_path;
+
 
   const mark = results
     .map(
@@ -48,7 +50,7 @@ const values = storage.load('arrow');
             if (genreId === value.id) {
               genreArr.push(value.name);
               if (genre_ids.length > 2) {
-                other = 'other';
+                other = ',Other';
               }
             }
           }
