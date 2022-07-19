@@ -1,4 +1,5 @@
 import { storagePage } from './pageInStorage';
+import { currentPage } from './pagination';
 
 
 const refs = {

@@ -5,7 +5,7 @@ const paginationElement = document.getElementById('pagination');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const warningField = document.querySelector('.header-warning');
-let currentPage = 1;
+export let currentPage = 2;
 let pageCount;
 const pagesOnWindow = 5;
 let rows = 20;
