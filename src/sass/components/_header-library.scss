@@ -14,8 +14,7 @@
 
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-        background-color: rgba(0, 0, 0, 0.56);
+    (min-resolution: 2dppx) {        
         background-image: url(../images/my-library-mob-x2.jpg);
     }
 
@@ -26,8 +25,7 @@
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-            background-color: rgba(0, 0, 0, 0.56);
+        (min-resolution: 2dppx) {           
             background-image: url(../images/my-library-tab-x2.jpg);
         }
     }
@@ -35,19 +33,34 @@
     @include desk {
         background-image: url(../images/my-library-desk.jpg);       
         height: 215px;
-        padding: 40px 20px;
-        background-size: cover;
+        padding: 40px 20px;        
 
         @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {            
-            background-color: rgba(0, 0, 0, 0.56);
-            background-image: url(../images/my-library-desk-x2.jpg);
-            background-size: cover;
+        (min-resolution: 2dppx) {          
+            background-image: url(../images/my-library-desk-x2.jpg);            
         }
     }
 }
 
+//-==button library==-
+.header-library__btn {
+    border: 1px solid #fff;
+    width: 130px;
+    height: 44px;
+
+    @include tab {
+        width: 152px;
+
+        &+& {
+            margin-left: 32px;
+        }
+
+        &+& {
+            margin-left: 20px;
+        }
+    }
+}
 .header-library__btn-wrap{  
   position: absolute;  
   top:60%;
