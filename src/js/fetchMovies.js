@@ -6,7 +6,7 @@ const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
 
-formField.addEventListener('submit', event => {
+formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
@@ -19,7 +19,7 @@ formField.addEventListener('submit', event => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
-      return
+      return;
     }
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
@@ -29,21 +29,13 @@ formField.addEventListener('submit', event => {
 
 export function movieCards(movies) {
   return movies
-    .map(
-      ({
-        id,
-        poster_path,
-        title,
-        original_title,
-        genres_ids,
-        release_date,
-      }) => {
-        const imgUrl = poster_path
+    .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
+      const imgUrl = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
-        // : './images/netuNichego.png';
-        : 'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
-        const year = new Date(release_date).getFullYear();
-        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+        : // : './images/netuNichego.png';
+          'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
+      const year = new Date(release_date).getFullYear();
+      return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -56,8 +48,7 @@ export function movieCards(movies) {
                 </div>
             </a>
         </li>`;
-      }
-    )
+    })
     .join('');
 }
 
