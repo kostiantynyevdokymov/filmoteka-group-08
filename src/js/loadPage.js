@@ -36,9 +36,6 @@ fetchFilmss(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
         original_name,
         first_air_date,
       }) => {
-        if (genre_ids.length > 3) {
-        }
-
         const genreArr = [];
         let other = '';
         for (const genreId of genre_ids) {
