@@ -5,7 +5,7 @@ const paginationElement = document.getElementById('pagination');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const warningField = document.querySelector('.header-warning');
-export let currentPage = 2;
+let currentPage = 2;
 let pageCount;
 const pagesOnWindow = 5;
 let rows = 20;
@@ -15,7 +15,7 @@ function resetCurrentPage() {
 }
 
 // главная функция для рендера pagination. Callback - функция для работы с fetch (зависит от раздела, где рисуем pagination)
-export function renderPagination(totalPages, listItems, callback, searchQuery) {
+function renderPagination(totalPages, listItems, callback, searchQuery) {
   paginationElement.innerHTML = '';
   resetCurrentPage();
   arrowLeft.removeEventListener('click', onArrowLeftClick);
@@ -203,3 +203,5 @@ function disableArrowBtn(totalPages) {
     arrowRight.classList.remove('disabled-arrow');
   }
 }
+
+export default { renderPagination, currentPage };
