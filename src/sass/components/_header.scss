@@ -86,6 +86,10 @@ height: 20px;
         height: 20px;
     }
 }
+.js-search-form:focus, .js-search-form:hover, .js-search-form:active {
+    outline: 0;
+    outline-offset: 0;
+}
 
 .js-search-form::placeholder {
     font-weight: 400;
