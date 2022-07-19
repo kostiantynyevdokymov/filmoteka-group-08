@@ -23,8 +23,6 @@ fetchGenres().then(({ genres }) => {
 const values = storage.load('arrow');
 
 fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
-  results.poster_path;
-
   const mark = results
     .map(
       ({
@@ -43,7 +41,7 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
             if (genreId === value.id) {
               genreArr.push(value.name);
               if (genre_ids.length > 2) {
-                other = 'other';
+                other = ',Other';
               }
             }
           }
