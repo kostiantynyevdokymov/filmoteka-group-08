@@ -14,7 +14,7 @@ const refs = {
     refs.visitCloseBtn.addEventListener("click", toggleModal);
     
 (() => {
-    if (currentPage === 1 || storagePage === undefined) {
+    if (currentPage == 1 || storagePage === undefined) {
         return 
     } else {        
         toggleModal();
@@ -23,7 +23,7 @@ const refs = {
 })();    
 
 function loadStoragePage() {     
-    currentPage = storagePage.value;
+    currentPage = storagePage;
     toggleModal();
 };
 

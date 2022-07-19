@@ -3,13 +3,13 @@ import storage from './storage';
 export const STORAGE_PAGE_KEY = 'last visit page';
 export const storagePage = storage.load(STORAGE_PAGE_KEY);
 
-currentPage = 2;
+currentPage = 3;
 
 changeStoragePage();
 
 function changeStoragePage() {
-  if (currentPage > 1 && currentPage !== storagePage?.value) {
+  if (currentPage > 1 && currentPage !== storagePage) {
     storage.remove(STORAGE_PAGE_KEY);
-    storage.save(STORAGE_PAGE_KEY, { value: currentPage });
+    storage.save(STORAGE_PAGE_KEY, currentPage);
   }
 }
