@@ -204,4 +204,4 @@ function disableArrowBtn(totalPages) {
   }
 }
 
-export default {renderPagination, currentPage}
+export default { renderPagination, currentPage };
