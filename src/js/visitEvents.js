@@ -13,6 +13,7 @@ const refs = {
     refs.comeBackButton.addEventListener("click", loadStoragePage);    
     refs.visitCloseBtn.addEventListener("click", toggleModal);
     
+let timerId;
 (() => {
     if (page.currentPage == 1 || storagePage?.value === undefined) {
         return 
