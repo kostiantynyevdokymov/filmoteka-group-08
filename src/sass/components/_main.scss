@@ -1,14 +1,17 @@
 * {
     font-family: 'Roboto', sans-serif;
 }
+
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 a {
     text-decoration: none;
 }
+
 h1 {
     display: none;
 }
@@ -16,23 +19,26 @@ h1 {
 .home-card__img {
     width: 100%;
     max-width: 280px;
-    height: 402px;
+    max-height: 402px;
     border-radius: 5px;
     object-fit: cover;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
-            max-width: 336px;
-            height: 445px;
-        }
-    
-        @media screen and (min-width: 1280px) {
-            max-width: 395px;
-            height: 574px;
-        }
+        max-width: 336px;
+        max-height: 455px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        max-width: 395px;
+        max-height: 574px;
+    }
 }
 
 .card-info {
     padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
         padding-top: 12px;
@@ -51,14 +57,14 @@ h1 {
     color: $dark-text-color;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
-            font-size: 12px;
-            line-height: 16px
-        }
-    
-        @media screen and (min-width: 1280px) {
-            font-size: 20px;
-            line-height: 24px
-        }
+        font-size: 12px;
+        line-height: 16px
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 24px
+    }
 }
 
 .card-info_descr {
@@ -68,13 +74,12 @@ h1 {
     color: $accent-orange;
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
-            font-size: 12px;
-            line-height: 16px
-        }
-    
+        font-size: 12px;
+        line-height: 16px
+    }
+
     @media screen and (min-width: 1280px) {
         font-size: 20px;
         line-height: 24px
     }
 }
-
