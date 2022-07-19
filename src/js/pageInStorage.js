@@ -8,8 +8,8 @@ currentPage = 3;
 changeStoragePage();
 
 function changeStoragePage() {
-  if (currentPage > 1 && currentPage !== storagePage) {
+  if (currentPage > 1 && currentPage !== storagePage?.value) {
     storage.remove(STORAGE_PAGE_KEY);
-    storage.save(STORAGE_PAGE_KEY, currentPage);
+    storage.save(STORAGE_PAGE_KEY, { value: currentPage });
   }
 }
