@@ -3,10 +3,12 @@ import storage from './storage';
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
+const textError = document.querySelector('.search-result');
 let movieName = '';
 
 formField.addEventListener('submit', event => {
   event.preventDefault();
+  textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim();
   if (movieName === '') {
@@ -14,6 +16,11 @@ formField.addEventListener('submit', event => {
     return alert('Empty field');
   }
   fetchMovies(movieName).then(({ movies }) => {
+    if (movies.length === 0) {
+      spinner.classList.add('is-hidden');
+      textError.classList.remove('is-hidden');
+      return
+    }
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');

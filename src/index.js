@@ -5,3 +5,6 @@ import './js/loadPage';
 import './js/pageInStorage';
 import './js/modal';
 import './js/modalFooter';
+import './js/storage';
+import './js/visitEvents';
+

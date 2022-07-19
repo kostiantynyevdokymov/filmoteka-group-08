@@ -48,36 +48,6 @@
     }
 }
 
-.header__logo-title {
-        display: none;
-    
-    @media screen and (min-width: 768px) {
-        display: inline-flex;  
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 1.16;
-            color: $header-text-color;
-    }
-}
-
-.header-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-&__item + &__item {
-            margin-left: 40px;
-        }
-}
-
-.header__link {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.16;
-    text-transform: uppercase;
-    color: $header-text-color;
-}
-
 .form-field {
     position: absolute;
         top: 50%;
@@ -134,5 +104,13 @@ height: 20px;
 }
 
 .search-result {
-    display: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+
+    font-size: 14px;
+    line-height: 1.14;
+    color: $accent-input-error;
+    
 }
