@@ -1,9 +1,11 @@
 import storage from './storage';
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
+
 const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
 
 async function fetchFilms(API_URL_POPULAR) {
+
   let response = await fetch(
     `${API_URL_POPULAR}`
   );
@@ -21,28 +23,7 @@ fetchGenres().then(({ genres }) => {
   const arr = [...genres];
   localStorage.setItem('arrow', JSON.stringify(arr));
 });
-
-// const array = [
-//   { id: 28, name: 'Action' },
-//   { id: 12, name: 'Adventure' },
-//   { id: 16, name: 'Animation' },
-//   { id: 35, name: 'Comedy' },
-//   { id: 80, name: 'Crime' },
-//   { id: 99, name: 'Documentary' },
-//   { id: 18, name: 'Drama' },
-//   { id: 10751, name: 'Family' },
-//   { id: 14, name: 'Fantasy' },
-//   { id: 36, name: 'History' },
-//   { id: 27, name: 'Horror' },
-//   { id: 10402, name: 'Music' },
-//   { id: 9648, name: 'Mystery' },
-//   { id: 10749, name: 'Romance' },
-//   { id: 878, name: 'Science Fiction' },
-//   { id: 10770, name: 'TV Movie' },
-//   { id: 53, name: 'Thriller' },
-//   { id: 10752, name: 'War' },
-//   { id: 37, name: 'Western' },
-// ];
+const values = storage.load('arrow');
 
   fetchFilms(API_URL_POPULAR).then(({ results }) => {
 
@@ -60,7 +41,18 @@ fetchGenres().then(({ genres }) => {
         original_name,
         first_air_date,
       }) => {
-        const value = storage.load('arrow').find(arr => {});
+        const genreArr = [];
+        let other = '';
+        for (const genreId of genre_ids) {
+          for (const value of values) {
+            if (genreId === value.id) {
+              genreArr.push(value.name);
+              if (genre_ids.length > 2) {
+                other = 'other';
+              }
+            }
+          }
+        }
 
         let a = release_date;
 
@@ -71,6 +63,7 @@ fetchGenres().then(({ genres }) => {
         if (first_air_date) {
           b = b.slice(0, 4);
         }
+
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
         return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
@@ -78,7 +71,8 @@ fetchGenres().then(({ genres }) => {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genre_ids}</span>
+                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        
                         |
                         <span>${a || b}</span>
                     </p>
