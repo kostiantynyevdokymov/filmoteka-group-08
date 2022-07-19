@@ -3,6 +3,7 @@ const KEY = '659c146febfafc17fd54baa17527f7fa';
 const MEDIA_TYPE = 'movie';
 const TIME_WINDOW = 'week';
 const homeList = document.querySelector('.home-list');
+
 async function fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW) {
   let response = await fetch(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${KEY}&media_type=${MEDIA_TYPE}&time_window=${TIME_WINDOW}`
@@ -19,28 +20,7 @@ fetchGenres().then(({ genres }) => {
   const arr = [...genres];
   localStorage.setItem('arrow', JSON.stringify(arr));
 });
-
-// const array = [
-//   { id: 28, name: 'Action' },
-//   { id: 12, name: 'Adventure' },
-//   { id: 16, name: 'Animation' },
-//   { id: 35, name: 'Comedy' },
-//   { id: 80, name: 'Crime' },
-//   { id: 99, name: 'Documentary' },
-//   { id: 18, name: 'Drama' },
-//   { id: 10751, name: 'Family' },
-//   { id: 14, name: 'Fantasy' },
-//   { id: 36, name: 'History' },
-//   { id: 27, name: 'Horror' },
-//   { id: 10402, name: 'Music' },
-//   { id: 9648, name: 'Mystery' },
-//   { id: 10749, name: 'Romance' },
-//   { id: 878, name: 'Science Fiction' },
-//   { id: 10770, name: 'TV Movie' },
-//   { id: 53, name: 'Thriller' },
-//   { id: 10752, name: 'War' },
-//   { id: 37, name: 'Western' },
-// ];
+const values = storage.load('arrow');
 
 fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
   results.poster_path;
@@ -56,7 +36,21 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
         original_name,
         first_air_date,
       }) => {
-        const value = storage.load('arrow').find(arr => {});
+        if (genre_ids.length > 3) {
+        }
+
+        const genreArr = [];
+        let other = '';
+        for (const genreId of genre_ids) {
+          for (const value of values) {
+            if (genreId === value.id) {
+              genreArr.push(value.name);
+              if (genre_ids.length > 2) {
+                other = 'other';
+              }
+            }
+          }
+        }
 
         let a = release_date;
 
@@ -67,6 +61,7 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
         if (first_air_date) {
           b = b.slice(0, 4);
         }
+
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
         return `<li class="home-card">
             <a href="#" class="home-card__link">
@@ -76,7 +71,8 @@ fetchFilms(KEY, MEDIA_TYPE, TIME_WINDOW).then(({ results }) => {
                       original_title || original_name
                     }</h2>
                     <p class="card-info_descr">
-                        <span>${genre_ids}</span>
+                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        
                         |
                         <span>${a || b}</span>
                     </p>
