@@ -11,13 +11,15 @@ btnOpenWatched?.addEventListener('click', openWatched);
 function openQueue() {
     removeMarkUp(libList);
     renderCardsFromLocalStoradge('queue-list', libList);
-    btnOpenQue?.classList.contains(active_type) ? btnOpenWatched.classList.remove(active_type) : btnOpenQue.classList.add(active_type);
+    btnOpenQue.classList.add(active_type);
+    btnOpenWatched.classList.remove(active_type);
 }
 
 function openWatched() {
     removeMarkUp(libList);
     renderCardsFromLocalStoradge('watched-list', libList);
-    btnOpenWatched?.classList.contains(active_type) ? btnOpenQue.classList.remove(active_type) : btnOpenWatched.classList.add(active_type);
+    btnOpenQue.classList.remove(active_type);
+    btnOpenWatched.classList.add(active_type);
 }
 
 renderCardsFromLocalStoradge('queue-list', libList);
