@@ -2,7 +2,8 @@ import storage from './storage';
 
 const backdrop = document.querySelector('[data-modal]');
 const closeButton = document.querySelector('[data-modal-close]');
-const cardsContainer = document.querySelector('.home-container');
+const cardsContainer =
+  document.querySelector('.home-container') || document.querySelector('.library-container');
 
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
@@ -43,6 +44,15 @@ function openModal(movieId) {
   backdrop.querySelector('.modal-movie').innerHTML = getModalMovieMarkup(movieId);
   document.body.style.overflow = 'hidden';
   backdrop.classList.remove('is-hidden');
+  const { vote_average } =
+    getMovieFromLocalStorage(movieId, 'movies') ||
+    getMovieFromLocalStorage(movieId, 'watched-list') ||
+    getMovieFromLocalStorage(movieId, 'queue-list');
+  outNum(vote_average, '#out');
+}
+
+function getMovieFromLocalStorage(movieId, key) {
+  return storage.load(key)?.find(movie => movie.id.toString() === movieId);
 }
 
 // Як тільки закривається модалка -> знімаємо EventListener
@@ -63,7 +73,10 @@ function getModalMovieMarkup(movieId) {
     vote_count,
     popularity,
     overview,
-  } = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
+  } =
+    getMovieFromLocalStorage(movieId, 'movies') ||
+    getMovieFromLocalStorage(movieId, 'watched-list') ||
+    getMovieFromLocalStorage(movieId, 'queue-list');
 
   movieId = movieId.toString();
 
@@ -100,7 +113,7 @@ function getModalMovieMarkup(movieId) {
                     <tr>
                         <td class="movie-table__title">Vote / Votes</td>
                         <td class="movie-table__info">
-                            <span class="vote">${vote_average}</span>
+                            <span id="out" class="vote">${vote_average}</span>
                             <span>/</span>
                             <span class="votes">${vote_count}</span>
                         </td>
@@ -161,4 +174,19 @@ function addMovieToLibrary(button) {
 
 function isInLibrary(storageKey, valueId) {
   return storage.load(storageKey)?.some(movie => movie.id.toString() === valueId);
+}
+
+function outNum(num, elem) {
+  const time = 2500;
+  const step = 0.1;
+  let e = document.querySelector('#out');
+  n = 0;
+  let t = Math.round(time / (num / step));
+  let interval = setInterval(() => {
+    n = n + step;
+    if (n >= num) {
+      clearInterval(interval);
+    }
+    e.innerHTML = n.toFixed(1);
+  }, t);
 }

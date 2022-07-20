@@ -1,19 +1,28 @@
 import storage from './storage';
 
+
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
 
- formField.addEventListener('submit', event => {
-    event.preventDefault();
-    textError.classList.add('is-hidden');
-    spinner.classList.remove('is-hidden');
-    movieName = formField.elements.query.value.trim();
-    if (movieName === '') {
+
+formField?.addEventListener('submit', event => {
+  event.preventDefault();
+  textError.classList.add('is-hidden');
+  spinner.classList.remove('is-hidden');
+  movieName = formField.elements.query.value.trim();
+  if (movieName === '') {
+    spinner.classList.add('is-hidden');
+    return alert('Empty field');
+  }
+  fetchMovies(movieName).then(({ movies }) => {
+    if (movies.length === 0) {
       spinner.classList.add('is-hidden');
-      return alert('Empty field');
+      textError.classList.remove('is-hidden');
+      return;
+
     }
     fetchMovies(movieName).then(({ movies }) => {
       if (movies.length === 0) {
@@ -29,20 +38,13 @@ let movieName = '';
 
 export function movieCards(movies) {
   return movies
-    .map(
-      ({
-        id,
-        poster_path,
-        title,
-        original_title,
-        genres_ids,
-        release_date,
-      }) => {
-        const imgUrl = poster_path
+    .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
+      const imgUrl = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
-        : './images/netuNichego.png';
-        const year = new Date(release_date).getFullYear();
-        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+        : // : './images/netuNichego.png';
+          'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
+      const year = new Date(release_date).getFullYear();
+      return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -55,8 +57,7 @@ export function movieCards(movies) {
                 </div>
             </a>
         </li>`;
-      }
-    )
+    })
     .join('');
 }
 
