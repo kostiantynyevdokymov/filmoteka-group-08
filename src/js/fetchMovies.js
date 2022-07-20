@@ -1,5 +1,6 @@
 import storage from './storage';
 
+
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
