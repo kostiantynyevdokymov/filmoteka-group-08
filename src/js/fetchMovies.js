@@ -1,12 +1,10 @@
 import storage from './storage';
 
-
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
-
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
@@ -22,19 +20,12 @@ formField?.addEventListener('submit', event => {
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
       return;
-
     }
-    fetchMovies(movieName).then(({ movies }) => {
-      if (movies.length === 0) {
-        spinner.classList.add('is-hidden');
-        textError.classList.remove('is-hidden');
-        return
-      }
-      storage.save('movies', movies);
-      homeList.innerHTML = movieCards(movies);
-      spinner.classList.add('is-hidden');
-    });
+    storage.save('movies', movies);
+    homeList.innerHTML = movieCards(movies);
+    spinner.classList.add('is-hidden');
   });
+});
 
 function movieCards(movies) {
   return movies
