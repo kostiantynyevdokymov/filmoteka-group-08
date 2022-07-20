@@ -1,4 +1,5 @@
 import storage from './storage';
+import { toggleModal, refs } from './visitEvents';
 
 
 const formField = document.querySelector('.form-field');
@@ -6,6 +7,7 @@ const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
+let page = 1;
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
@@ -53,14 +55,14 @@ export function movieCards(movies) {
     .join('');
 }
 
-async function fetchMovies(movieName) {
+async function fetchMovies(movieName,page) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
     query: movieName,
   });
 
-  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}`)
+  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}&page=${page}`)
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -73,3 +75,28 @@ async function fetchMovies(movieName) {
       };
     });
 }
+
+//load last page
+refs.comeBackBtn.addEventListener("click", loadStoragePage); 
+
+export function loadStoragePage() {     
+  toggleModal();
+  textError.classList.add('is-hidden');
+  spinner.classList.remove('is-hidden');
+  movieName = 'spider';
+  page = 3;
+  if (movieName === '') {
+    spinner.classList.add('is-hidden');
+    return alert('Empty field');
+  }
+  fetchMovies(movieName,page).then(({ movies }) => {
+    if (movies.length === 0) {
+      spinner.classList.add('is-hidden');
+      textError.classList.remove('is-hidden');
+      return;
+    }
+    storage.save('movies', movies);
+    homeList.innerHTML = movieCards(movies);
+    spinner.classList.add('is-hidden');
+  });
+};
