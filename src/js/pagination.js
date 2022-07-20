@@ -5,7 +5,7 @@ const paginationElement = document.getElementById('pagination');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const warningField = document.querySelector('.header-warning');
-let currentPage = 1;
+export let currentPage = 2;
 let pageCount;
 const pagesOnWindow = 5;
 let rows = 20;
@@ -155,11 +155,7 @@ export function renderPagination(totalPages, listItems, callback, searchQuery) {
 // прячет первую и последнюю страницу по бокам для мобильных гаджетов с маленьким экраном
 function hideExtremeButtons(totalPages) {
   try {
-    if (
-      /Android|webOS|iPhone|iPad|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent,
-      )
-    ) {
+    if (/Android|webOS|iPhone|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       // код для мобильных устройств
       const allPaginationBtns = document.querySelectorAll('#pagination button');
       if (currentPage > 3) {
@@ -171,15 +167,13 @@ function hideExtremeButtons(totalPages) {
       if (currentPage < totalPages - 3) {
         allPaginationBtns[allPaginationBtns.length - 1].classList.add('hide');
       } else {
-        allPaginationBtns[allPaginationBtns.length - 1].classList.remove(
-          'hide',
-        );
+        allPaginationBtns[allPaginationBtns.length - 1].classList.remove('hide');
       }
     }
   } catch (error) {}
 }
 
-paginationElement.addEventListener('click', disableArrowBtnAfterPageClick);
+paginationElement?.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(e) {
   if (e.target.tagName != 'BUTTON') {
