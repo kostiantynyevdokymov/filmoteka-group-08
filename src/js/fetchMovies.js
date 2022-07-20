@@ -27,7 +27,7 @@ formField?.addEventListener('submit', event => {
   });
 });
 
-function movieCards(movies) {
+export function movieCards(movies) {
   return movies
     .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
       const imgUrl = poster_path
