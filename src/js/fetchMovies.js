@@ -7,6 +7,7 @@ const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
 
+
 formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
@@ -21,12 +22,19 @@ formField?.addEventListener('submit', event => {
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
       return;
+
     }
-    storage.save('movies', movies);
-    homeList.innerHTML = movieCards(movies);
-    spinner.classList.add('is-hidden');
+    fetchMovies(movieName).then(({ movies }) => {
+      if (movies.length === 0) {
+        spinner.classList.add('is-hidden');
+        textError.classList.remove('is-hidden');
+        return
+      }
+      storage.save('movies', movies);
+      homeList.innerHTML = movieCards(movies);
+      spinner.classList.add('is-hidden');
+    });
   });
-});
 
 export function movieCards(movies) {
   return movies
