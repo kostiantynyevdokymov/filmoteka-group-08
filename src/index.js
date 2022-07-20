@@ -8,4 +8,3 @@ import './js/pagination';
 import './js/modalFooter';
 import './js/storage';
 import './js/visitEvents';
-

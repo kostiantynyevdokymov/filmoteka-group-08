@@ -1,5 +1,5 @@
 import storage from './storage';
-
+import * as page from './pagination';
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
@@ -24,6 +24,10 @@ formField?.addEventListener('submit', event => {
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
+     setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
   });
 });
 
@@ -35,7 +39,7 @@ export function movieCards(movies) {
         : // : './images/netuNichego.png';
           'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
       const year = new Date(release_date).getFullYear();
-      return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+      return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -51,6 +55,8 @@ export function movieCards(movies) {
     })
     .join('');
 }
+   
+ 
 
 async function fetchMovies(movieName) {
   const searchParams = new URLSearchParams({
@@ -71,4 +77,7 @@ async function fetchMovies(movieName) {
         movies: data.results,
       };
     });
+      
 }
+
+ 
