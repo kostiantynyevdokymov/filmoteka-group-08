@@ -1,5 +1,5 @@
-// import placeholder from './spinner';
 
+const spinner = document.querySelector('.spinner-loader');
 const listElement = document.querySelector('.js-card');
 const paginationElement = document.getElementById('pagination');
 const arrowLeft = document.querySelector('.arrow_left');
