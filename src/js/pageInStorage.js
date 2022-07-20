@@ -4,7 +4,7 @@ import * as page from './pagination';
 export const STORAGE_PAGE_KEY = 'last visit page';
 export const STORAGE_MOVIES_SEARCH = 'last visit search'
 export const storagePage = storage.load(STORAGE_PAGE_KEY);
-export const storageLastSearchName = storage.load(STORAGE_MOVIES_SEARCH);
+export const storageLastSearchText = storage.load(STORAGE_MOVIES_SEARCH);
 
 
 changeStoragePage();

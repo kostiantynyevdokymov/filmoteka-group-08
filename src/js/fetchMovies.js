@@ -1,7 +1,5 @@
 import storage from './storage';
-import { toggleModal } from './visitEvents';
-import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchName } from './pageInStorage';
-
+import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
 
 
 const formField = document.querySelector('.form-field');
@@ -15,8 +13,7 @@ formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = formField.elements.query.value.trim();  
-  storage.save(STORAGE_MOVIES_SEARCH,{movie: movieName});
+  movieName = formField.elements.query.value.trim(); 
   if (movieName === '') {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
@@ -27,6 +24,7 @@ formField?.addEventListener('submit', event => {
       textError.classList.remove('is-hidden');
       return;
     }
+    storage.save(STORAGE_MOVIES_SEARCH,{movie: movieName});
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
@@ -79,12 +77,11 @@ async function fetchMovies(movieName,page) {
     });
 }
 
-//load last page
-export function loadStoragePage() {     
-  toggleModal();
+//load last page search
+export function loadStoragePage() {      
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = storageLastSearchName?.movie;
+  movieName = storageLastSearchText?.movie;
   page = storagePage?.value;
   if (movieName === '') {
     spinner.classList.add('is-hidden');

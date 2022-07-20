@@ -1,5 +1,4 @@
 import { storagePage } from './pageInStorage';
-// import { currentPage } from './pagination';
 import * as page from './pagination';
 import { loadStoragePage } from './fetchMovies';
 
@@ -9,7 +8,7 @@ import { loadStoragePage } from './fetchMovies';
     visitModal: document.querySelector("[data-modal].dialog"),   
     visitCloseBtn: document.querySelector("button.js-visit-close-btn"),
 };
-    refs.comeBackBtn.addEventListener("click", loadStoragePage); 
+    refs.comeBackBtn.addEventListener("click", comeBackBtnToggle); 
     refs.visitCloseBtn.addEventListener("click", toggleModal);
     
     
@@ -23,17 +22,23 @@ let timerId;
     }
 })();    
 
-// function loadStoragePage() {     
-//     page.currentPage = storagePage.value;
-//     toggleModal();
-// };
 
-export function toggleModal() {   
+function toggleModal() {   
     refs.visitModal.classList.toggle("is-hidden");     
     
     if (refs.visitModal.classList.value.includes("hidden") === true) {
            clearTimeout(timerId);  
-        refs.comeBackBtn.removeEventListener("click", loadStoragePage);        
+        refs.comeBackBtn.removeEventListener("click", comeBackBtnToggle);        
+        refs.visitCloseBtn.removeEventListener("click", toggleModal);
+    };
+};
+
+ function comeBackBtnToggle() {   
+    refs.visitModal.classList.toggle("is-hidden");     
+    loadStoragePage()
+    if (refs.visitModal.classList.value.includes("hidden") === true) {
+           clearTimeout(timerId);  
+        refs.comeBackBtn.removeEventListener("click", comeBackBtnToggle);        
         refs.visitCloseBtn.removeEventListener("click", toggleModal);
     };
 };
