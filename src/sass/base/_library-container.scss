@@ -28,7 +28,9 @@
 .lib-bg-img {
     background-image: url("/src/images/netuNichego.png");
     background-position: center;
+    background-size: 0;
     background-repeat: no-repeat;
+    animation: bg 2s $cubic forwards;
 }
 
 .library-container {
@@ -72,4 +74,17 @@
                 }
             }
         }
+}
+
+@keyframes bg {
+    0%{
+        background-size: 0;
+    }
+    50%{
+        background-size: 50%;
+    }
+    100%{
+        background-size: 30%;
+    }
+    
 }

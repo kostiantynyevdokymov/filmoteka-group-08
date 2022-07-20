@@ -1,4 +1,4 @@
-import { removeMarkUp, renderCardsFromLocalStoradge, libList, active_type } from './libFunc'
+import { removeMarkUp, renderCardsFromLocalStoradge, libList, active_type, funnyGuyOnBg } from './libFunc'
 
 const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
@@ -11,16 +11,21 @@ btnOpenWatched?.addEventListener('click', openWatched);
 function openQueue() {
     removeMarkUp(libList);
     renderCardsFromLocalStoradge('queue-list', libList);
-    btnOpenQue?.classList.contains(active_type) ? btnOpenWatched.classList.remove(active_type) : btnOpenQue.classList.add(active_type);
+    funnyGuyOnBg();
+    btnOpenQue.classList.add(active_type);
+    btnOpenWatched.classList.remove(active_type);
 }
 
 function openWatched() {
     removeMarkUp(libList);
     renderCardsFromLocalStoradge('watched-list', libList);
-    btnOpenWatched?.classList.contains(active_type) ? btnOpenQue.classList.remove(active_type) : btnOpenWatched.classList.add(active_type);
+    funnyGuyOnBg();
+    btnOpenQue.classList.remove(active_type);
+    btnOpenWatched.classList.add(active_type);
 }
 
 renderCardsFromLocalStoradge('queue-list', libList);
+funnyGuyOnBg();
 
 
 
