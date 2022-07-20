@@ -9,8 +9,9 @@ import { loadStoragePage } from './fetchMovies';
     visitModal: document.querySelector("[data-modal].dialog"),   
     visitCloseBtn: document.querySelector("button.js-visit-close-btn"),
 };
-       
+    refs.comeBackBtn.addEventListener("click", loadStoragePage); 
     refs.visitCloseBtn.addEventListener("click", toggleModal);
+    
     
 let timerId;
 (() => {
