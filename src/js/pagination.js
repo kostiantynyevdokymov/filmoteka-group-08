@@ -1,199 +1,132 @@
-// import placeholder from './spinner';
+const inputRef = document.querySelector('.js-search-form');
+const gallery = document.querySelector('.js-card-library');
 
-const listElement = document.querySelector('.js-card');
-const paginationElement = document.getElementById('pagination');
-const arrowLeft = document.querySelector('.arrow_left');
-const arrowRight = document.querySelector('.arrow_right');
-const warningField = document.querySelector('.header-warning');
-export let currentPage = 2;
-let pageCount;
-const pagesOnWindow = 5;
-let rows = 20;
+const btn1Ref = document.querySelector('[data-index="1"]');
+const btn2Ref = document.querySelector('[data-index="2"]');
+const btn3Ref = document.querySelector('[data-index="3"]');
+const btn4Ref = document.querySelector('[data-index="4"]');
+const btn5Ref = document.querySelector('[data-index="5"]');
+const firstPageRef = document.querySelector('.first-button');
+const lastPageRef = document.querySelector('.last-button');
+const paginationRef = document.querySelector('.pagination-container');
+const rightArrowRef = document.querySelector('.arrow-right');
+const leftArrowRef = document.querySelector('.arrow-left');
+const prevDotsRef = document.querySelector('#previous');
+const afterDotsRef = document.querySelector('#after');
 
-function resetCurrentPage() {
-  currentPage = 1;
-}
+paginationRef.addEventListener('click', onPaginationClick);
 
-// главная функция для рендера pagination. Callback - функция для работы с fetch (зависит от раздела, где рисуем pagination)
-export function renderPagination(totalPages, listItems, callback, searchQuery) {
-  paginationElement.innerHTML = '';
-  resetCurrentPage();
-  arrowLeft.removeEventListener('click', onArrowLeftClick);
-  arrowRight.removeEventListener('click', onArrowRightClick);
+let currentPage = 1;
 
-  function setupPagination(items, wrapper, rowsPerPage) {
-    wrapper.innerHTML = '';
+let btns = document.querySelectorAll('.pagination-button');
 
-    pageCount = totalPages;
-    let maxLeftPage = currentPage - Math.floor(pagesOnWindow / 2);
-    let maxRightPage = currentPage + Math.floor(pagesOnWindow / 2);
+prevDotsRef.hidden = true;
+leftArrowRef.hidden = true;
+firstPageRef.hidden = true;
 
-    if (maxLeftPage < 1) {
-      maxLeftPage = 1;
-      maxRightPage = pagesOnWindow;
+function onPaginationClick(event) {
+  if (event.target.tagName === 'BUTTON') {
+    if (Number(event.target.textContent)) {
+      currentPage = Number(event.target.textContent);
     }
 
-    if (maxRightPage > totalPages) {
-      maxLeftPage = totalPages - (pagesOnWindow - 1);
+    prevDotsRef.hidden = true;
+    afterDotsRef.hidden = true;
 
-      if (maxLeftPage < 1) {
-        maxLeftPage = 1;
-      }
-      maxRightPage = totalPages;
+    if (event.target.classList.contains('pagination-button')) {
+      btns.forEach(el => el.classList.remove('pagination--current'));
+      event.target.classList.add('pagination--current');
     }
 
-    for (let i = 1; i <= totalPages; i++) {
-      if (maxLeftPage !== 1 && i == 1) {
-        let btn = paginationButton(i, items);
-        wrapper.appendChild(btn);
-      }
-
-      if (maxRightPage !== totalPages && i == totalPages) {
-        let btn = paginationButton(i, items);
-        wrapper.appendChild(btn);
-      }
-
-      if (i >= maxLeftPage && i <= maxRightPage) {
-        let btn = paginationButton(i, items);
-        wrapper.appendChild(btn);
-      }
-
-      // добавляет троеточие в pagination в зависимости от текущей страницы и общего к-ва страниц
-      if (
-        totalPages >= 6 &&
-        i == 1 &&
-        currentPage !== 1 &&
-        currentPage !== 2 &&
-        currentPage !== 3
-      ) {
-        const threeDotsEl = addThreeDotsBlock();
-        wrapper.insertBefore(threeDotsEl, wrapper[wrapper.length - 2]);
-      }
-
-      if (
-        pageCount >= 7 &&
-        i == pageCount - 1 &&
-        currentPage !== pageCount &&
-        currentPage !== pageCount - 2 &&
-        currentPage !== pageCount - 1
-      ) {
-        const threeDotsEl = addThreeDotsBlock();
-        wrapper.insertBefore(threeDotsEl, wrapper[1]);
-      }
+    if (event.target.classList.contains('arrow-right') && currentPage < 1000) {
+      btns.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.classList.add('pagination--current');
+      btn1Ref.textContent = Number(btn1Ref.textContent) + 5;
+      btn2Ref.textContent = Number(btn2Ref.textContent) + 5;
+      btn3Ref.textContent = Number(btn3Ref.textContent) + 5;
+      btn4Ref.textContent = Number(btn4Ref.textContent) + 5;
+      btn5Ref.textContent = Number(btn5Ref.textContent) + 5;
+      currentPage = btn1Ref.textContent;
     }
 
-    placeholder.spinner.close();
-  }
-
-  // создает троеточия для pagination
-  function addThreeDotsBlock() {
-    const threeDots = document.createElement('div');
-    threeDots.classList.add('threeDots');
-    threeDots.innerText = '...';
-    return threeDots;
-  }
-
-  function paginationButton(page, items) {
-    let button = document.createElement('button');
-    button.innerText = page;
-
-    if (currentPage == page) button.classList.add('active');
-
-    button.addEventListener('click', function () {
-      warningField.textContent = ``;
-      placeholder.spinner.show();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      currentPage = page;
-      callback(listElement, currentPage, searchQuery);
-
-      let current_btn = document.querySelector('.pagenumbers button.active');
-      current_btn.classList.remove('active');
-
-      button.classList.add('active');
-      setupPagination(listItems, paginationElement, rows);
-      hideExtremeButtons(totalPages);
-    });
-
-    return button;
-  }
-
-  // ф-кция для отслеживания кликов по стрелке влево
-  function onArrowLeftClick() {
-    if (currentPage > 1) {
-      placeholder.spinner.show();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      currentPage--;
-      setupPagination(listItems, paginationElement, rows);
-      callback(listElement, currentPage, searchQuery);
+    if (event.target.classList.contains('arrow-left') && currentPage >= 5) {
+      btns.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.textContent = Number(btn1Ref.textContent) - 5;
+      btn2Ref.textContent = Number(btn2Ref.textContent) - 5;
+      btn3Ref.textContent = Number(btn3Ref.textContent) - 5;
+      btn4Ref.textContent = Number(btn4Ref.textContent) - 5;
+      btn5Ref.textContent = Number(btn5Ref.textContent) - 5;
+      btn5Ref.classList.add('pagination--current');
+      currentPage = btn5Ref.textContent;
     }
 
-    disableArrowBtn(totalPages);
-    hideExtremeButtons(totalPages);
-  }
-
-  // ф-кция для отслеживания кликов по стрелке вправо
-  function onArrowRightClick() {
-    if (currentPage < totalPages) {
-      placeholder.spinner.show();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      currentPage++;
-      setupPagination(listItems, paginationElement, rows);
-      callback(listElement, currentPage, searchQuery);
+    if (event.target.classList.contains('first-button')) {
+      btns.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.textContent = 1;
+      btn2Ref.textContent = 2;
+      btn3Ref.textContent = 3;
+      btn4Ref.textContent = 4;
+      btn5Ref.textContent = 5;
+      btn1Ref.classList.add('pagination--current');
+      currentPage = btn1Ref.textContent;
+      leftArrowRef.hidden = true;
+      prevDotsRef.hidden = true;
+      firstPageRef.hidden = true;
     }
-    disableArrowBtn(totalPages);
-    hideExtremeButtons(totalPages);
-  }
 
-  setupPagination(listItems, paginationElement, rows);
-  arrowLeft.onclick = onArrowLeftClick;
-  arrowRight.onclick = onArrowRightClick;
-
-  hideExtremeButtons(totalPages);
-  disableArrowBtn(totalPages);
-}
-
-// прячет первую и последнюю страницу по бокам для мобильных гаджетов с маленьким экраном
-function hideExtremeButtons(totalPages) {
-  try {
-    if (/Android|webOS|iPhone|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // код для мобильных устройств
-      const allPaginationBtns = document.querySelectorAll('#pagination button');
-      if (currentPage > 3) {
-        allPaginationBtns[0].classList.add('hide');
-      } else {
-        allPaginationBtns[0].classList.remove('hide');
-      }
-
-      if (currentPage < totalPages - 3) {
-        allPaginationBtns[allPaginationBtns.length - 1].classList.add('hide');
-      } else {
-        allPaginationBtns[allPaginationBtns.length - 1].classList.remove('hide');
-      }
+    if (event.target.classList.contains('last-button')) {
+      btns.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.textContent = Number(lastPageRef.textContent) - 4;
+      btn2Ref.textContent = Number(lastPageRef.textContent) - 3;
+      btn3Ref.textContent = Number(lastPageRef.textContent) - 2;
+      btn4Ref.textContent = Number(lastPageRef.textContent) - 1;
+      btn5Ref.textContent = lastPageRef.textContent;
+      btn5Ref.classList.add('pagination--current');
+      currentPage = btn5Ref.textContent;
+      rightArrowRef.hidden = true;
+      afterDotsRef.hidden = true;
+      lastPageRef.hidden = true;
     }
-  } catch (error) {}
-}
 
-paginationElement?.addEventListener('click', disableArrowBtnAfterPageClick);
+    if (Number(currentPage) > 5) {
+      leftArrowRef.hidden = false;
+      prevDotsRef.hidden = false;
+      firstPageRef.hidden = false;
+    } else {
+      leftArrowRef.hidden = true;
+      prevDotsRef.hidden = true;
+      firstPageRef.hidden = true;
+    }
 
-function disableArrowBtnAfterPageClick(e) {
-  if (e.target.tagName != 'BUTTON') {
-    return;
-  } else {
-    disableArrowBtn(pageCount);
+    if (Number(currentPage) < 996) {
+      rightArrowRef.hidden = false;
+      afterDotsRef.hidden = false;
+      lastPageRef.hidden = false;
+    }
+
+    gallery.innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (inputRef.value !== '') {
+      fetchMovies(inputRef.value, currentPage);
+    } else {
+      fetchFilms();
+    }
   }
 }
 
-// делает неактивными кнопки-стрелки на первой и последней  странице
-function disableArrowBtn(totalPages) {
-  if (currentPage === 1) {
-    arrowLeft.classList.add('disabled-arrow');
-  } else {
-    arrowLeft.classList.remove('disabled-arrow');
-  }
+let pageSize = 9;
 
-  if (currentPage === totalPages) {
-    arrowRight.classList.add('disabled-arrow');
-  } else {
-    arrowRight.classList.remove('disabled-arrow');
+function defineResultsPerPage() {
+  if (window.innerWidth >= 1024) {
+    pageSize = 9;
+  } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+    pageSize = 8;
+  } else if (window.innerWidth < 768) {
+    pageSize = 4;
   }
+  return pageSize;
 }
+
+
+export { currentPage, defineResultsPerPage};
