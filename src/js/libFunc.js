@@ -18,6 +18,10 @@ export function renderCardsFromLocalStoradge(key, ul) {
     };
     const parsedDataLib = JSON.parse(dataLib);
     ul.innerHTML = movieCards(parsedDataLib);
+    setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
 }
 
 export function removeMarkUp(elem) {
