@@ -1,5 +1,6 @@
 import storage from './storage';
-import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
+import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
+import { loadPopularStoragePage } from './loadPage';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -85,29 +86,33 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadStoragePage() {      
-  textError.classList.add('is-hidden');
-  spinner.classList.remove('is-hidden');
-  movieName = storageLastSearchText?.movie;
-  page = storagePage?.value;
-  if (movieName === '') {
-    spinner.classList.add('is-hidden');
-    return alert('Empty field');
-  }
-   fetchMovies(movieName).then(({ movies }) => {
-    if (movies.length === 0) {
+export function loadStoragePage() {   
+  if (popularStoragePage?.value > 1 && popularStoragePage !== null) {
+    loadPopularStoragePage();
+  } else {
+    textError.classList.add('is-hidden');
+    spinner.classList.remove('is-hidden');
+    movieName = storageLastSearchText?.movie;
+    page = storagePage?.value;
+    if (movieName === '') {
       spinner.classList.add('is-hidden');
-      textError.classList.remove('is-hidden');
-      return;
-    }    
-    storage.save('movies', movies);
-    homeList.innerHTML = movieCards(movies);
-    spinner.classList.add('is-hidden');
-     setTimeout(() => {
-      const arr = document.querySelectorAll('.placeholdify');
-      arr.forEach(el => el.classList.remove('placeholdify'));
-      },2000);
-  });
+      return alert('Empty field');
+    }
+    fetchMovies(movieName, page).then(({ movies }) => {
+      if (movies.length === 0) {
+        spinner.classList.add('is-hidden');
+        textError.classList.remove('is-hidden');
+        return;
+      }
+      storage.save('movies', movies);
+      homeList.innerHTML = movieCards(movies);
+      spinner.classList.add('is-hidden');
+      setTimeout(() => {
+        const arr = document.querySelectorAll('.placeholdify');
+        arr.forEach(el => el.classList.remove('placeholdify'));
+      }, 2000);
+    });
+  };
 };
  
 
