@@ -1,17 +1,18 @@
 import storage from './storage';
-
+import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
+let page = 1;
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = formField.elements.query.value.trim();
+  movieName = formField.elements.query.value.trim(); 
   if (movieName === '') {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
@@ -22,9 +23,14 @@ formField?.addEventListener('submit', event => {
       textError.classList.remove('is-hidden');
       return;
     }
+    storage.save(STORAGE_MOVIES_SEARCH,{movie: movieName});
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
+     setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
   });
 });
 
@@ -36,7 +42,7 @@ export function movieCards(movies) {
         : // : './images/netuNichego.png';
           'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
       const year = new Date(release_date).getFullYear();
-      return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+      return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -52,15 +58,17 @@ export function movieCards(movies) {
     })
     .join('');
 }
+   
+ 
 
-async function fetchMovies(movieName) {
+async function fetchMovies(movieName,page) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
     query: movieName,
   });
 
-  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}`)
+  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}&page=${page}`)
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -72,5 +80,34 @@ async function fetchMovies(movieName) {
         movies: data.results,
       };
     });
+      
 }
-export default fetchMovies();
+
+
+//load last page search
+export function loadStoragePage() {      
+  textError.classList.add('is-hidden');
+  spinner.classList.remove('is-hidden');
+  movieName = storageLastSearchText?.movie;
+  page = storagePage?.value;
+  if (movieName === '') {
+    spinner.classList.add('is-hidden');
+    return alert('Empty field');
+  }
+   fetchMovies(movieName).then(({ movies }) => {
+    if (movies.length === 0) {
+      spinner.classList.add('is-hidden');
+      textError.classList.remove('is-hidden');
+      return;
+    }    
+    storage.save('movies', movies);
+    homeList.innerHTML = movieCards(movies);
+    spinner.classList.add('is-hidden');
+     setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
+  });
+};
+ 
+

@@ -26,6 +26,25 @@
          }
      }
 
+     //header pages style
+     .base-header{
+        position: relative;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.56);            
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 230px;
+        @include tab {
+            height: 220px;
+        }
+            
+     }
+
          //navigation
          .header-list {
              @include center;
@@ -81,4 +100,4 @@
              }
          }
 
-           
+        
