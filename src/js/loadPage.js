@@ -4,6 +4,7 @@ const homeList = document.querySelector('.home-list');
 
 const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
 
+
 async function fetchFilms(API_URL_POPULAR) {
 
   let response = await fetch(
@@ -67,7 +68,7 @@ const values = storage.load('arrow');
         }
 
         const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
-        return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
+        return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
@@ -82,8 +83,14 @@ const values = storage.load('arrow');
             </a>
         </li>`;
       }
-    )
-    .join('');
+  )
+    
+      .join('');
+     setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
   storage.save('movies', results);
-  homeList.insertAdjacentHTML('beforeend', mark);
+    homeList.insertAdjacentHTML('beforeend', mark);
 });
+   

@@ -1,5 +1,7 @@
 <header class="header">
-       <div class="header-container">
+
+       <div class="header-container base-header">
+
     <a href="/src/index.html" class="header__logo">
       <svg class="header__logo-svg" width="24" height="24">
         <use href="./images/sprite.svg#icon-film"></use>
@@ -12,16 +14,6 @@
       <div></div>
       <div></div>
     </div>
-    <nav class="navigation">
-      <ul class="header-list">
-        <li class="header-list__item">
-          <a href="/src/index.html" class="header__link current-page">Home</a>
-        </li>
-        <li class="header-list__item">
-          <a href="/src/library.html" class="header__link">My library</a>
-        </li>
-      </ul>
-    </nav>
     <form class="form-field js-loading js-success js-error">
       <label>
         <span class="search-form__wrap">
@@ -42,5 +34,18 @@
         Enter the correct movie name and repeat.
       </p>
     </form>
+    <div class="js-warning header-warning"></div>
+    <div class="js-search-results header-warning"></div>
+
+    <nav class="navigation">
+      <ul class="header-list">
+        <li class="header-list__item">
+          <a href="/src/index.html" class="header__link current-page">Home</a>
+        </li>
+        <li class="header-list__item">
+          <a href="/src/library.html" class="header__link">My library</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>

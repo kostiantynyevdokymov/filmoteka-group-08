@@ -2,8 +2,7 @@ import storage from './storage';
 
 const backdrop = document.querySelector('[data-modal]');
 const closeButton = document.querySelector('[data-modal-close]');
-const cardsContainer =
-  document.querySelector('.home-container') || document.querySelector('.library-container');
+const cardsContainer = document.querySelector('.movies-container');
 
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
@@ -44,10 +43,12 @@ function openModal(movieId) {
   backdrop.querySelector('.modal-movie').innerHTML = getModalMovieMarkup(movieId);
   document.body.style.overflow = 'hidden';
   backdrop.classList.remove('is-hidden');
-  const { vote_average } =
-    getMovieFromLocalStorage(movieId, 'movies') ||
-    getMovieFromLocalStorage(movieId, 'watched-list') ||
-    getMovieFromLocalStorage(movieId, 'queue-list');
+  // const { vote_average } =
+  //   getMovieFromLocalStorage(movieId, 'movies') ||
+  //   getMovieFromLocalStorage(movieId, 'watched-list') ||
+  //   getMovieFromLocalStorage(movieId, 'queue-list');
+  // console.log(vote_average);
+  const vote_average = backdrop.querySelector('#out').textContent;
   outNum(vote_average, '#out');
 }
 
@@ -57,12 +58,20 @@ function getMovieFromLocalStorage(movieId, key) {
 
 // Як тільки закривається модалка -> знімаємо EventListener
 function closeModal() {
+  storage.remove('current-movie');
   document.addEventListener('keydown', pressEsc);
   document.body.style.overflow = '';
   backdrop.classList.add('is-hidden');
 }
 
 function getModalMovieMarkup(movieId) {
+  const currentMovie =
+    getMovieFromLocalStorage(movieId, 'movies') ||
+    getMovieFromLocalStorage(movieId, 'watched-list') ||
+    getMovieFromLocalStorage(movieId, 'queue-list');
+
+  storage.save('current-movie', currentMovie);
+
   const {
     poster_path,
     title,
@@ -73,20 +82,9 @@ function getModalMovieMarkup(movieId) {
     vote_count,
     popularity,
     overview,
-  } =
-    getMovieFromLocalStorage(movieId, 'movies') ||
-    getMovieFromLocalStorage(movieId, 'watched-list') ||
-    getMovieFromLocalStorage(movieId, 'queue-list');
+  } = currentMovie;
 
   movieId = movieId.toString();
-
-  // const btnAddToWatched = isInLibrary('watched-list', movieId.toString())
-  //   ? `<button class="modal-movie__btn modal-movie_btn-watched added" data-modal-add-to="watched">REMOVE FROM<br>WATCHED</button>`
-  //   : `<button class="modal-movie__btn modal-movie__btn-watched" data-modal-add-to="watched">ADD TO<br>WATCHED</button>`;
-
-  // const btnAddToQueue = isInLibrary('queue-list', movieId.toString())
-  //   ? `<button class="modal-movie__btn modal-movie__btn-queue added" data-modal-add-to="queue">REMOVE FROM<br>QUEUE</button>`
-  //   : `<button class="modal-movie__btn modal-movie__btn-queue" data-modal-add-to="queue">ADD TO<br>QUEUE</button>`;
 
   let addedClass = isInLibrary('watched-list', movieId.toString()) ? 'added' : '';
   const btnAddToWatched = `<div class="modal-movie__btn movie-btn movie-btn--watched ${addedClass}" data-modal-add-to="watched">
@@ -113,14 +111,14 @@ function getModalMovieMarkup(movieId) {
                     <tr>
                         <td class="movie-table__title">Vote / Votes</td>
                         <td class="movie-table__info">
-                            <span id="out" class="vote">${vote_average}</span>
+                            <span id="out" class="vote">${vote_average.toFixed(1)}</span>
                             <span>/</span>
                             <span class="votes">${vote_count}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="movie-table__title">Popularity</td>
-                        <td class="movie-table__info">${popularity}</td>
+                        <td class="movie-table__info">${popularity.toFixed(0)}</td>
                     </tr>
                     <tr>
                         <td class="movie-table__title">Original Title</td>
@@ -151,24 +149,39 @@ Modal buttons functionality
 ----------------------- */
 
 function addMovieToLibrary(button) {
-  // console.dir(button);
   const key = button.dataset?.modalAddTo + '-list';
-  const movieId = button.closest('.modal-movie').dataset.modalMovieId;
+  // const movieId = button.closest('.modal-movie').dataset.modalMovieId;
 
-  const value = storage.load('movies')?.find(movie => movie.id.toString() === movieId);
-  // console.dir(value.id);
+  const SOURCE_KEY = 'current-movie';
 
-  let currentList = storage.load(key) || [];
-  // console.dir(currentList);
+  const value = storage.load(SOURCE_KEY);
 
   if (storage.load(key) && isInLibrary(key, value.id.toString())) {
-    button.classList.remove('added');
-    currentList = currentList.filter(movie => movie.id.toString() != value.id);
+    removeFromStorage(key, value, button);
   } else {
-    currentList.push(value);
-    button.classList.add('added');
+    if (key.includes('watch') && isInLibrary('queue-list', value.id.toString())) {
+      console.log('already in queue');
+      removeFromStorage(
+        'queue-list',
+        value,
+        button.parentElement.querySelector('.movie-btn--queue')
+      );
+    }
+    addToStorage(key, value, button);
   }
+}
 
+function addToStorage(key, value, button) {
+  let currentList = storage.load(key) || [];
+  currentList.push(value);
+  button.classList.add('added');
+  storage.save(key, currentList);
+}
+
+function removeFromStorage(key, value, button) {
+  let currentList = storage.load(key) || [];
+  button.classList.remove('added');
+  currentList = currentList.filter(movie => movie.id.toString() != value.id);
   storage.save(key, currentList);
 }
 
@@ -180,7 +193,7 @@ function outNum(num, elem) {
   const time = 2500;
   const step = 0.1;
   let e = document.querySelector('#out');
-  n = 0;
+  let n = 0;
   let t = Math.round(time / (num / step));
   let interval = setInterval(() => {
     n = n + step;

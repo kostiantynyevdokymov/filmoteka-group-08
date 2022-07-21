@@ -133,7 +133,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@include tab {
   .threeDots {
     display: inline-block;
   }
