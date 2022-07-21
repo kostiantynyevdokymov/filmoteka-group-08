@@ -73,3 +73,4 @@ async function fetchMovies(movieName) {
       };
     });
 }
+export default fetchMovies();

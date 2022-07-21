@@ -1,4 +1,7 @@
 import storage from './storage';
+import { currentPage, defineResultsPerPage } from './pagination';
+
+
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
 
@@ -87,3 +90,4 @@ const values = storage.load('arrow');
   storage.save('movies', results);
   homeList.insertAdjacentHTML('beforeend', mark);
 });
+export default fetchFilms();
