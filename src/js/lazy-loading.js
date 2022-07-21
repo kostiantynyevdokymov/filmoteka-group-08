@@ -1,5 +1,5 @@
-import loadPage from './loadPage';
-import { fetchFilms } from './loadPage';
+// import loadPage from './loadPage';
+// import { fetchFilms } from './loadPage';
 
 // 1. Для кожного зображення додати loading='lazy'
 // 2. Для того, щоб працювало в усіх браузерах, потрібна бібліотека lazysizes(знайти на git hub)
@@ -37,6 +37,7 @@ const lazyImages = document.querySelectorAll('image[data-src]');
 });
 
 function onImageLoaded(event) {
+    console.log("Зображення завантажилось");
 // можна додати класс, анімацію і тд
 // event.target.classList.add();
 }

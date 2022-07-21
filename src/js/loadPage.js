@@ -70,7 +70,7 @@ const values = storage.load('arrow');
         return `<li class="home-card js-modal-open" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
-                    <img loading="lazy" class="home-card__img lazyload" src="${imgUrl}" data-src="${imgUrl}" alt="${title}">
+                    <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
                         <span>${genreArr.splice(0, 3)}  ${other}</span>
