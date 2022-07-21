@@ -1,16 +1,6 @@
-.header-container {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 40px 20px;
-            
+.header-container {  
     background-image: url(/src/images/header-bg-mob.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 230px;
-
+    
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {

@@ -94,15 +94,19 @@ export function loadStoragePage() {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
   }
-  fetchMovies(movieName,page).then(({ movies }) => {
+   fetchMovies(movieName).then(({ movies }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
       return;
-    }
+    }    
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     spinner.classList.add('is-hidden');
+     setTimeout(() => {
+      const arr = document.querySelectorAll('.placeholdify');
+      arr.forEach(el => el.classList.remove('placeholdify'));
+      },2000);
   });
 };
  
