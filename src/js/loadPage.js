@@ -96,10 +96,8 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
 // export default fetchFilms;
 
 export function loadPopularStoragePage(currentPage) {
-  homeList.innerHTML = '';
-  page = currentPage;
-  storage.save(POPULAR_STORAGE_KEY, page);
-
+  homeList.innerHTML = '';  
+  storage.save(POPULAR_STORAGE_KEY, currentPage);
   fetchGenres().then(({ genres }) => {
     const arr = [...genres];
     localStorage.setItem('arrow', JSON.stringify(arr));
