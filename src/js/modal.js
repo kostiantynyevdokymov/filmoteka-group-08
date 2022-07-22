@@ -80,7 +80,7 @@ function getModalMovieMarkup(movieId) {
     poster_path,
     title,
     original_title,
-    genres_ids,
+    genre_ids,
     release_date,
     vote_average,
     vote_count,
@@ -130,7 +130,7 @@ function getModalMovieMarkup(movieId) {
                     </tr>
                     <tr>
                         <td class="movie-table__title">Genre</td>
-                        <td class="movie-table__info">${genres_ids}</td>
+                        <td class="movie-table__info">${getGenres(genre_ids, 3)}</td>
                     </tr>
                 </table>
                 <div class="modal-movie__box">
