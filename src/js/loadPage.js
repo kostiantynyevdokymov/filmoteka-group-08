@@ -1,5 +1,5 @@
 import storage from './storage';
-import { POPULAR_STORAGE_KEY, popularStoragePage } from './pageInStorage';
+import { POPULAR_STORAGE_KEY } from './visitEvents';
 import { removeSceletonLoad } from './sceletonLoad';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
@@ -76,7 +76,7 @@ const values = storage.load('arrow');
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        <span>${genreArr.splice(0, 2)}  ${other}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -96,9 +96,8 @@ const values = storage.load('arrow');
 export default fetchFilms();
 
 export function loadPopularStoragePage(currentPage) {
-  homeList.innerHTML = "";
-  page = currentPage;
-  storage.save(POPULAR_STORAGE_KEY, page );
+  homeList.innerHTML = ""; 
+  storage.save(POPULAR_STORAGE_KEY, currentPage );
   fetchGenres().then(({ genres }) => {
   const arr = [...genres];
   localStorage.setItem('arrow', JSON.stringify(arr));
@@ -106,7 +105,7 @@ export function loadPopularStoragePage(currentPage) {
 const values = storage.load('arrow');
 
 
-  fetchFilms(`https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${page}`).then(({ results }) => {
+  fetchFilms(`https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`).then(({ results }) => {
 
   results.poster_path;
 
@@ -153,7 +152,7 @@ const values = storage.load('arrow');
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        <span>${genreArr.splice(0, 2)}  ${other}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -169,7 +168,7 @@ const values = storage.load('arrow');
       const arr = document.querySelectorAll('.placeholdify');
       arr.forEach(el => el.classList.remove('placeholdify'));
       },2000);
-  storage.save('movies', results);
+    storage.save('movies', results);
     homeList.insertAdjacentHTML('beforeend', mark);
 });
 }
