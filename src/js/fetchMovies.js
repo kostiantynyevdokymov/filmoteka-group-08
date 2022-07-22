@@ -1,8 +1,8 @@
 import storage from './storage';
 
-import { POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText, STORAGE_PAGE_KEY } from './pageInStorage';
+// import { POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText, STORAGE_PAGE_KEY } from './pageInStorage';
 
-import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText } from './pageInStorage';
+// import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText } from './pageInStorage';
 
 import { removeSceletonLoad } from './sceletonLoad';
 
