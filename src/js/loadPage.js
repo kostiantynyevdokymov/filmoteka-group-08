@@ -1,5 +1,5 @@
 import storage from './storage';
-import { POPULAR_STORAGE_KEY, popularStoragePage } from './pageInStorage';
+import { POPULAR_STORAGE_KEY } from './visitEvents';
 import { removeSceletonLoad } from './sceletonLoad';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
@@ -168,7 +168,7 @@ const values = storage.load('arrow');
       const arr = document.querySelectorAll('.placeholdify');
       arr.forEach(el => el.classList.remove('placeholdify'));
       },2000);
-  storage.save('movies', results);
+    storage.save('movies', results);
     homeList.insertAdjacentHTML('beforeend', mark);
 });
 }

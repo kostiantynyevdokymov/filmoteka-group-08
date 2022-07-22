@@ -1,6 +1,7 @@
 import { loadPopularStoragePage } from "./loadPage";
 import { loadFetchMovies } from "./fetchMovies";
 import storage from "./storage";
+import { currentPage } from "./pagination";
 
 export const STORAGE_PAGE_KEY = 'last visit page';
 export const STORAGE_MOVIES_SEARCH = 'last visit search'
@@ -30,7 +31,7 @@ let timerId;
 
 
 function toggleModal() {   
-    refs.visitModal.classList.toggle("is-hidden");     
+    refs.visitModal.classList.toggle("is-hidden");    
     
     if (refs.visitModal.classList.value.includes("hidden") === true) {
            clearTimeout(timerId);  
@@ -42,10 +43,15 @@ function toggleModal() {
 function comeBackBtnToggle() {   
      let currentPage = 1
     refs.visitModal.classList.toggle("is-hidden");  
+
+    if (popularStoragePage > 1) {
+        currentPage = popularStoragePage;
+        loadPopularStoragePage(currentPage);
+    } else {
+        currentPage = storagePage;
+        loadFetchMovies(storagePage);
+    }
     
-     loadPopularStoragePage(currentPage) 
-     loadFetchMovies(currentPage)
-   
     if (refs.visitModal.classList.value.includes("hidden") === true) {
            clearTimeout(timerId);  
         refs.comeBackBtn.removeEventListener("click", comeBackBtnToggle);        
