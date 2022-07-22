@@ -93,7 +93,7 @@ const values = storage.load('arrow');
     homeList.insertAdjacentHTML('beforeend', mark);
 });
 
-export default fetchFilms;
+// export default fetchFilms;
 
 export function loadPopularStoragePage(currentPage) {
   homeList.innerHTML = ""; 
