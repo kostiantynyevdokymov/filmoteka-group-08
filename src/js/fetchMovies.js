@@ -1,5 +1,9 @@
 import storage from './storage';
-import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './visitEvents';
+
+import { POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText, STORAGE_PAGE_KEY } from './pageInStorage';
+
+import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText } from './pageInStorage';
+
 import { removeSceletonLoad } from './sceletonLoad';
 
 const formField = document.querySelector('.form-field');
@@ -12,7 +16,7 @@ formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = formField.elements.query.value.trim(); 
+  movieName = formField.elements.query.value.trim();
   storage.remove(POPULAR_STORAGE_KEY);
   if (movieName === '') {
     spinner.classList.add('is-hidden');
@@ -24,10 +28,10 @@ formField?.addEventListener('submit', event => {
       textError.classList.remove('is-hidden');
       return;
     }
-    storage.save(STORAGE_MOVIES_SEARCH,{movie: movieName});
+    storage.save(STORAGE_MOVIES_SEARCH, { movie: movieName });
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
-   setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+    setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
     removeSceletonLoad();
   });
 });
@@ -38,7 +42,7 @@ export function movieCards(movies) {
       const imgUrl = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
         : // : './images/netuNichego.png';
-          'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
+        'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
       const year = new Date(release_date).getFullYear();
       return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
@@ -56,10 +60,10 @@ export function movieCards(movies) {
     })
     .join('');
 }
-   
- 
 
-async function fetchMovies(movieName,page) {
+
+
+async function fetchMovies(movieName, page) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
@@ -78,32 +82,34 @@ async function fetchMovies(movieName,page) {
         movies: data.results,
       };
     });
-      
+
 }
 
 
 //load last page search
-export function loadFetchMovies(currentPage) {
-    textError.classList.add('is-hidden');
-    spinner.classList.remove('is-hidden');
-    movieName = storageLastSearchText?.movie;
-    storage.save(STORAGE_PAGE_KEY, currentPage);
-    if (movieName === '') {
-      spinner.classList.add('is-hidden');
-      return alert('Empty field');
-    }
-    fetchMovies(movieName, currentPage).then(({ movies }) => {
-      if (movies.length === 0) {
-        spinner.classList.add('is-hidden');
-        textError.classList.remove('is-hidden');
-        return;
-      }
-      storage.save('movies', movies);
-      homeList.innerHTML = movieCards(movies);
-     setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
-     removeSceletonLoad();    
-    });
-  };
 
- 
+export function loadFetchMivies(currentPage) {
+  textError.classList.add('is-hidden');
+  spinner.classList.remove('is-hidden');
+  movieName = storageLastSearchText?.movie;
+  storage.save(STORAGE_PAGE_KEY, { value: currentPage });
+  if (movieName === '') {
+    spinner.classList.add('is-hidden');
+    return alert('Empty field');
+  }
+  fetchMovies(movieName, currentPage).then(({ movies }) => {
+    if (movies.length === 0) {
+
+      spinner.classList.add('is-hidden');
+      textError.classList.remove('is-hidden');
+      return;
+    }
+    storage.save('movies', movies);
+    homeList.innerHTML = movieCards(movies);
+    setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+    removeSceletonLoad();
+  });
+};
+
+
 

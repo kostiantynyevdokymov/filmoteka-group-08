@@ -13,10 +13,12 @@ const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
 
 //data parsed
-const queueStorage = localStorage.getItem('queue-list');
-const watchedStorage = localStorage.getItem('watched-list');
-const arrValuesOfQueue = JSON.parse(queueStorage);
-const arrValuesOfWatched = JSON.parse(watchedStorage);
+export const queueStorage = localStorage.getItem('queue-list');
+export const watchedStorage = localStorage.getItem('watched-list');
+export const arrValuesOfQueue = JSON.parse(queueStorage);
+export const arrValuesOfWatched = JSON.parse(watchedStorage);
+export const valuesOfGenres = localStorage.getItem('arrow');
+export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 window.onload = () => {
     libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
