@@ -1,7 +1,6 @@
-import { loadStoragePage } from "./fetchMovies";
+import { loadFetchMivies } from "./fetchMovies";
 import { loadPopularStoragePage } from "./loadPage";
-// import storage from './storage';
-// import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
+import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
 
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
@@ -32,11 +31,15 @@ firstPageRef.hidden = true;
 function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
-      currentPage = Number(event.target.textContent);
-      // вызывает фетч на loadPage
-      loadPopularStoragePage(currentPage)
-    }
+      currentPage = Number(event.target.textContent);   
     
+    }
+     if (inputRef.value !== '') {
+      loadFetchMivies(currentPage)
+    } else {
+      loadPopularStoragePage(currentPage)     
+        
+    }
     
     prevDotsRef.hidden = true;
     afterDotsRef.hidden = true;
@@ -116,11 +119,6 @@ function onPaginationClick(event) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // if (inputRef.value !== '') {
-    //   fetchMovies(inputRef.value, currentPage);
-    // } else {
-    //   fetchFilms();
-    // }
   }
 }
 

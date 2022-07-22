@@ -102,7 +102,7 @@ export default fetchFilms();
 export function loadPopularStoragePage(currentPage) {
   homeList.innerHTML = "";
   page = currentPage;
-  storage.save(POPULAR_STORAGE_KEY,  page );
+  storage.save(POPULAR_STORAGE_KEY, page );
   fetchGenres().then(({ genres }) => {
   const arr = [...genres];
   localStorage.setItem('arrow', JSON.stringify(arr));

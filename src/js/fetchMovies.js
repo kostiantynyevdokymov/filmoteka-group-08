@@ -1,5 +1,5 @@
 import storage from './storage';
-import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
+import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
 import { loadPopularStoragePage } from './loadPage';
 import { currentPage } from './pagination';
 
@@ -8,7 +8,6 @@ const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
-let page = 1;
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
@@ -88,19 +87,19 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadStoragePage(currentPage) {   
-  if (popularStoragePage?.value > 1 && popularStoragePage !== null) {
-    loadPopularStoragePage(currentPage);
-  } else {
+export function loadFetchMivies(currentPage) {   
+  // if (popularStoragePage?.value > 1 && popularStoragePage !== null) {
+  //   loadPopularStoragePage(currentPage);
+  // } else {
     textError.classList.add('is-hidden');
     spinner.classList.remove('is-hidden');
     movieName = storageLastSearchText?.movie;
-    page = currentPage;
+    storage.save(STORAGE_PAGE_KEY, { value: currentPage });
     if (movieName === '') {
       spinner.classList.add('is-hidden');
       return alert('Empty field');
     }
-    fetchMovies(movieName, page).then(({ movies }) => {
+    fetchMovies(movieName, currentPage).then(({ movies }) => {
       if (movies.length === 0) {
         spinner.classList.add('is-hidden');
         textError.classList.remove('is-hidden');
@@ -115,6 +114,6 @@ export function loadStoragePage(currentPage) {
       }, 2000);
     });
   };
-};
+// };
  
 
