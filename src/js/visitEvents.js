@@ -1,7 +1,13 @@
-import { storagePage } from './pageInStorage';
-import * as page from './pagination';
+import { loadPopularStoragePage } from "./loadPage";
+import { loadFetchMovies } from "./fetchMovies";
+import storage from "./storage";
 
-
+export const STORAGE_PAGE_KEY = 'last visit page';
+export const STORAGE_MOVIES_SEARCH = 'last visit search'
+export const POPULAR_STORAGE_KEY = 'last visit popular'
+export const popularStoragePage = storage.load(POPULAR_STORAGE_KEY);
+export const storagePage = storage.load(STORAGE_PAGE_KEY);
+export const storageLastSearchText = storage.load(STORAGE_MOVIES_SEARCH);
 
  export const refs = {
     comeBackBtn: document.querySelector('button.js-visit-back-btn'),
@@ -14,7 +20,7 @@ import * as page from './pagination';
     
 let timerId;
 (() => {
-    if (page.currentPage == 1 || storagePage?.value === undefined) {
+    if ( popularStoragePage == 1 && storagePage === null ) {
         return 
     } else {        
         toggleModal();
@@ -33,8 +39,12 @@ function toggleModal() {
     };
 };
 
- function comeBackBtnToggle() {   
-    refs.visitModal.classList.toggle("is-hidden");     
+function comeBackBtnToggle() {   
+     let currentPage = 1
+    refs.visitModal.classList.toggle("is-hidden");  
+    
+     loadPopularStoragePage(currentPage) 
+     loadFetchMovies(currentPage)
    
     if (refs.visitModal.classList.value.includes("hidden") === true) {
            clearTimeout(timerId);  
