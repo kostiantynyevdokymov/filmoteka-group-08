@@ -17,19 +17,25 @@ const watchedStorage = localStorage.getItem('watched-list');
 const arrValuesOfQueue = JSON.parse(queueStorage);
 const arrValuesOfWatched = JSON.parse(watchedStorage);
 
+window.onload = () => {
+    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
+    funnyGuyOnBg();
+}
+
 //queue btn is active on load
 btnOpenQue?.addEventListener('click', openQueue);
 btnOpenWatched?.addEventListener('click', openWatched);
 
+
 function openQueue() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfQueue)
+    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
     funnyGuyOnBg();
     btnOpenQue.classList.add(active_type);
     btnOpenWatched.classList.remove(active_type);
 }
 
 function openWatched() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfWatched)
+    libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
     funnyGuyOnBg();
     btnOpenQue.classList.remove(active_type);
     btnOpenWatched.classList.add(active_type);
