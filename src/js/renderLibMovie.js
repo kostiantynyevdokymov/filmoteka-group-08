@@ -18,12 +18,18 @@ const watchedStorage = localStorage.getItem('watched-list');
 const arrValuesOfQueue = JSON.parse(queueStorage);
 const arrValuesOfWatched = JSON.parse(watchedStorage);
 
+window.onload = () => {
+    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
+    funnyGuyOnBg();
+}
+
 //queue btn is active on load
 btnOpenQue?.addEventListener('click', openQueue);
 btnOpenWatched?.addEventListener('click', openWatched);
 
+
 function openQueue() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfQueue)
+    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
     funnyGuyOnBg();
     removeSceletonLoad();
     btnOpenQue.classList.add(active_type);
@@ -31,7 +37,7 @@ function openQueue() {
 }
 
 function openWatched() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfWatched)
+    libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
     funnyGuyOnBg();
     removeSceletonLoad();
     btnOpenQue.classList.remove(active_type);
