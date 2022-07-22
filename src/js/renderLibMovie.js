@@ -1,4 +1,5 @@
 import { markUpWithGenres } from './cardListWithGenres';
+import { removeSceletonLoad } from './sceletonLoad';
 
 //containers for render, design changes
 const libraryContainer = document.querySelector('.library-container');
@@ -24,6 +25,7 @@ btnOpenWatched?.addEventListener('click', openWatched);
 function openQueue() {
     libList.innerHTML = markUpWithGenres(arrValuesOfQueue)
     funnyGuyOnBg();
+    removeSceletonLoad();
     btnOpenQue.classList.add(active_type);
     btnOpenWatched.classList.remove(active_type);
 }
@@ -31,6 +33,7 @@ function openQueue() {
 function openWatched() {
     libList.innerHTML = markUpWithGenres(arrValuesOfWatched)
     funnyGuyOnBg();
+    removeSceletonLoad();
     btnOpenQue.classList.remove(active_type);
     btnOpenWatched.classList.add(active_type);
 }
