@@ -1,6 +1,6 @@
 import { storagePage } from './pageInStorage';
 import * as page from './pagination';
-import { loadStoragePage } from './fetchMovies';
+
 
 
  export const refs = {
@@ -35,7 +35,7 @@ function toggleModal() {
 
  function comeBackBtnToggle() {   
     refs.visitModal.classList.toggle("is-hidden");     
-    loadStoragePage()
+   
     if (refs.visitModal.classList.value.includes("hidden") === true) {
            clearTimeout(timerId);  
         refs.comeBackBtn.removeEventListener("click", comeBackBtnToggle);        

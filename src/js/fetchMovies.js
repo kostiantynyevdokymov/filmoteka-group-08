@@ -1,7 +1,6 @@
 import storage from './storage';
-import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
-import { loadPopularStoragePage } from './loadPage';
-import { currentPage } from './pagination';
+import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
+
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -87,10 +86,7 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadFetchMivies(currentPage) {   
-  // if (popularStoragePage?.value > 1 && popularStoragePage !== null) {
-  //   loadPopularStoragePage(currentPage);
-  // } else {
+export function loadFetchMivies(currentPage) {
     textError.classList.add('is-hidden');
     spinner.classList.remove('is-hidden');
     movieName = storageLastSearchText?.movie;
