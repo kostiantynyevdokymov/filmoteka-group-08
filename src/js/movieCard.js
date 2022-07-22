@@ -1,6 +1,8 @@
+import { getGenres } from './modal';
+
 export function movieCards(movies) {
   return movies
-    .map(({ id, poster_path, title, original_title, genres_ids, release_date }) => {
+    .map(({ id, poster_path, title, original_title, genre_ids, release_date }) => {
       const imgUrl = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
         : // : './images/netuNichego.png';
@@ -12,7 +14,7 @@ export function movieCards(movies) {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title}</h2>
                     <p class="card-info_descr">
-                        <span>${genres_ids}</span>
+                        <span>${getGenres(genre_ids, 3)}</span>
                         |
                         <span>${year}</span>
                     </p>
@@ -21,4 +23,4 @@ export function movieCards(movies) {
         </li>`;
     })
     .join('');
-};
+}
