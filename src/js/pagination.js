@@ -1,3 +1,7 @@
+import { loadFetchMivies } from "./fetchMovies";
+import { loadPopularStoragePage } from "./loadPage";
+import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
+
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
 
@@ -27,9 +31,16 @@ firstPageRef.hidden = true;
 function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
-      currentPage = Number(event.target.textContent);
+      currentPage = Number(event.target.textContent);   
+    
     }
-
+     if (inputRef.value !== '') {
+      loadFetchMivies(currentPage)
+    } else {
+      loadPopularStoragePage(currentPage)     
+        
+    }
+    
     prevDotsRef.hidden = true;
     afterDotsRef.hidden = true;
 
@@ -103,15 +114,11 @@ function onPaginationClick(event) {
       afterDotsRef.hidden = false;
       lastPageRef.hidden = false;
     }
-
-    gallery.innerHTML = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (inputRef.value !== '') {
-      fetchMovies(inputRef.value, currentPage);
-    } else {
-      fetchFilms();
+    if (gallery !== null) {
+      gallery.innerHTML = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
   }
 }
 
@@ -129,4 +136,5 @@ function defineResultsPerPage() {
 }
 
 
-export { currentPage, defineResultsPerPage};
+export { currentPage, defineResultsPerPage };
+

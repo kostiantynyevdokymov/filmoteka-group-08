@@ -1,4 +1,6 @@
 import storage from './storage';
+import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
+
 import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
 import { removeSceletonLoad } from './sceletonLoad';
 
@@ -7,13 +9,13 @@ const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
-let page = 1;
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim(); 
+  storage.remove(POPULAR_STORAGE_KEY);
   if (movieName === '') {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
@@ -83,26 +85,27 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadStoragePage() {      
-  textError.classList.add('is-hidden');
-  spinner.classList.remove('is-hidden');
-  movieName = storageLastSearchText?.movie;
-  page = storagePage?.value;
-  if (movieName === '') {
-    spinner.classList.add('is-hidden');
-    return alert('Empty field');
-  }
-   fetchMovies(movieName).then(({ movies }) => {
-    if (movies.length === 0) {
+export function loadFetchMivies(currentPage) {
+    textError.classList.add('is-hidden');
+    spinner.classList.remove('is-hidden');
+    movieName = storageLastSearchText?.movie;
+    storage.save(STORAGE_PAGE_KEY, { value: currentPage });
+    if (movieName === '') {
       spinner.classList.add('is-hidden');
-      textError.classList.remove('is-hidden');
-      return;
-    }    
-    storage.save('movies', movies);
-    homeList.innerHTML = movieCards(movies);
+      return alert('Empty field');
+    }
+    fetchMovies(movieName, currentPage).then(({ movies }) => {
+      if (movies.length === 0) {
+        spinner.classList.add('is-hidden');
+        textError.classList.remove('is-hidden');
+        return;
+      }
+      storage.save('movies', movies);
+      homeList.innerHTML = movieCards(movies);
      setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
-    removeSceletonLoad();
-  });
-};
+     removeSceletonLoad();    
+    });
+  };
+
  
 
