@@ -1,5 +1,5 @@
 import storage from './storage';
-import { POPULAR_STORAGE_KEY } from './visitEvents';
+import { POPULAR_STORAGE_KEY } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';

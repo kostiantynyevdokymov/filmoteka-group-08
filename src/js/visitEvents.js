@@ -1,14 +1,10 @@
 import { loadPopularStoragePage } from "./loadPage";
 import { loadFetchMovies } from "./fetchMovies";
+import { popularStoragePage,storagePage } from "./storageKeys";
 import storage from "./storage";
-import { currentPage } from "./pagination";
 
-export const STORAGE_PAGE_KEY = 'last visit page';
-export const STORAGE_MOVIES_SEARCH = 'last visit search'
-export const POPULAR_STORAGE_KEY = 'last visit popular'
-export const popularStoragePage = storage.load(POPULAR_STORAGE_KEY);
-export const storagePage = storage.load(STORAGE_PAGE_KEY);
-export const storageLastSearchText = storage.load(STORAGE_MOVIES_SEARCH);
+
+
 
  export const refs = {
     comeBackBtn: document.querySelector('button.js-visit-back-btn'),
@@ -18,16 +14,23 @@ export const storageLastSearchText = storage.load(STORAGE_MOVIES_SEARCH);
     refs.comeBackBtn.addEventListener("click", comeBackBtnToggle); 
     refs.visitCloseBtn.addEventListener("click", toggleModal);
     
-    
+   
 let timerId;
+//сессионная метка
+const storageMark = sessionStorage.getItem('mark');
+console.log(storageMark);
+    
 (() => {
-    if ( popularStoragePage == 1 && storagePage === null ) {
+    if (storageMark !== null) {
         return 
     } else {        
         toggleModal();
+        sessionStorage.setItem('mark', JSON.stringify('mark'));
         return timerId = setTimeout(() => { toggleModal() }, 15000);      
     }
 })();    
+
+
 
 
 function toggleModal() {   
@@ -44,7 +47,7 @@ function comeBackBtnToggle() {
      let currentPage = 1
     refs.visitModal.classList.toggle("is-hidden");  
 
-    if (popularStoragePage > 1) {
+    if (popularStoragePage > 1 ) {
         currentPage = popularStoragePage;
         loadPopularStoragePage(currentPage);
     } else {

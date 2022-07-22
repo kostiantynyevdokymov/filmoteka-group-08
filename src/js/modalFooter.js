@@ -1,7 +1,7 @@
 const modalLink = document.querySelector('.footer__rights-link');
 const closeBtn = document.querySelector('.modal__closeBtn');
 const backDropp = document.querySelector('.backdropp');
-console.log(backDropp);
+
 
 modalLink.addEventListener('click', e => {
   e.preventDefault();
@@ -13,7 +13,7 @@ closeBtn.addEventListener('click', e => {
 });
 
 function pressEsc(e) {
-  console.log(e);
+  
 
   if (e.code === 'Escape') {
     backDropp.classList.add('is-hidden');
