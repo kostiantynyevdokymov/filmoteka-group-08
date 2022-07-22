@@ -55,15 +55,16 @@
   border-radius: 5px;
   background-color: #f7f7f7;
   transform: matrix(-1, 0, 0, 1, 0, 0);
+  fill: #000000;
   stroke: #000;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .arrow-left {
-  background-image: url('../images/sprite.svg#icon-arrow-left');
+  background-image: url('../images/arrow-left.svg');
 }
 
 .arrow-right {
-  background-image: url('../images/sprite.svg#icon-arrow-right');
+  background-image: url('../images/arrow-right.svg');
 }

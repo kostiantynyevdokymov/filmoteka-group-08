@@ -88,7 +88,7 @@ function onPaginationClick(event) {
       currentPage = btn5Ref.textContent;
       rightArrowRef.hidden = true;
       afterDotsRef.hidden = true;
-      lastPageRef.hidden = true;
+      // lastPageRef.hidden = true;
     }
 
     if (Number(currentPage) > 5) {
@@ -104,7 +104,7 @@ function onPaginationClick(event) {
     if (Number(currentPage) < 996) {
       rightArrowRef.hidden = false;
       afterDotsRef.hidden = false;
-      lastPageRef.hidden = false;
+      // lastPageRef.hidden = false;
     }
     if (gallery !== null) {
       gallery.innerHTML = '';
