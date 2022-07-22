@@ -18,7 +18,7 @@ let timerId;
         return 
     } else {        
         toggleModal();
-        return  timerId = setTimeout(() => { toggleModal() }, 15000);      
+        return timerId = setTimeout(() => { toggleModal() }, 15000);      
     }
 })();    
 
