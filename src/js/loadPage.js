@@ -1,6 +1,7 @@
 import storage from './storage';
 import { POPULAR_STORAGE_KEY } from './visitEvents';
 import { removeSceletonLoad } from './sceletonLoad';
+import { getGenres } from './modal';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
@@ -8,10 +9,7 @@ const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_ke
 const spinner = document.querySelector('.spinner-loader');
 
 async function fetchFilms(API_URL_POPULAR) {
-
-  let response = await fetch(
-    `${API_URL_POPULAR}`
-  );
+  let response = await fetch(`${API_URL_POPULAR}`);
   return response.json();
 }
 
@@ -26,13 +24,10 @@ fetchGenres().then(({ genres }) => {
   const arr = [...genres];
   localStorage.setItem('arrow', JSON.stringify(arr));
 });
-const values = storage.load('arrow');
-
+// const values = storage.load('arrow');
 
 fetchFilms(API_URL_POPULAR).then(({ results }) => {
-
   results.poster_path;
-
 
   const mark = results
     .map(
@@ -46,18 +41,18 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
         original_name,
         first_air_date,
       }) => {
-        const genreArr = [];
-        let other = '';
-        for (const genreId of genre_ids) {
-          for (const value of values) {
-            if (genreId === value.id) {
-              genreArr.push(value.name);
-              if (genre_ids.length > 2) {
-                other = ',Other';
-              }
-            }
-          }
-        }
+        // const genreArr = [];
+        // let other = '';
+        // for (const genreId of genre_ids) {
+        //   for (const value of values) {
+        //     if (genreId === value.id) {
+        //       genreArr.push(value.name);
+        //       if (genre_ids.length > 2) {
+        //         other = ',Other';
+        //       }
+        //     }
+        //   }
+        // }
 
         let a = release_date;
 
@@ -76,7 +71,7 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 2)}  ${other}</span>
+                        <span>${getGenres(genre_ids, 3)}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -85,13 +80,14 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
             </a>
         </li>`;
       }
+    )
 
-  )
-    
-     .join('');
-   spinner.classList.remove('is-hidden');
-   setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
-   removeSceletonLoad();
+    .join('');
+  spinner.classList.remove('is-hidden');
+  setTimeout(() => {
+    spinner.classList.add('is-hidden');
+  }, 2000);
+  removeSceletonLoad();
 
   storage.save('movies', results);
   homeList.insertAdjacentHTML('beforeend', mark);
@@ -100,8 +96,7 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
 // export default fetchFilms;
 
 export function loadPopularStoragePage(currentPage) {
-
-  homeList.innerHTML = "";
+  homeList.innerHTML = '';
   page = currentPage;
   storage.save(POPULAR_STORAGE_KEY, page);
 
@@ -111,12 +106,10 @@ export function loadPopularStoragePage(currentPage) {
   });
   const values = storage.load('arrow');
 
-  
-
-  fetchFilms(`https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`).then(({ results }) => {
-
+  fetchFilms(
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`
+  ).then(({ results }) => {
     results.poster_path;
-
 
     const mark = results
       .map(
@@ -130,18 +123,18 @@ export function loadPopularStoragePage(currentPage) {
           original_name,
           first_air_date,
         }) => {
-          const genreArr = [];
-          let other = '';
-          for (const genreId of genre_ids) {
-            for (const value of values) {
-              if (genreId === value.id) {
-                genreArr.push(value.name);
-                if (genre_ids.length > 2) {
-                  other = ',Other';
-                }
-              }
-            }
-          }
+          // const genreArr = [];
+          // let other = '';
+          // for (const genreId of genre_ids) {
+          //   for (const value of values) {
+          //     if (genreId === value.id) {
+          //       genreArr.push(value.name);
+          //       if (genre_ids.length > 2) {
+          //         other = ',Other';
+          //       }
+          //     }
+          //   }
+          // }
 
           let a = release_date;
 
@@ -160,7 +153,7 @@ export function loadPopularStoragePage(currentPage) {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 2)}  ${other}</span>
+                        <span>${getGenres(genre_ids, 3)}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -175,7 +168,6 @@ export function loadPopularStoragePage(currentPage) {
     setTimeout(() => {
       const arr = document.querySelectorAll('.placeholdify');
       arr.forEach(el => el.classList.remove('placeholdify'));
-
     }, 2000);
 
     storage.save('movies', results);

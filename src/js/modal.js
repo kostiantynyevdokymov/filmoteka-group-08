@@ -49,11 +49,6 @@ function openModal(movieId) {
   backdrop.querySelector('.modal-movie').innerHTML = getModalMovieMarkup(movieId);
   document.body.style.overflow = 'hidden';
   backdrop.classList.remove('is-hidden');
-  // const { vote_average } =
-  //   getMovieFromLocalStorage(movieId, 'movies') ||
-  //   getMovieFromLocalStorage(movieId, 'watched-list') ||
-  //   getMovieFromLocalStorage(movieId, 'queue-list');
-  // console.log(vote_average);
   const vote_average = backdrop.querySelector('#out').textContent;
   outNum(vote_average, '#out');
 }
@@ -217,4 +212,22 @@ function outNum(num, elem) {
     }
     e.innerHTML = n.toFixed(1);
   }, t);
+}
+
+export function getGenres(genre_ids, maxGenresCount) {
+  const genres = storage.load('arrow');
+  const genreArr = [];
+  for (
+    let genreIndex = 0;
+    genreIndex < genre_ids.length && genreIndex < maxGenresCount;
+    genreIndex++
+  ) {
+    for (const value of genres) {
+      if (genre_ids[genreIndex] === value.id) {
+        genreArr.push(value.name);
+      }
+    }
+  }
+  if (genre_ids.length > maxGenresCount) genreArr[maxGenresCount - 1] = 'Other';
+  return genreArr.join(', ');
 }
