@@ -1,6 +1,7 @@
 import storage from './storage';
-import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
+import { storagePage,POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,popularStoragePage} from './pageInStorage';
 import { loadPopularStoragePage } from './loadPage';
+import { currentPage } from './pagination';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -14,6 +15,7 @@ formField?.addEventListener('submit', event => {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim(); 
+  storage.remove(POPULAR_STORAGE_KEY);
   if (movieName === '') {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
@@ -86,14 +88,14 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadStoragePage() {   
+export function loadStoragePage(currentPage) {   
   if (popularStoragePage?.value > 1 && popularStoragePage !== null) {
-    loadPopularStoragePage();
+    loadPopularStoragePage(currentPage);
   } else {
     textError.classList.add('is-hidden');
     spinner.classList.remove('is-hidden');
     movieName = storageLastSearchText?.movie;
-    page = storagePage?.value;
+    page = currentPage;
     if (movieName === '') {
       spinner.classList.add('is-hidden');
       return alert('Empty field');

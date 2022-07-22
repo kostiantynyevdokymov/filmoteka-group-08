@@ -12,6 +12,6 @@ export const storageLastSearchText = storage.load(STORAGE_MOVIES_SEARCH);
 changeStoragePage();
 
 function changeStoragePage() {   
-    storage.save(STORAGE_PAGE_KEY, { value: page.currentPage });
+    storage.save(STORAGE_PAGE_KEY, { value: page });
   
 }
