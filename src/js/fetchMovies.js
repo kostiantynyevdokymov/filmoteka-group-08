@@ -102,11 +102,8 @@ export function loadFetchMivies(currentPage) {
       }
       storage.save('movies', movies);
       homeList.innerHTML = movieCards(movies);
-      spinner.classList.add('is-hidden');
-      setTimeout(() => {        
-        arr.forEach(el => el.classList.remove('placeholdify'));
-      }, 2000);
-      removeSceletonLoad();
+     setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+     removeSceletonLoad();    
     });
   };
 

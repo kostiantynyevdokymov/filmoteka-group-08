@@ -4,7 +4,7 @@ import { removeSceletonLoad } from './sceletonLoad';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
-const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${page}`;
+const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
 
 
 async function fetchFilms(API_URL_POPULAR) {
