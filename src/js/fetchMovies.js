@@ -88,7 +88,7 @@ async function fetchMovies(movieName, page) {
 
 //load last page search
 
-export function loadFetchMivies(currentPage) {
+export function loadFetchMovies(currentPage) {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
   movieName = storageLastSearchText?.movie;
