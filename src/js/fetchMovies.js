@@ -1,7 +1,5 @@
 import storage from './storage';
-import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
-
-import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
+import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './visitEvents';
 import { removeSceletonLoad } from './sceletonLoad';
 
 const formField = document.querySelector('.form-field');
@@ -85,11 +83,11 @@ async function fetchMovies(movieName,page) {
 
 
 //load last page search
-export function loadFetchMivies(currentPage) {
+export function loadFetchMovies(currentPage) {
     textError.classList.add('is-hidden');
     spinner.classList.remove('is-hidden');
     movieName = storageLastSearchText?.movie;
-    storage.save(STORAGE_PAGE_KEY, { value: currentPage });
+    storage.save(STORAGE_PAGE_KEY, currentPage);
     if (movieName === '') {
       spinner.classList.add('is-hidden');
       return alert('Empty field');
