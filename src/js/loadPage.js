@@ -1,11 +1,11 @@
 import storage from './storage';
-import { POPULAR_STORAGE_KEY, popularStoragePage } from './pageInStorage';
+import { POPULAR_STORAGE_KEY } from './visitEvents';
 import { removeSceletonLoad } from './sceletonLoad';
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
 const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
-
+const spinner = document.querySelector('.spinner-loader');
 
 async function fetchFilms(API_URL_POPULAR) {
 
@@ -76,7 +76,7 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        <span>${genreArr.splice(0, 2)}  ${other}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -85,28 +85,35 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
             </a>
         </li>`;
       }
-    )
 
-    .join('');
-  removeSceletonLoad();
+  )
+    
+     .join('');
+   spinner.classList.remove('is-hidden');
+   setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+   removeSceletonLoad();
+
   storage.save('movies', results);
   homeList.insertAdjacentHTML('beforeend', mark);
 });
 
-export default fetchFilms();
+// export default fetchFilms;
 
 export function loadPopularStoragePage(currentPage) {
+
   homeList.innerHTML = "";
   page = currentPage;
   storage.save(POPULAR_STORAGE_KEY, page);
+
   fetchGenres().then(({ genres }) => {
     const arr = [...genres];
     localStorage.setItem('arrow', JSON.stringify(arr));
   });
   const values = storage.load('arrow');
 
+  
 
-  fetchFilms(`https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${page}`).then(({ results }) => {
+  fetchFilms(`https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`).then(({ results }) => {
 
     results.poster_path;
 
@@ -153,7 +160,7 @@ export function loadPopularStoragePage(currentPage) {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${genreArr.splice(0, 3)}  ${other}</span>
+                        <span>${genreArr.splice(0, 2)}  ${other}</span>
                         
                         |
                         <span>${a || b}</span>
@@ -168,7 +175,9 @@ export function loadPopularStoragePage(currentPage) {
     setTimeout(() => {
       const arr = document.querySelectorAll('.placeholdify');
       arr.forEach(el => el.classList.remove('placeholdify'));
+
     }, 2000);
+
     storage.save('movies', results);
     homeList.insertAdjacentHTML('beforeend', mark);
   });

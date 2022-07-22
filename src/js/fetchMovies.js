@@ -1,7 +1,9 @@
 import storage from './storage';
+
 import { POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText, STORAGE_PAGE_KEY } from './pageInStorage';
 
 import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText } from './pageInStorage';
+
 import { removeSceletonLoad } from './sceletonLoad';
 
 const formField = document.querySelector('.form-field');
@@ -85,6 +87,7 @@ async function fetchMovies(movieName, page) {
 
 
 //load last page search
+
 export function loadFetchMivies(currentPage) {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
@@ -96,6 +99,7 @@ export function loadFetchMivies(currentPage) {
   }
   fetchMovies(movieName, currentPage).then(({ movies }) => {
     if (movies.length === 0) {
+
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
       return;

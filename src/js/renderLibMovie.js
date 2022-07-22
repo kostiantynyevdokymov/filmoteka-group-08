@@ -4,7 +4,7 @@ import { removeSceletonLoad } from './sceletonLoad';
 //containers for render, design changes
 const libraryContainer = document.querySelector('.library-container');
 const libList = document.querySelector('.library-list');
-
+const spinner = document.querySelector('.spinner-loader');
 //btn accent
 const active_type = 'header__btn-active';
 
@@ -23,6 +23,9 @@ export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 window.onload = () => {
     libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
     funnyGuyOnBg();
+      spinner.classList.remove('is-hidden');
+    setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+    removeSceletonLoad();
 }
 
 //queue btn is active on load
@@ -33,6 +36,8 @@ btnOpenWatched?.addEventListener('click', openWatched);
 function openQueue() {
     libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
     funnyGuyOnBg();
+    spinner.classList.remove('is-hidden');
+    setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
     removeSceletonLoad();
     btnOpenQue.classList.add(active_type);
     btnOpenWatched.classList.remove(active_type);
@@ -41,6 +46,8 @@ function openQueue() {
 function openWatched() {
     libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
     funnyGuyOnBg();
+     spinner.classList.remove('is-hidden');
+    setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
     removeSceletonLoad();
     btnOpenQue.classList.remove(active_type);
     btnOpenWatched.classList.add(active_type);
