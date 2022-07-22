@@ -1,5 +1,5 @@
 import storage from './storage';
-import { POPULAR_STORAGE_KEY } from './visitEvents';
+import { POPULAR_STORAGE_KEY } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 

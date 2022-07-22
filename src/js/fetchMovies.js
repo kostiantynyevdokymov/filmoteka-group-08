@@ -1,9 +1,5 @@
 import storage from './storage';
-
-// import { POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText, STORAGE_PAGE_KEY } from './pageInStorage';
-
-// import { storagePage, STORAGE_MOVIES_SEARCH, storageLastSearchText } from './pageInStorage';
-
+import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 
@@ -91,7 +87,7 @@ export function loadFetchMovies(currentPage) {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
   movieName = storageLastSearchText?.movie;
-  storage.save(STORAGE_PAGE_KEY, { value: currentPage });
+  storage.save(STORAGE_PAGE_KEY, currentPage );
   if (movieName === '') {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
@@ -99,8 +95,7 @@ export function loadFetchMovies(currentPage) {
   fetchMovies(movieName, currentPage).then(({ movies }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
-      textError.classList.remove('is-hidden');
-      return;
+      return alert('Empty field');
     }
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
