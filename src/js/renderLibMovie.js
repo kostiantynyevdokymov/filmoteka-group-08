@@ -1,17 +1,17 @@
 import { markUpWithGenres } from './cardListWithGenres';
 import { removeSceletonLoad } from './sceletonLoad';
 
+//containers for render, design changes
+const libList = document.querySelector('.library-list');
+const spinner = document.querySelector('.spinner-loader');
+//btn accent
+const active_type = 'header__btn-active';
+
+//listerners
+const btnOpenWatched = document.querySelector('.js-watched-btn');
+const btnOpenQue = document.querySelector('.js-queue-btn');
+
 if (document.querySelector('.library-container')) {
-  //containers for render, design changes
-  const libList = document.querySelector('.library-list');
-  const spinner = document.querySelector('.spinner-loader');
-  //btn accent
-  const active_type = 'header__btn-active';
-
-  //listerners
-  const btnOpenWatched = document.querySelector('.js-watched-btn');
-  const btnOpenQue = document.querySelector('.js-queue-btn');
-
   window.onload = () => {
     libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
     funnyGuyOnBg();
