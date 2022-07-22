@@ -1,8 +1,7 @@
 import storage from './storage';
 import { POPULAR_STORAGE_KEY, popularStoragePage } from './pageInStorage';
-import { currentPage, defineResultsPerPage } from './pagination';
+import { removeSceletonLoad } from './sceletonLoad';
 
-let page = 1
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
 const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${page}`;
@@ -88,11 +87,8 @@ const values = storage.load('arrow');
       }
   )
     
-      .join('');
-     setTimeout(() => {
-      const arr = document.querySelectorAll('.placeholdify');
-      arr.forEach(el => el.classList.remove('placeholdify'));
-      },2000);
+     .join('');
+   removeSceletonLoad();
   storage.save('movies', results);
     homeList.insertAdjacentHTML('beforeend', mark);
 });

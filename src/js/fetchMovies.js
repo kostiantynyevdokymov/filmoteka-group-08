@@ -1,6 +1,8 @@
 import storage from './storage';
 import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './pageInStorage';
 
+import { storagePage,STORAGE_MOVIES_SEARCH,storageLastSearchText } from './pageInStorage';
+import { removeSceletonLoad } from './sceletonLoad';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -27,11 +29,8 @@ formField?.addEventListener('submit', event => {
     storage.save(STORAGE_MOVIES_SEARCH,{movie: movieName});
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
-    spinner.classList.add('is-hidden');
-     setTimeout(() => {
-      const arr = document.querySelectorAll('.placeholdify');
-      arr.forEach(el => el.classList.remove('placeholdify'));
-      },2000);
+   setTimeout(() => { spinner.classList.add('is-hidden') }, 2000);
+    removeSceletonLoad();
   });
 });
 
@@ -104,12 +103,12 @@ export function loadFetchMivies(currentPage) {
       storage.save('movies', movies);
       homeList.innerHTML = movieCards(movies);
       spinner.classList.add('is-hidden');
-      setTimeout(() => {
-        const arr = document.querySelectorAll('.placeholdify');
+      setTimeout(() => {        
         arr.forEach(el => el.classList.remove('placeholdify'));
       }, 2000);
+      removeSceletonLoad();
     });
   };
-// };
+
  
 
