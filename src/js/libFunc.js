@@ -1,14 +1,4 @@
-import { movieCards } from "./fetchMovies";
-
-export const libraryContainer = document.querySelector('.library-container');
-export const libList = document.querySelector('.library-list');
-
-export const active_type = 'header__btn-active';
-
-export function funnyGuyOnBg() {
-    console.log('markup list render', libList.firstChild)
-    libList.firstChild == null ? libraryContainer.classList.add('lib-bg-img') : libraryContainer.classList.remove('lib-bg-img')
-}
+//not in use now
 
 export function renderCardsFromLocalStoradge(key, ul) {
     const dataLib = localStorage.getItem(key);
@@ -21,8 +11,10 @@ export function renderCardsFromLocalStoradge(key, ul) {
     setTimeout(() => {
       const arr = document.querySelectorAll('.placeholdify');
       arr.forEach(el => el.classList.remove('placeholdify'));
-      },2000);
+      },0);
 }
+
+//not in use now
 
 export function removeMarkUp(elem) {
     elem.innerHTML = '';

@@ -30,7 +30,7 @@ fetchGenres().then(({ genres }) => {
 const values = storage.load('arrow');
 
 
-  fetchFilms(API_URL_POPULAR).then(({ results }) => {
+ fetchFilms(API_URL_POPULAR).then(({ results }) => {
 
   results.poster_path;
 
