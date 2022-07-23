@@ -1,5 +1,7 @@
 import { markUpWithGenres } from './cardListWithGenres';
 import { removeSceletonLoad } from './sceletonLoad';
+import { itsQueueList } from './variablesForLib';
+import storage from './storage';
 
 //containers for render, design changes
 export const libList = document.querySelector('.library-list');
@@ -13,18 +15,10 @@ const btnOpenQue = document.querySelector('.js-queue-btn');
 
 if (document.querySelector('.library-container')) {
     const btnActive = document.querySelector('.header__btn-active');
-    let itsQueueList = btnActive.textContent === 'Queue';
+    const itsQueueList = btnActive.textContent === 'Queue';
+    console.log(itsQueueList, 'q')
     window.onload = () => {
-        if (itsQueueList) {
-            libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
-            funnyGuyOnBg();
-            spinner.classList.remove('is-hidden');
-            setTimeout(() => {
-                spinner.classList.add('is-hidden');
-            }, 2000);
-            removeSceletonLoad();
-        } else {
-            libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
+            libList.innerHTML = markUpWithGenres(storage.load('queue-list'));
             funnyGuyOnBg();
             spinner.classList.remove('is-hidden');
             setTimeout(() => {
@@ -62,7 +56,7 @@ if (document.querySelector('.library-container')) {
         btnOpenQue.classList.remove(active_type);
         btnOpenWatched.classList.add(active_type);
     }
-}
+
 
 //data parsed
 export const queueStorage = localStorage.getItem('queue-list');
