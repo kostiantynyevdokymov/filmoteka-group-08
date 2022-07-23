@@ -1,5 +1,5 @@
-import { loadFetchMovies } from "./fetchMovies";
-import { loadPopularStoragePage } from "./loadPage";
+import { loadFetchMovies } from './fetchMovies';
+import { loadPopularStoragePage } from './loadPage';
 
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
@@ -30,9 +30,9 @@ firstPageRef.hidden = true;
 function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
-      currentPage = Number(event.target.textContent);    
+      currentPage = Number(event.target.textContent);
     }
-    
+
     prevDotsRef.hidden = true;
     afterDotsRef.hidden = true;
 
@@ -109,12 +109,14 @@ function onPaginationClick(event) {
     if (gallery != null) {
       gallery.innerHTML = '';      
     }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (inputRef.value !== '') {
       loadFetchMovies(currentPage)
+
     } else {
-      loadPopularStoragePage(currentPage)        
-    } 
+      loadPopularStoragePage(currentPage);
+    }
   }
 }
 
@@ -130,6 +132,7 @@ function defineResultsPerPage() {
   }
   return pageSize;
 }
+
 
 
 
@@ -149,4 +152,5 @@ const currentFirstBtn = () => {
       prevDotsRef.hidden = true;
       firstPageRef.hidden = true;
 }
+
 
