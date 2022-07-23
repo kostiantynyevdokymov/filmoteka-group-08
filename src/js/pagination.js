@@ -106,12 +106,14 @@ function onPaginationClick(event) {
       afterDotsRef.hidden = false;
       // lastPageRef.hidden = false;
     }
-    if (gallery !== null) {
-      gallery.innerHTML = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (gallery != null) {
+      gallery.innerHTML = '';      
     }
-    if (inputRef.value !== '') {
-      loadFetchMovies(currentPage);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (inputRef.value !== '') {
+      loadFetchMovies(currentPage)
+
     } else {
       loadPopularStoragePage(currentPage);
     }
@@ -131,4 +133,24 @@ function defineResultsPerPage() {
   return pageSize;
 }
 
-export { currentPage, defineResultsPerPage };
+
+
+
+export { currentPage, defineResultsPerPage, currentFirstBtn };
+  
+const currentFirstBtn = () => { 
+
+   btns.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.textContent = 1;
+      btn2Ref.textContent = 2;
+      btn3Ref.textContent = 3;
+      btn4Ref.textContent = 4;
+      btn5Ref.textContent = 5;
+      btn1Ref.classList.add('pagination--current');
+      currentPage = btn1Ref.textContent;
+      leftArrowRef.hidden = true;
+      prevDotsRef.hidden = true;
+      firstPageRef.hidden = true;
+}
+
+

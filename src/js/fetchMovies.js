@@ -2,6 +2,7 @@ import storage from './storage';
 import {POPULAR_STORAGE_KEY, STORAGE_MOVIES_SEARCH, storageLastSearchText ,STORAGE_PAGE_KEY} from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
+import { currentFirstBtn } from './pagination';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -32,6 +33,7 @@ formField?.addEventListener('submit', event => {
       spinner.classList.add('is-hidden');
     }, 2000);
     removeSceletonLoad();
+    currentFirstBtn();
   });
 });
 
