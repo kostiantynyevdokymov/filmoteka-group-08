@@ -14,19 +14,6 @@ export function markUpWithGenres(arrFromStorage) {
         original_name,
         first_air_date,
       }) => {
-        // const genreArr = [];
-        // let other = '';
-        // for (const genreId of genre_ids) {
-        //     for (const value of arrValuesOfGenres) {
-        //         if (genreId === value.id) {
-        //             genreArr.push(value.name);
-        //             if (genre_ids.length > 2) {
-        //                 other = ',Other';
-        //             }
-        //         }
-        //     }
-        // }
-
         let a = release_date;
 
         let b = first_air_date;

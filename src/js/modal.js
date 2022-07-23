@@ -65,6 +65,7 @@ function closeModal() {
   backdrop.classList.add('is-hidden');
   ///changes in lib
   rewrite();
+  shouldRewrite = false;
   ///
 }
 
@@ -155,7 +156,7 @@ Modal buttons functionality
 function addMovieToLibrary(button) {
   const key = button.dataset?.modalAddTo + '-list';
   // const movieId = button.closest('.modal-movie').dataset.modalMovieId;
-
+  shouldRewrite = true;
   const SOURCE_KEY = 'current-movie';
 
   const value = storage.load(SOURCE_KEY);
