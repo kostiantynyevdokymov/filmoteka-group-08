@@ -12,6 +12,9 @@
 
   overflow-y: scroll;
 
+  opacity: 1;
+  transition: opacity 450ms $cubic;
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -27,6 +30,7 @@
   .modal-card {
     @media screen and (min-width: 768px) {
       transform: translate(-50%, -50%) scale(0.7);
+      transition: transform 450ms $cubic;
     }
   }
 }
@@ -37,7 +41,7 @@
   // min-height: 700px;
   padding: 50px 20px;
   background-color: $main-bg-color;
-  transition: transform 500ms $cubic;
+  transition: transform 450ms $cubic;
 
   border-radius: 5px;
 
@@ -54,6 +58,7 @@
     // min-height: 552px;
     padding: 40px 72px 40px 36px;
     transform: translate(-50%, -50%) scale(1);
+    transition: transform 450ms $cubic;
   }
 
   @media screen and (min-width: 1280px) {
