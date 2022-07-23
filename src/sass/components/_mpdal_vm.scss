@@ -10,9 +10,9 @@ $header-text-color: #000;
 
 .modal {
   background-color: rgb(249, 247, 247);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
 
   position: absolute;
   top: 93px;
@@ -26,24 +26,26 @@ $header-text-color: #000;
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: scroll;
 
   @media screen and (min-width: 768px) {
     top: 208px;
     width: 700px;
   }
-  @media screen and (min-width: 768px) {
-    width: 800px;
-  }
+  // @media screen and (min-width: 768px) {
+  //   width: 800px;
+  // }
 }
 @media screen and (min-width: 1280px) {
   .modal {
     width: 1100px;
-    height: auto;
+    // height: auto;
     top: 221px;
     padding-top: 38px;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 42px;
+    overflow-y: scroll;
   }
 }
 .modal__closeBtn {
@@ -91,10 +93,10 @@ $header-text-color: #000;
 
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  //   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal__devName {
   color: $header-text-color;
@@ -180,28 +182,22 @@ $header-text-color: #000;
     height: 200px;
   }
 }
-// .modal__closeBtn {
-//   border-radius: 50%;
-//   font-size: 30px;
-//   position: absolute;
+
+// #arrowTop {
+//   height: 50px;
+//   width: 14px;
+//   color: red;
+
+//   position: fixed;
+//   z-index: 4;
 //   top: 10px;
-//   right: 10px;
+//   left: 10px;
+//   cursor: pointer;
 // }
-#arrowTop {
-  height: 50px;
-  width: 14px;
-  color: red;
 
-  position: fixed;
-  z-index: 4;
-  top: 10px;
-  left: 10px;
-  cursor: pointer;
-}
-
-#arrowTop::before {
-  content: '▲';
-}
+// #arrowTop::before {
+//   content: '▲';
+// }
 
 .modal__social--Git {
   fill: #000;
