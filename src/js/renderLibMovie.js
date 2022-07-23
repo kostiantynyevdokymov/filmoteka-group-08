@@ -2,8 +2,8 @@ import { markUpWithGenres } from './cardListWithGenres';
 import { removeSceletonLoad } from './sceletonLoad';
 
 //containers for render, design changes
-const libList = document.querySelector('.library-list');
-const spinner = document.querySelector('.spinner-loader');
+export const libList = document.querySelector('.library-list');
+export const spinner = document.querySelector('.spinner-loader');
 //btn accent
 const active_type = 'header__btn-active';
 
@@ -12,43 +12,56 @@ const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
 
 if (document.querySelector('.library-container')) {
-  window.onload = () => {
-    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
-    funnyGuyOnBg();
-    spinner.classList.remove('is-hidden');
-    setTimeout(() => {
-      spinner.classList.add('is-hidden');
-    }, 2000);
-    removeSceletonLoad();
-  };
+    const btnActive = document.querySelector('.header__btn-active');
+    let itsQueueList = btnActive.textContent === 'Queue';
+    window.onload = () => {
+        if (itsQueueList) {
+            libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
+            funnyGuyOnBg();
+            spinner.classList.remove('is-hidden');
+            setTimeout(() => {
+                spinner.classList.add('is-hidden');
+            }, 2000);
+            removeSceletonLoad();
+        } else {
+            libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
+            funnyGuyOnBg();
+            spinner.classList.remove('is-hidden');
+            setTimeout(() => {
+                spinner.classList.add('is-hidden');
+            }, 2000);
+            removeSceletonLoad();
+        }
+    }
 
-  //queue btn is active on load
-  btnOpenQue?.addEventListener('click', openQueue);
-  btnOpenWatched?.addEventListener('click', openWatched);
 
-  function openQueue() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
-    funnyGuyOnBg();
-    spinner.classList.remove('is-hidden');
-    setTimeout(() => {
-      spinner.classList.add('is-hidden');
-    }, 2000);
-    removeSceletonLoad();
-    btnOpenQue.classList.add(active_type);
-    btnOpenWatched.classList.remove(active_type);
-  }
+    //queue btn is active on load
+    btnOpenQue?.addEventListener('click', openQueue);
+    btnOpenWatched?.addEventListener('click', openWatched);
 
-  function openWatched() {
-    libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
-    funnyGuyOnBg();
-    spinner.classList.remove('is-hidden');
-    setTimeout(() => {
-      spinner.classList.add('is-hidden');
-    }, 2000);
-    removeSceletonLoad();
-    btnOpenQue.classList.remove(active_type);
-    btnOpenWatched.classList.add(active_type);
-  }
+    function openQueue() {
+        libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
+        funnyGuyOnBg();
+        spinner.classList.remove('is-hidden');
+        setTimeout(() => {
+            spinner.classList.add('is-hidden');
+        }, 2000);
+        removeSceletonLoad();
+        btnOpenQue.classList.add(active_type);
+        btnOpenWatched.classList.remove(active_type);
+    }
+
+    function openWatched() {
+        libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
+        funnyGuyOnBg();
+        spinner.classList.remove('is-hidden');
+        setTimeout(() => {
+            spinner.classList.add('is-hidden');
+        }, 2000);
+        removeSceletonLoad();
+        btnOpenQue.classList.remove(active_type);
+        btnOpenWatched.classList.add(active_type);
+    }
 }
 
 //data parsed
@@ -60,9 +73,11 @@ export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
-  const libraryContainer = document.querySelector('.library-container');
+    const libraryContainer = document.querySelector('.library-container');
 
-  libList.firstChild == null
-    ? libraryContainer.classList.add('lib-bg-img')
-    : libraryContainer.classList.remove('lib-bg-img');
+    libList.firstChild == null
+        ? libraryContainer.classList.add('lib-bg-img')
+        : libraryContainer.classList.remove('lib-bg-img');
 }
+
+
