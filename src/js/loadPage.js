@@ -101,11 +101,11 @@ export function loadPopularStoragePage(currentPage) {
   homeList.innerHTML = '';
   storage.save(POPULAR_STORAGE_KEY, currentPage);
 
-  fetchGenres().then(({ genres }) => {
-    const arr = [...genres];
-    localStorage.setItem('arrow', JSON.stringify(arr));
-  });
-  const values = storage.load('arrow');
+  // fetchGenres().then(({ genres }) => {
+  //   const arr = [...genres];
+  //   localStorage.setItem('arrow', JSON.stringify(arr));
+  // });
+  // const values = storage.load('arrow');
 
   fetchFilms(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`

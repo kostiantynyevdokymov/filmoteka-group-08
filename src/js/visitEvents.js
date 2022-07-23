@@ -1,7 +1,8 @@
 import { loadPopularStoragePage } from "./loadPage";
 import { loadFetchMovies } from "./fetchMovies";
-import { popularStoragePage,storagePage } from "./storageKeys";
-import storage from "./storage";
+import { popularStoragePage, storagePage, storageLastSearchText } from "./storageKeys";
+import { currentStorageBtn } from "./pagination";
+
 
 
 
@@ -25,7 +26,7 @@ console.log(storageMark);
         return 
     } else {        
         toggleModal();
-        sessionStorage.setItem('mark', JSON.stringify('mark'));
+       // sessionStorage.setItem('mark', JSON.stringify('mark'));
         return timerId = setTimeout(() => { toggleModal() }, 15000);      
     }
 })();    
@@ -50,9 +51,12 @@ function comeBackBtnToggle() {
     if (popularStoragePage > 1 ) {
         currentPage = popularStoragePage;
         loadPopularStoragePage(currentPage);
+        currentStorageBtn(currentPage);
     } else {
         currentPage = storagePage;
-        loadFetchMovies(storagePage);
+        loadFetchMovies(currentPage);
+        currentStorageBtn(currentPage);
+        document.querySelector('.js-search-form').value = storageLastSearchText?.movie;
     }
     
     if (refs.visitModal.classList.value.includes("hidden") === true) {
