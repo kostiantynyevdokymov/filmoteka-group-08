@@ -106,10 +106,10 @@ function onPaginationClick(event) {
       afterDotsRef.hidden = false;
       // lastPageRef.hidden = false;
     }
-    if (gallery !== null) {
-      gallery.innerHTML = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (gallery != null) {
+      gallery.innerHTML = '';      
     }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (inputRef.value !== '') {
       loadFetchMovies(currentPage)
     } else {
