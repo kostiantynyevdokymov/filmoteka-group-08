@@ -17,7 +17,7 @@ if (document.querySelector('.library-container')) {
     const itsQueueList = btnActive.textContent === 'Queue';
     console.log(itsQueueList, 'q')
     window.onload = () => {
-        storage.load('queue-list').length !== 0 ? libList.innerHTML = markUpWithGenres(storage.load('queue-list')) : libList.innerHTML = '';
+        arrValuesOfQueue !== null ? libList.innerHTML = markUpWithGenres(storage.load('queue-list')) : libList.innerHTML = '';
             funnyGuyOnBg();
             spinner.classList.remove('is-hidden');
             setTimeout(() => {
