@@ -1,6 +1,5 @@
 import { markUpWithGenres } from './cardListWithGenres';
 import { removeSceletonLoad } from './sceletonLoad';
-import { itsQueueList } from './variablesForLib';
 import storage from './storage';
 
 //containers for render, design changes
@@ -18,7 +17,7 @@ if (document.querySelector('.library-container')) {
     const itsQueueList = btnActive.textContent === 'Queue';
     console.log(itsQueueList, 'q')
     window.onload = () => {
-            libList.innerHTML = markUpWithGenres(storage.load('queue-list'));
+        storage.load('queue-list').length !== 0 ? libList.innerHTML = markUpWithGenres(storage.load('queue-list')) : libList.innerHTML = '';
             funnyGuyOnBg();
             spinner.classList.remove('is-hidden');
             setTimeout(() => {
