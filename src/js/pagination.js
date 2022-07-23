@@ -161,8 +161,8 @@ const currentStorageBtn = (currentPage) => {
     btn1Ref.textContent = Number(currentPage) - 2;
     btn2Ref.textContent = Number(currentPage) - 1;
     btn3Ref.textContent = Number(currentPage);
-    btn4Ref.textContent = Number(currentPage) + 3;
-    btn5Ref.textContent = Number(currentPage) + 4;
+    btn4Ref.textContent = Number(currentPage) + 1;
+    btn5Ref.textContent = Number(currentPage) + 2;
     btn3Ref.classList.add('pagination--current');
     leftArrowRef.hidden = false;
     prevDotsRef.hidden = false;
