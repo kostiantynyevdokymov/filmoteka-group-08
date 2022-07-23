@@ -24,15 +24,17 @@
   }
 }
 
-.is-hidden {
-  display: none;
+.backdrop.is-hidden {
+  //display: none;
+  opacity: 0;
+  pointer-events: none;
 
-  .modal-card {
-    @media screen and (min-width: 768px) {
-      transform: translate(-50%, -50%) scale(0.7);
-      transition: transform 450ms $cubic;
-    }
-  }
+  // .modal-card {
+  //   @media screen and (min-width: 768px) {
+  //     transform: translate(-50%, -50%) scale(0.7);
+  //     transition: transform 450ms $cubic;
+  //   }
+  // }
 }
 
 .modal-card {
