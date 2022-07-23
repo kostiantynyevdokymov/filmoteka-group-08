@@ -26,7 +26,7 @@ console.log(storageMark);
         return 
     } else {        
         toggleModal();
-       // sessionStorage.setItem('mark', JSON.stringify('mark'));
+        sessionStorage.setItem('mark', JSON.stringify('mark'));
         return timerId = setTimeout(() => { toggleModal() }, 15000);      
     }
 })();    
