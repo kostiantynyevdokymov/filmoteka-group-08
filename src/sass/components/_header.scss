@@ -39,18 +39,13 @@
 }
 
 .form-field {
-    position: absolute;
-        top: 50%;
-        left: 7%;
-        transition: translate(-50%, -50%);
-    
-        @media screen and (min-width: 768px) {
-            left: 30%;
-        }
-    
-        @media screen and (min-width: 1280px) {
-            left: 40%;
-        }
+position: absolute;
+    top:60%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center; 
 }
 
 .search-form__wrap {
@@ -91,10 +86,10 @@ height: 20px;
 }
 
 .search__icon {
-    position: absolute;
+    position: absolute;    
     top: 20%;
-    right: -4;
-    transform: translateX(-30%);
+    // right: -4;
+    transform: translateX(-100%);
 }
 
 .search-result {
