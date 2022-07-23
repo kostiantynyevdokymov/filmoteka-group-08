@@ -178,7 +178,6 @@ function addMovieToLibrary(button) {
 
 function addToStorage(key, value, button) {
   ///changes in lib
-  shouldRewrite = true;
   ///
   let currentList = storage.load(key) || [];
   currentList.push(value);
@@ -188,7 +187,7 @@ function addToStorage(key, value, button) {
 
 function removeFromStorage(key, value, button) {
   ///changes in lib
-  shouldRewrite = true;
+ // shouldRewrite = true;
   ///
   let currentList = storage.load(key) || [];
   button.classList.remove('added');

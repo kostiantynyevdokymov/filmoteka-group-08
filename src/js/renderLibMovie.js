@@ -13,9 +13,6 @@ const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
 
 if (document.querySelector('.library-container')) {
-    const btnActive = document.querySelector('.header__btn-active');
-    const itsQueueList = btnActive.textContent === 'Queue';
-    console.log(itsQueueList, 'q')
     window.onload = () => {
         arrValuesOfQueue !== null ? libList.innerHTML = markUpWithGenres(storage.load('queue-list')) : libList.innerHTML = '';
             funnyGuyOnBg();
