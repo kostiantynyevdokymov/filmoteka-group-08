@@ -5,8 +5,7 @@
 
          &::after {
              content: '';
-             width: 100%;
-             display: block;
+             width: 100%;            
 
              position: absolute;
              left: 0;
@@ -47,6 +46,7 @@
          //navigation
          .header-list {
              @include center;
+             display: inline-flex;
     
              &__item+&__item {
                  margin-left: 40px;

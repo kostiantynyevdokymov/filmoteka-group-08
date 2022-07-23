@@ -132,12 +132,11 @@ function defineResultsPerPage() {
 }
 
 
-<<<<<<< Updated upstream
-export { currentPage, defineResultsPerPage };
-=======
+
 export { currentPage, defineResultsPerPage, currentFirstBtn };
   
 const currentFirstBtn = () => { 
+
    btns.forEach(el => el.classList.remove('pagination--current'));
       btn1Ref.textContent = 1;
       btn2Ref.textContent = 2;
@@ -150,5 +149,4 @@ const currentFirstBtn = () => {
       prevDotsRef.hidden = true;
       firstPageRef.hidden = true;
 }
->>>>>>> Stashed changes
 
