@@ -39,6 +39,13 @@
         }
     }
 
+    &.header__btn-active,
+    &:hover,
+    &:focus {
+        border: none;
+        background: $accent-orange;
+        box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    } 
 }
 
 .header__btn-active {
@@ -46,13 +53,6 @@
     color: $header-text-color;
     box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
     border: none;
-
-    &:hover,
-    &:focus {
-        border: none;
-        background: $accent-orange;
-        box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-    } 
 }
 
 .header__btn-noactive {
