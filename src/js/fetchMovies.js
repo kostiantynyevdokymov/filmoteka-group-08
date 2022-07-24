@@ -29,7 +29,7 @@ formField?.addEventListener('submit', event => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('search-result--hidden');
-      setTimeout(() => textError.classList.add('search-result--hidden'), 5000);
+      setTimeout(() => textError.classList.add('search-result--hidden'), 4000);
       return;
     }
     storage.save(STORAGE_MOVIES_SEARCH, movieName);
