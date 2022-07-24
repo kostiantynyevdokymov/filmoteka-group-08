@@ -56,7 +56,7 @@ function comeBackBtnToggle() {
         currentPage = storagePage;
         loadFetchMovies(currentPage);
         currentStorageBtn(currentPage);
-        document.querySelector('.js-search-form').value = storageLastSearchText?.movie;
+        document.querySelector('.js-search-form').value = storageLastSearchText;
     }
     
     if (refs.visitModal.classList.value.includes("hidden") === true) {
