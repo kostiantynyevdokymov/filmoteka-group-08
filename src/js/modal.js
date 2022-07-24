@@ -1,11 +1,10 @@
+'use strict';
 import storage from './storage';
 import { checkWhatToLoad } from './renderLibMovie';
 
 export const backdrop = document.querySelector('[data-modal]');
 export const closeButton = document.querySelector('[data-modal-close]');
 export const cardsContainer = document.querySelector('.movies-container');
-
-export let shouldRewrite = false;
 
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
@@ -35,9 +34,6 @@ function backdropClick(e) {
   }
   if (e.target.nodeName === 'BUTTON') {
     addMovieToLibrary(e.target.closest('.movie-btn'));
-    ///changes in lib
-    shouldRewrite = true;
-    ///
   }
 }
 
@@ -63,12 +59,7 @@ function closeModal() {
   document.addEventListener('keydown', pressEsc);
   document.body.style.overflow = '';
   backdrop.classList.add('is-hidden');
-  ///changes in lib
-  //rewrite();
-  //document.location.reload();
   checkWhatToLoad(storage.load('activeInStorage'));
-  shouldRewrite = false;
-  ///
 }
 
 function getModalMovieMarkup(movieId) {
@@ -173,7 +164,7 @@ Modal buttons functionality
 function addMovieToLibrary(button) {
   const key = button.dataset?.modalAddTo + '-list';
   // const movieId = button.closest('.modal-movie').dataset.modalMovieId;
-  shouldRewrite = true;
+  // let shouldRewrite = true;
   const SOURCE_KEY = 'current-movie';
 
   const value = storage.load(SOURCE_KEY);
@@ -194,8 +185,6 @@ function addMovieToLibrary(button) {
 }
 
 function addToStorage(key, value, button) {
-  ///changes in lib
-  ///
   let currentList = storage.load(key) || [];
   currentList.push(value);
   button.classList.add('added');
@@ -203,9 +192,6 @@ function addToStorage(key, value, button) {
 }
 
 function removeFromStorage(key, value, button) {
-  ///changes in lib
-  // shouldRewrite = true;
-  ///
   let currentList = storage.load(key) || [];
   button.classList.remove('added');
   currentList = currentList.filter(movie => movie.id.toString() != value.id);

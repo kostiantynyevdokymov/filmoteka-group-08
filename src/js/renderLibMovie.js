@@ -26,17 +26,18 @@ funnyGuyOnBg()
 export function checkWhatToLoad(x) {
     if (libraryContainer) {
 
-        console.log(storage.load('activeInStorage'))
+        console.log(storage.load('activeInStorage'));
         if (x == 'q') {
-            document.location.reload = openQueue(queStorage, btnOpenQue);
+            btnOpenQue.classList.add(active_type);
+            openQueue(queStorage, btnOpenQue);
             funnyGuyOnBg()
             }
         if (x == 'w') {
-            document.location.reload = openWatched(watStorage, btnOpenWatched);
+            btnOpenWatched.classList.add(active_type);
+            openWatched(watStorage, btnOpenWatched);
             funnyGuyOnBg()
             }
         }
-
     }
 
 
@@ -69,7 +70,8 @@ export function funnyGuyOnBg() {
     console.log(libList.firstChild == null)
     libList.firstChild == null
         ? libraryContainer.classList.add('lib-bg-img')
-        : libraryContainer.classList.remove('lib-bg-img');}
+            : libraryContainer.classList.remove('lib-bg-img');
+    }
 }
 
 //storage
@@ -77,9 +79,11 @@ function checkStorage(key, btn) {
     console.log(btn, key)
     if (libraryContainer) {
         if (storage.load(key) === undefined || storage.load(key).length === 0) {
-          btn.classList.add('non-active');
-            console.log(btn.classList)
+            btn.classList.remove('.header__btn-active');
+            btn.classList.add('.header__btn-noactive');
+            libList.innerHTML = '';
         } else {
+            btn.classList.add('.header__btn-active')
             addMarkUpToLibByKey(key);
         }
         funnyGuyOnBg();
