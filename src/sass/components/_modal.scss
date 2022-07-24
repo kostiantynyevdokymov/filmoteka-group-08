@@ -338,15 +338,28 @@
     height: 100%;
     background: $main-bg-color;
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     backface-visibility: hidden;
+    opacity: 1;
+
+    transition-property: opacity, transform;
+    transition-duration: 275ms;
+    transition-timing-function: $cubic;
   }
 
   .remove {
     transform: rotateX(-180deg);
+    background-color: white;
   }
 
   &.added .movie-btn__inner {
     transform: rotateX(-180deg);
+  }
+
+  &.added {
+    .add {
+      opacity: 0;
+    }
   }
 }
 
