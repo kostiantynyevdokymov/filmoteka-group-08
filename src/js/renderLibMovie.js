@@ -1,5 +1,5 @@
 import { markUpWithGenres } from './cardListWithGenres';
-import { removeSceletonLoad } from './sceletonLoad';
+//import { removeSceletonLoad } from './sceletonLoad';
 import storage from './storage';
 
 //containers for render, design changes
@@ -12,62 +12,118 @@ const active_type = 'header__btn-active';
 const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
 
-if (document.querySelector('.library-container')) {
-    window.onload = () => {
-        arrValuesOfQueue !== null ? libList.innerHTML = markUpWithGenres(storage.load('queue-list')) : libList.innerHTML = '';
-            funnyGuyOnBg();
-            spinner.classList.remove('is-hidden');
-            setTimeout(() => {
-                spinner.classList.add('is-hidden');
-            }, 2000);
-            removeSceletonLoad();
+const libraryContainer = document.querySelector('.library-container');
+
+const queStorage = 'queue-list';
+const watStorage = 'watched-list';
+
+storage.save('activeInStorage', 'q')
+console.log(storage.load('activeInStorage'), 'activeInStorage')
+
+//first open
+//checkWhatToLoad(storage.load('activeInStorage'));
+//checkStorage(queStorage, btnOpenQue);
+
+
+export function checkWhatToLoad(x) {
+    if (libraryContainer) {
+
+        console.log(storage.load('activeInStorage'))
+        if (x == 'q') {
+                //document.location.reload()
+            //openQueue(queStorage, btnOpenQue);
+            document.location.reload() = openQueue(queStorage, btnOpenQue);
+            }
+        if (x == 'w') {
+            //document.location.reload()
+            openWatched(watStorage, btnOpenWatched);
+            document.location.reload() = openWatched(watStorage, btnOpenWatched);
+            }
+            //btnOpenQue.classList.add(active_type);
+            //btnOpenWatched.classList.remove(active_type);
         }
+
     }
 
 
-    //queue btn is active on load
-    btnOpenQue?.addEventListener('click', openQueue);
-    btnOpenWatched?.addEventListener('click', openWatched);
+//queue btn is active on load
+btnOpenQue?.addEventListener('click', openQueue);
+btnOpenWatched?.addEventListener('click', openWatched);
 
-    function openQueue() {
-        libList.innerHTML = markUpWithGenres(arrValuesOfQueue);
-        funnyGuyOnBg();
-        spinner.classList.remove('is-hidden');
-        setTimeout(() => {
-            spinner.classList.add('is-hidden');
-        }, 2000);
-        removeSceletonLoad();
-        btnOpenQue.classList.add(active_type);
-        btnOpenWatched.classList.remove(active_type);
-    }
+function openQueue() {
+    checkStorage(queStorage, btnOpenQue);
+    btnOpenQue.classList.add(active_type);
+    btnOpenWatched.classList.remove(active_type);
+    storage.save('activeInStorage', 'q')
+}
 
-    function openWatched() {
-        libList.innerHTML = markUpWithGenres(arrValuesOfWatched);
-        funnyGuyOnBg();
-        spinner.classList.remove('is-hidden');
-        setTimeout(() => {
-            spinner.classList.add('is-hidden');
-        }, 2000);
-        removeSceletonLoad();
-        btnOpenQue.classList.remove(active_type);
-        btnOpenWatched.classList.add(active_type);
-    }
-
+function openWatched() {
+    checkStorage(watStorage, btnOpenWatched);
+    btnOpenQue.classList.remove(active_type);
+    btnOpenWatched.classList.add(active_type);
+    storage.save('activeInStorage', 'w')
+}
 
 //data parsed
 export const queueStorage = localStorage.getItem('queue-list');
 export const watchedStorage = localStorage.getItem('watched-list');
-export const arrValuesOfQueue = JSON.parse(queueStorage);
-export const arrValuesOfWatched = JSON.parse(watchedStorage);
 export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
-    const libraryContainer = document.querySelector('.library-container');
-
     libList.firstChild == null
         ? libraryContainer.classList.add('lib-bg-img')
         : libraryContainer.classList.remove('lib-bg-img');
 }
 
+//storage
+function checkStorage(key, btn) {
+    if (libraryContainer) {
+        if (storage.load(key) === undefined || storage.load(key).length === 0) {
+            btn.classList.add('non-active');
+        } else {
+            addMarkUpToLibByKey(key);
+        }
+        funnyGuyOnBg();
+    }
+}
 
+//render
+function addMarkUpToLibByKey(keyOfActualStorage) {
+    libList.innerHTML = markUpWithGenres(storage.load(keyOfActualStorage));
+    spinner.classList.remove('is-hidden');
+}
+
+/*const pag = document.querySelector('.pag-c');
+
+pag?.addEventListener('click', onPagClick);
+
+function onPagClick(e) {
+    if(e.target.dataset.page == true){
+    libList.innerHTML = markUpWithGenres(arrQPaged[Number(e.target.dataset.page)]);
+}}
+
+const arrQ = [...storage.load('queue-list')];
+const arrW = [...storage.load('watched-list')];
+const arrQPaged = [];
+const arrWPaged = [];
+
+function pagify(arr, numCardsOnPage, arrPaged) {
+    for (let i = 0; i < arr.length; i += numCardsOnPage) {
+        const chunk = arr.slice(i, i + numCardsOnPage);
+        arrPaged.push(chunk);
+    }
+ }
+
+
+pagify(arrQ, 2, arrQPaged);//pag for q
+pagify(arrW, 2, arrWPaged);//pag for w
+
+function generatePag(arr) {
+   return arr.map((e, index) => `<button style='width:40px;height:40px; margin-right:10px' class='pag' data-page=${index}>${index + 1}</button>`).join('');        
+}
+//markup pag lib
+if(libraryContainer){
+const mark = generatePag(arrQPaged);
+pag.innerHTML = mark;
+}*/

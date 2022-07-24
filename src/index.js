@@ -8,5 +8,4 @@ import './js/modalFooter';
 import './js/storage';
 import './js/visitEvents';
 import './js/lazy-loading';
-import './js/checkStoradgeAfterModal';
 
