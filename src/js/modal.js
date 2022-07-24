@@ -1,5 +1,5 @@
 import storage from './storage';
-import { rewrite } from './checkStoradgeAfterModal';
+import { checkWhatToLoad } from './renderLibMovie';
 
 export const backdrop = document.querySelector('[data-modal]');
 export const closeButton = document.querySelector('[data-modal-close]');
@@ -64,7 +64,9 @@ function closeModal() {
   document.body.style.overflow = '';
   backdrop.classList.add('is-hidden');
   ///changes in lib
-  rewrite();
+  //rewrite();
+  //document.location.reload();
+  checkWhatToLoad(storage.load('activeInStorage'));
   shouldRewrite = false;
   ///
 }
@@ -91,6 +93,11 @@ function getModalMovieMarkup(movieId) {
 
   movieId = movieId.toString();
 
+  const imgUrl = poster_path
+    ? `https://image.tmdb.org/t/p/w500${poster_path}`
+    : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+  // 'https://assets.specialized.com/i/specialized/undefined';
+
   let addedClass = isInLibrary('watched-list', movieId.toString()) ? 'added' : '';
   const btnAddToWatched = `<div class="modal-movie__btn movie-btn movie-btn--watched ${addedClass}" data-modal-add-to="watched">
                           <div class="movie-btn__inner">
@@ -108,7 +115,7 @@ function getModalMovieMarkup(movieId) {
                         </div>`;
 
   return `<div class="modal-movie__poster">
-            <img src='https://image.tmdb.org/t/p/w500${poster_path}' alt="${title}" />
+            <img src='${imgUrl}' alt="${title}" />
           </div>
             <div class="modal-movie__info">
                 <h2 class="modal-movie__title">${title}</h2>
@@ -117,8 +124,11 @@ function getModalMovieMarkup(movieId) {
                         <td class="movie-table__title">Vote / Votes</td>
                         <td class="movie-table__info">
                             <span id="out" class="vote">${vote_average.toFixed(1)}</span>
-                            <span>/</span>
-                            <span class="votes">${vote_count}</span>
+                            ${
+                              vote_count
+                                ? ` <span>/</span><span class="votes">${vote_count}</span>`
+                                : ''
+                            }
                         </td>
                     </tr>
                     <tr>
@@ -130,14 +140,21 @@ function getModalMovieMarkup(movieId) {
                         <td class="movie-table__info">${original_title}</td>
                     </tr>
                     <tr>
-                        <td class="movie-table__title">Genre</td>
-                        <td class="movie-table__info">${getGenres(genre_ids, 3)}</td>
+                        ${
+                          genre_ids.length
+                            ? `<td class="movie-table__title">Genre</td>
+                            <td class="movie-table__info">${getGenres(
+                              genre_ids,
+                              genre_ids.length
+                            )}</td>`
+                            : ''
+                        }
                     </tr>
                 </table>
                 <div class="modal-movie__box">
                 <div class="modal-movie__about">
                     <p class="modal-movie__description">ABOUT</p>
-                    <p class="modal-movie__text">${overview}</p>
+                    <p class="modal-movie__text">${overview ? overview : 'no description.'}</p>
                 </div>
                 <div class="modal-movie__buttons">
                     ${btnAddToWatched}
@@ -187,7 +204,7 @@ function addToStorage(key, value, button) {
 
 function removeFromStorage(key, value, button) {
   ///changes in lib
- // shouldRewrite = true;
+  // shouldRewrite = true;
   ///
   let currentList = storage.load(key) || [];
   button.classList.remove('added');
@@ -215,6 +232,8 @@ function outNum(num, elem) {
 }
 
 export function getGenres(genre_ids, maxGenresCount) {
+  // if (!genre_ids.length) return 'no genre specified';
+  // if (!genre_ids.length) return '';
   const genres = storage.load('arrow');
   const genreArr = [];
   for (
