@@ -1,5 +1,5 @@
 import storage from './storage';
-import { rewrite } from './checkStoradgeAfterModal';
+import { checkWhatToLoad } from './renderLibMovie';
 
 export const backdrop = document.querySelector('[data-modal]');
 export const closeButton = document.querySelector('[data-modal-close]');
@@ -64,7 +64,9 @@ function closeModal() {
   document.body.style.overflow = '';
   backdrop.classList.add('is-hidden');
   ///changes in lib
-  rewrite();
+  //rewrite();
+  //document.location.reload();
+  checkWhatToLoad(storage.load('activeInStorage'));
   shouldRewrite = false;
   ///
 }
