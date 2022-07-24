@@ -26,7 +26,7 @@ formField?.addEventListener('submit', event => {
       textError.classList.remove('is-hidden');
       return;
     }
-    storage.save(STORAGE_MOVIES_SEARCH, { movie: movieName });
+    storage.save(STORAGE_MOVIES_SEARCH, movieName);
     storage.save('movies', movies);
     homeList.innerHTML = movieCards(movies);
     setTimeout(() => {
@@ -62,14 +62,14 @@ export function movieCards(movies) {
     .join('');
 }
 
-async function fetchMovies(movieName, page) {
+async function fetchMovies(movieName,currentPage) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
     language: 'en-US',
     query: movieName,
   });
 
-  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}&page=${page}`)
+  return fetch(`https://api.themoviedb.org/3/search/movie?${searchParams}&page=${currentPage}`)
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -88,7 +88,7 @@ async function fetchMovies(movieName, page) {
 export function loadFetchMovies(currentPage) {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = storageLastSearchText?.movie;
+  movieName = storageLastSearchText;
   storage.save(STORAGE_PAGE_KEY, currentPage );
   if (movieName === '') {
     spinner.classList.add('is-hidden');

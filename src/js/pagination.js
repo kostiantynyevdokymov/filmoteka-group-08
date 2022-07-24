@@ -1,6 +1,5 @@
 import { loadFetchMovies } from './fetchMovies';
 import { loadPopularStoragePage } from './loadPage';
-import { storagePage } from './storageKeys'
 
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
