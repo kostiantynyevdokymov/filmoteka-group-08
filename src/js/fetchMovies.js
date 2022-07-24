@@ -28,6 +28,7 @@ formField?.addEventListener('submit', event => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('is-hidden');
+      setTimeout(() => textError.classList.add('is-hidden'), 3000);
       return;
     }
     storage.save(STORAGE_MOVIES_SEARCH, movieName);
