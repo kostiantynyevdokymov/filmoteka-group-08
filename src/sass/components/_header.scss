@@ -103,5 +103,11 @@ height: 20px;
     font-size: 14px;
     line-height: 1.14;
     color: $accent-input-error;
-    
+
+    opacity: 1;
+    transition: opacity 250ms $cubic;
+}
+
+.search-result--hidden {
+    opacity: 0;
 }

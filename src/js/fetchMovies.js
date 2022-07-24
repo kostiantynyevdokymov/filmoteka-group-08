@@ -16,7 +16,7 @@ let movieName = '';
 
 formField?.addEventListener('submit', event => {
   event.preventDefault();
-  textError.classList.add('is-hidden');
+  textError.classList.add('search-result--hidden');
   spinner.classList.remove('is-hidden');
   movieName = formField.elements.query.value.trim();
   storage.remove(POPULAR_STORAGE_KEY);
@@ -27,8 +27,8 @@ formField?.addEventListener('submit', event => {
   fetchMovies(movieName).then(({ movies }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
-      textError.classList.remove('is-hidden');
-      setTimeout(() => textError.classList.add('is-hidden'), 3000);
+      textError.classList.remove('search-result--hidden');
+      setTimeout(() => textError.classList.add('search-result--hidden'), 4000);
       return;
     }
     storage.save(STORAGE_MOVIES_SEARCH, movieName);
@@ -92,7 +92,7 @@ async function fetchMovies(movieName, currentPage) {
 //load last page search
 
 export function loadFetchMovies(currentPage) {
-  textError.classList.add('is-hidden');
+  textError.classList.add('search-result--hidden');
   spinner.classList.remove('is-hidden');
   movieName = storage.load(STORAGE_MOVIES_SEARCH);
   storage.save(STORAGE_PAGE_KEY, currentPage);
