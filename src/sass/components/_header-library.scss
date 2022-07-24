@@ -1,6 +1,9 @@
-.header-library{  
+.header-lib {  
     background-image: url(../images/my-library-mob.jpg);
-  
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    // background-color: rgba(0, 0, 0, 0.56);
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {        
