@@ -1,3 +1,4 @@
+'use strict';
 import storage from './storage';
 import { checkWhatToLoad } from './renderLibMovie';
 
@@ -163,7 +164,7 @@ Modal buttons functionality
 function addMovieToLibrary(button) {
   const key = button.dataset?.modalAddTo + '-list';
   // const movieId = button.closest('.modal-movie').dataset.modalMovieId;
-  shouldRewrite = true;
+  // let shouldRewrite = true;
   const SOURCE_KEY = 'current-movie';
 
   const value = storage.load(SOURCE_KEY);
