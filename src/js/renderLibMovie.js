@@ -18,29 +18,23 @@ const queStorage = 'queue-list';
 const watStorage = 'watched-list';
 
 storage.save('activeInStorage', 'q')
-console.log(storage.load('activeInStorage'), 'activeInStorage')
 
 //first open
-//checkWhatToLoad(storage.load('activeInStorage'));
-//checkStorage(queStorage, btnOpenQue);
-
+checkWhatToLoad(storage.load('activeInStorage'))
+funnyGuyOnBg()
 
 export function checkWhatToLoad(x) {
     if (libraryContainer) {
 
         console.log(storage.load('activeInStorage'))
         if (x == 'q') {
-                //document.location.reload()
-            //openQueue(queStorage, btnOpenQue);
-            document.location.reload() = openQueue(queStorage, btnOpenQue);
+            document.location.reload = openQueue(queStorage, btnOpenQue);
+            funnyGuyOnBg()
             }
         if (x == 'w') {
-            //document.location.reload()
-            openWatched(watStorage, btnOpenWatched);
-            document.location.reload() = openWatched(watStorage, btnOpenWatched);
+            document.location.reload = openWatched(watStorage, btnOpenWatched);
+            funnyGuyOnBg()
             }
-            //btnOpenQue.classList.add(active_type);
-            //btnOpenWatched.classList.remove(active_type);
         }
 
     }
@@ -71,16 +65,20 @@ export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
+    if(libraryContainer){
+    console.log(libList.firstChild == null)
     libList.firstChild == null
         ? libraryContainer.classList.add('lib-bg-img')
-        : libraryContainer.classList.remove('lib-bg-img');
+        : libraryContainer.classList.remove('lib-bg-img');}
 }
 
 //storage
 function checkStorage(key, btn) {
+    console.log(btn, key)
     if (libraryContainer) {
         if (storage.load(key) === undefined || storage.load(key).length === 0) {
-            btn.classList.add('non-active');
+          btn.classList.add('non-active');
+            console.log(btn.classList)
         } else {
             addMarkUpToLibByKey(key);
         }
@@ -91,7 +89,6 @@ function checkStorage(key, btn) {
 //render
 function addMarkUpToLibByKey(keyOfActualStorage) {
     libList.innerHTML = markUpWithGenres(storage.load(keyOfActualStorage));
-    spinner.classList.remove('is-hidden');
 }
 
 /*const pag = document.querySelector('.pag-c');
