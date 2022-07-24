@@ -5,8 +5,6 @@ export const backdrop = document.querySelector('[data-modal]');
 export const closeButton = document.querySelector('[data-modal-close]');
 export const cardsContainer = document.querySelector('.movies-container');
 
-export let shouldRewrite = false;
-
 cardsContainer.addEventListener('click', e => {
   //Тиць по 'js-modal-open' -> відкриває модалку
   if (e.target.closest('.js-modal-open')) {
@@ -35,9 +33,6 @@ function backdropClick(e) {
   }
   if (e.target.nodeName === 'BUTTON') {
     addMovieToLibrary(e.target.closest('.movie-btn'));
-    ///changes in lib
-    shouldRewrite = true;
-    ///
   }
 }
 
@@ -63,12 +58,7 @@ function closeModal() {
   document.addEventListener('keydown', pressEsc);
   document.body.style.overflow = '';
   backdrop.classList.add('is-hidden');
-  ///changes in lib
-  //rewrite();
-  //document.location.reload();
   checkWhatToLoad(storage.load('activeInStorage'));
-  shouldRewrite = false;
-  ///
 }
 
 function getModalMovieMarkup(movieId) {
@@ -194,8 +184,6 @@ function addMovieToLibrary(button) {
 }
 
 function addToStorage(key, value, button) {
-  ///changes in lib
-  ///
   let currentList = storage.load(key) || [];
   currentList.push(value);
   button.classList.add('added');
@@ -203,9 +191,6 @@ function addToStorage(key, value, button) {
 }
 
 function removeFromStorage(key, value, button) {
-  ///changes in lib
-  // shouldRewrite = true;
-  ///
   let currentList = storage.load(key) || [];
   button.classList.remove('added');
   currentList = currentList.filter(movie => movie.id.toString() != value.id);
