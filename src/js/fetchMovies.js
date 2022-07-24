@@ -1,8 +1,7 @@
 import storage from './storage';
 import {
   POPULAR_STORAGE_KEY,
-  STORAGE_MOVIES_SEARCH,
-  storageLastSearchText,
+  STORAGE_MOVIES_SEARCH,  
   STORAGE_PAGE_KEY,
 } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
@@ -94,7 +93,7 @@ async function fetchMovies(movieName, currentPage) {
 export function loadFetchMovies(currentPage) {
   textError.classList.add('is-hidden');
   spinner.classList.remove('is-hidden');
-  movieName = storageLastSearchText;
+  movieName = storage.load(STORAGE_MOVIES_SEARCH);
   storage.save(STORAGE_PAGE_KEY, currentPage);
   if (movieName === '') {
     spinner.classList.add('is-hidden');
