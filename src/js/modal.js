@@ -133,7 +133,7 @@ function getModalMovieMarkup(movieId) {
                     </tr>
                     <tr>
                         <td class="movie-table__title">Genre</td>
-                        <td class="movie-table__info">${getGenres(genre_ids, 3)}</td>
+                        <td class="movie-table__info">${getGenres(genre_ids, genre_ids.length)}</td>
                     </tr>
                 </table>
                 <div class="modal-movie__box">
@@ -189,7 +189,7 @@ function addToStorage(key, value, button) {
 
 function removeFromStorage(key, value, button) {
   ///changes in lib
- // shouldRewrite = true;
+  // shouldRewrite = true;
   ///
   let currentList = storage.load(key) || [];
   button.classList.remove('added');
