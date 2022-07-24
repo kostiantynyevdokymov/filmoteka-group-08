@@ -30,24 +30,6 @@
     }
 }
 
-//-==button library==-
-.header-library__btn {
-    border: 1px solid #fff;
-    width: 130px;
-    height: 44px;
-
-    @include tab {
-        width: 152px;
-
-        &+& {
-            margin-left: 32px;
-        }
-
-        &+& {
-            margin-left: 20px;
-        }
-    }
-}
 .header-library__btn-wrap{  
     position: absolute;
     margin-left: auto;
