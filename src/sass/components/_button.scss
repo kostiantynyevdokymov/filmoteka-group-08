@@ -15,14 +15,42 @@
 .header-library__btn {
     color: $header-text-color;
     background-color: transparent;
+    border: 1px solid $header-text-color;
+    width: 130px;
+    height: 44px;
+
+    @include tab {
+        width: 152px;
+
+        &+& {
+            margin-left: 32px;
+        }
+
+        &+& {
+            margin-left: 20px;
+        }
+    }
+}
+
+.header__btn-active {
+    background-color: $accent-orange;
+    color: $header-text-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    border: none;
 
     &:hover,
     &:focus {
         border: none;
         background: $accent-orange;
         box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-    }  
-}  
+    } 
+}
+
+.header__btn-noactive {
+    background: transparent;
+    color: $header-text-color;
+    border: 1px solid $header-text-color;
+}
 
 .modal__btn {
     color: $dark-text-color;
@@ -64,13 +92,3 @@
     }
 }    
 
-.header__btn-active {
-    background-color: red;
-    color: black;
-    box-shadow: 0px 8px 43px rgba(93, 15, 15, 0.6);
-    &:hover, &:focus{
-        background-color: red;
-        color: black;
-        box-shadow: 0px 8px 43px rgba(13, 6, 0, 0.6);
-    }
-}
