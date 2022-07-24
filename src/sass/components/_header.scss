@@ -103,11 +103,9 @@ height: 20px;
     color: $accent-input-error;
 
     opacity: 1;
-    visibility: visible;
-    transition: visibility 250ms $cubic, opacity 250ms $cubic;
+    transition: opacity 250ms $cubic;
 }
 
 .search-result--hidden {
     opacity: 0;
-    visibility: hidden;
 }
