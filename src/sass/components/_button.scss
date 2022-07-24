@@ -19,17 +19,26 @@
     width: 130px;
     height: 44px;
 
+    &+& {
+        margin-left: 20px;
+    }
+
     @include tab {
         width: 152px;
 
         &+& {
             margin-left: 32px;
         }
+    }
+
+    @include desk {
+        width: 148px;
 
         &+& {
-            margin-left: 20px;
+            margin-left: 16px;
         }
     }
+
 }
 
 .header__btn-active {
