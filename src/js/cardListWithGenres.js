@@ -31,7 +31,7 @@ export function markUpWithGenres(arrFromStorage) {
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
                     <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${getGenres(genre_ids, 3)}</span>
+                        ${genre_ids.length ? `<span>${getGenres(genre_ids, 3)}</span>` : ''}
                         
                         |
                         <span>${a || b}</span>
