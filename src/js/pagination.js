@@ -1,21 +1,22 @@
 import { loadFetchMovies } from './fetchMovies';
 import { loadPopularStoragePage } from './loadPage';
+import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef, paginationRef} from './pagBtnsVar';
 
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
 
-const btn1Ref = document.querySelector('[data-index="1"]');
-const btn2Ref = document.querySelector('[data-index="2"]');
-const btn3Ref = document.querySelector('[data-index="3"]');
-const btn4Ref = document.querySelector('[data-index="4"]');
-const btn5Ref = document.querySelector('[data-index="5"]');
-const firstPageRef = document.querySelector('.first-button');
-const lastPageRef = document.querySelector('.last-button');
-const paginationRef = document.querySelector('.pagination-container');
-const rightArrowRef = document.querySelector('.arrow-right');
-const leftArrowRef = document.querySelector('.arrow-left');
-const prevDotsRef = document.querySelector('#previous');
-const afterDotsRef = document.querySelector('#after');
+// const btn1Ref = document.querySelector('[data-index="1"]');
+// const btn2Ref = document.querySelector('[data-index="2"]');
+// const btn3Ref = document.querySelector('[data-index="3"]');
+// const btn4Ref = document.querySelector('[data-index="4"]');
+// const btn5Ref = document.querySelector('[data-index="5"]');
+// const firstPageRef = document.querySelector('.first-button');
+// const lastPageRef = document.querySelector('.last-button');
+// const paginationRef = document.querySelector('.pagination-container');
+// const rightArrowRef = document.querySelector('.arrow-right');
+// const leftArrowRef = document.querySelector('.arrow-left');
+// const prevDotsRef = document.querySelector('#previous');
+// const afterDotsRef = document.querySelector('#after');
 
 paginationRef.addEventListener('click', onPaginationClick);
 
