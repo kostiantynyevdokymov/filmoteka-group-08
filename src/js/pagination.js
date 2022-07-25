@@ -134,7 +134,12 @@ function defineResultsPerPage() {
 }
 
 
-export { currentPage, defineResultsPerPage, currentFirstBtn };
+
+
+
+
+export { currentPage, defineResultsPerPage, currentFirstBtn, currentStorageBtn };
+
   
 const currentFirstBtn = () => { 
 
@@ -152,3 +157,27 @@ const currentFirstBtn = () => {
 }
 
 
+const currentStorageBtn = (currentPage) => {
+  if (Number(currentPage) > 5) {
+    btns.forEach(el => el.classList.remove('pagination--current'));
+    btn1Ref.textContent = Number(currentPage) - 2;
+    btn2Ref.textContent = Number(currentPage) - 1;
+    btn3Ref.textContent = Number(currentPage);
+    btn4Ref.textContent = Number(currentPage) + 1;
+    btn5Ref.textContent = Number(currentPage) + 2;
+    btn3Ref.classList.add('pagination--current');
+    leftArrowRef.hidden = false;
+    prevDotsRef.hidden = false;
+    firstPageRef.hidden = false;
+  } else {
+    btns.forEach(el => el.classList.remove('pagination--current'));
+    if (Number(currentPage) == 2) { btn2Ref.textContent = 2; btn2Ref.classList.add('pagination--current'); }
+    if (Number(currentPage) == 3) { btn2Ref.textContent = 3; btn3Ref.classList.add('pagination--current'); }
+    if (Number(currentPage) == 4) { btn2Ref.textContent = 4; btn4Ref.classList.add('pagination--current'); }
+    if (Number(currentPage) == 5) { btn2Ref.textContent = 5; btn5Ref.classList.add('pagination--current'); }
+    leftArrowRef.hidden = true;
+    prevDotsRef.hidden = true;
+    firstPageRef.hidden = true;
+  };
+    
+};

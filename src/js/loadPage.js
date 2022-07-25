@@ -69,11 +69,9 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
-                    <h2 class="card-info__title">${
-                      original_title || original_name
-                    }</h2>
+                    <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${getGenres(genre_ids, 3)}</span>
+                        ${genre_ids.length ? `<span>${getGenres(genre_ids, 3)}</span>` : ''}
                         
                         |
                         <span>${a || b}</span>
@@ -101,11 +99,11 @@ export function loadPopularStoragePage(currentPage) {
   homeList.innerHTML = '';
   storage.save(POPULAR_STORAGE_KEY, currentPage);
 
-  fetchGenres().then(({ genres }) => {
-    const arr = [...genres];
-    localStorage.setItem('arrow', JSON.stringify(arr));
-  });
-  const values = storage.load('arrow');
+  // fetchGenres().then(({ genres }) => {
+  //   const arr = [...genres];
+  //   localStorage.setItem('arrow', JSON.stringify(arr));
+  // });
+  // const values = storage.load('arrow');
 
   fetchFilms(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`
@@ -150,11 +148,9 @@ export function loadPopularStoragePage(currentPage) {
             <a href="#" class="home-card__link">
                 <div class="card-info">
                     <img class="home-card__img" src="${imgUrl}" alt="${title}">
-                    <h2 class="card-info__title">${
-                      original_title || original_name
-                    }</h2>
+                    <h2 class="card-info__title">${original_title || original_name}</h2>
                     <p class="card-info_descr">
-                        <span>${getGenres(genre_ids, 3)}</span>
+                        ${genre_ids.length ? `<span>${getGenres(genre_ids, 3)}</span>` : ''}
                         
                         |
                         <span>${a || b}</span>
