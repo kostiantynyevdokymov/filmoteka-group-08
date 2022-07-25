@@ -14,7 +14,9 @@ const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
 
+
 formField?.addEventListener('submit', event => {
+  let currentPage = 1;
   event.preventDefault();
   textError.classList.add('search-result--hidden');
   spinner.classList.remove('is-hidden');
@@ -24,7 +26,7 @@ formField?.addEventListener('submit', event => {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
   }
-  fetchMovies(movieName).then(({ movies }) => {
+  fetchMovies(movieName, currentPage).then(({ movies }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('search-result--hidden');
@@ -67,7 +69,6 @@ export function movieCards(movies) {
     })
     .join('');
 }
-
 async function fetchMovies(movieName, currentPage) {
   const searchParams = new URLSearchParams({
     api_key: '659c146febfafc17fd54baa17527f7fa',
