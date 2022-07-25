@@ -6,7 +6,7 @@ import {
 } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
-import { currentFirstBtn, correctWorkOfPag } from './pagination';
+import { currentFirstBtn, correctWorkOfPag, correctSubmitPag } from './pagination';
 import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef} from './pagBtnsVar';
 
 const formField = document.querySelector('.form-field');
@@ -46,26 +46,7 @@ buttons.forEach(el => el.removeAttribute('style'));
     storage.save('movies', movies);
     lastPageRef.textContent = lastPage;
 
-    if (lastPage <= 5) {
-      // firstPageRef.setAttribute('style', 'display:none');
-      lastPageRef.setAttribute('style', 'display:none');
-      rightArrowRef.setAttribute('style', 'display:none');
-      leftArrowRef.setAttribute('style', 'display:none');
-      prevDotsRef.setAttribute('style', 'display:none');
-      afterDotsRef.setAttribute('style', 'display:none');
-      if (lastPage <= 4) {
-        btn5Ref.setAttribute('style', 'display:none');
-        if (lastPage <= 3) {
-          btn4Ref.setAttribute('style', 'display:none');
-          if (lastPage <= 2) {
-            btn3Ref.setAttribute('style', 'display:none');
-            if (lastPage <= 1) {
-              btn2Ref.setAttribute('style', 'display:none');
-            }
-          }
-        } 
-      } 
-    }
+    correctSubmitPag(lastPage);
 
 
 
