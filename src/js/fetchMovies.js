@@ -20,7 +20,7 @@ const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref]
 
 
 formField?.addEventListener('submit', event => {
-buttons.forEach(el => el.removeAttribute('style'));
+buttons.forEach(el => el.hidden = false);
 
   let currentPage = 1;
   event.preventDefault();
@@ -118,7 +118,7 @@ export function loadFetchMovies(currentPage) {
     return alert('Empty field');
   }
   fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
-    buttons.forEach(el => el.removeAttribute('style'));
+    buttons.forEach(el => el.hidden = false);
 
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');

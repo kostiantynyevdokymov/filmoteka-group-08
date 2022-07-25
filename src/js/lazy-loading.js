@@ -12,14 +12,14 @@
 
 // Feature detection
 if ('loading' in HTMLImageElement.prototype) {
-    console.log('Браузер підтримує lazyload');
+    // console.log('Браузер підтримує lazyload');
     const lazyImages = document.querySelectorAll('image[loading="lazy"]');
     lazyImages.forEach(image => {
         image.src = image.dataset.src;
     });
 // supported in browser
 } else {
-    console.log('Браузер не підтримує lazyload');
+    // console.log('Браузер не підтримує lazyload');
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
     script.integrity = 'sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==';
@@ -30,14 +30,14 @@ if ('loading' in HTMLImageElement.prototype) {
 }
 
 const lazyImages = document.querySelectorAll('image[data-src]');
-    console.log(lazyImages);
+    // console.log(lazyImages);
 
     lazyImages.forEach(image => {
     image.addEventListener('load', onImageLoaded, { once: true });
 });
 
-function onImageLoaded(event) {
-    console.log("Зображення завантажилось");
-// можна додати класс, анімацію і тд
-// event.target.classList.add();
-}
+// function onImageLoaded(event) {
+//     console.log("Зображення завантажилось");
+// // можна додати класс, анімацію і тд
+// // event.target.classList.add();
+// }

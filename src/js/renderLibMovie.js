@@ -26,7 +26,7 @@ funnyGuyOnBg()
 export function checkWhatToLoad(x) {
     if (libraryContainer) {
 
-        console.log(storage.load('activeInStorage'));
+        // console.log(storage.load('activeInStorage'));
         if (x == 'q') {
             btnOpenQue.classList.add(active_type);
             openQueue(queStorage, btnOpenQue);
@@ -67,7 +67,7 @@ export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
     if(libraryContainer){
-    console.log(libList.firstChild == null)
+    // console.log(libList.firstChild == null)
     libList.firstChild == null
         ? libraryContainer.classList.add('lib-bg-img')
             : libraryContainer.classList.remove('lib-bg-img');
@@ -76,7 +76,7 @@ export function funnyGuyOnBg() {
 
 //storage
 function checkStorage(key, btn) {
-    console.log(btn, key)
+    // console.log(btn, key)
     if (libraryContainer) {
         if (storage.load(key) === undefined || storage.load(key).length === 0) {
             btn.classList.remove('.header__btn-active');

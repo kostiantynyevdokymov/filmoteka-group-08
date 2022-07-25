@@ -34,7 +34,7 @@ const refs = {
 };
 
 // відкриває модалку
-console.log(refs.openModalTeam);
+// console.log(refs.openModalTeam);
 refs.openModalTeam.addEventListener('click', e => {
   e.preventDefault();
   refs.modal.classList.toggle('is-hidden');
