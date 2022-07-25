@@ -13,6 +13,8 @@ const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
+const lastPageRef = document.querySelector('.last-button');
+
 
 
 formField?.addEventListener('submit', event => {
@@ -26,7 +28,7 @@ formField?.addEventListener('submit', event => {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
   }
-  fetchMovies(movieName, currentPage).then(({ movies }) => {
+  fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('search-result--hidden');
@@ -35,6 +37,7 @@ formField?.addEventListener('submit', event => {
     }
     storage.save(STORAGE_MOVIES_SEARCH, movieName);
     storage.save('movies', movies);
+    lastPageRef.textContent = lastPage;
     homeList.innerHTML = movieCards(movies);
     setTimeout(() => {
       spinner.classList.add('is-hidden');
@@ -85,6 +88,7 @@ async function fetchMovies(movieName, currentPage) {
     })
     .then(data => {
       return {
+        lastPage: data.total_pages,
         movies: data.results,
       };
     });
@@ -101,12 +105,14 @@ export function loadFetchMovies(currentPage) {
     spinner.classList.add('is-hidden');
     return alert('Empty field');
   }
-  fetchMovies(movieName, currentPage).then(({ movies }) => {
+  fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       return alert('Empty field');
     }
     storage.save('movies', movies);
+    lastPageRef.textContent = lastPage;
+
     homeList.innerHTML = movieCards(movies);
     setTimeout(() => {
       spinner.classList.add('is-hidden');
