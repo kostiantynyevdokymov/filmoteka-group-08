@@ -2,6 +2,8 @@ import storage from './storage';
 import { POPULAR_STORAGE_KEY } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
+import { correctWorkOfPag } from './pagination';
+
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
@@ -108,6 +110,7 @@ export function loadPopularStoragePage(currentPage) {
   fetchFilms(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`
   ).then(({ results }) => {
+    correctWorkOfPag(currentPage, 1000)
     const mark = results
       .map(
         ({
