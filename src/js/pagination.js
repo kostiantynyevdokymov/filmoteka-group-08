@@ -4,6 +4,7 @@ import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, 
 
 const inputRef = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-card-library');
+const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref];
 
 // const btn1Ref = document.querySelector('[data-index="1"]');
 // const btn2Ref = document.querySelector('[data-index="2"]');
@@ -183,9 +184,72 @@ const currentStorageBtn = (currentPage) => {
     
 };
 
-// if ()
+
+export function correctWorkOfPag(currentPage, lastPage) {
+  if (Number(currentPage) === lastPage || numberButtons.find(el => Number(el.textContent) === lastPage)) {
+      rightArrowRef.setAttribute('style', 'display:none');
+      afterDotsRef.setAttribute('style', 'display:none');
+      lastPageRef.setAttribute('style', 'display:none');
+    }
+
+  
+    numberButtons.forEach(el => {
+      if (Number(el.textContent) > lastPage) {
+        el.setAttribute('style', 'display:none');
+      }
+    });
 
 
+    if (Number(currentPage) >= 5 && Number(currentPage) < lastPage - 2) {
+      numberButtons.forEach(el => el.classList.remove('pagination--current'));
+      btn3Ref.textContent = Number(currentPage);
+      btn3Ref.classList.add('pagination--current');
+      btn2Ref.textContent = Number(currentPage) - 1;
+      btn1Ref.textContent = Number(currentPage) - 2;
+      btn4Ref.textContent = Number(currentPage) + 1;
+      btn5Ref.textContent = Number(currentPage) + 2;
 
+      firstPageRef.hidden = false;
+      leftArrowRef.hidden = false;
+      prevDotsRef.hidden = false;
+    }
 
+    if (Number(currentPage) >= Number(lastPage) - 3) {
+      //  btn3Ref.textContent = Number(currentPage);
+      // btn3Ref.classList.add('pagination--current');
+      // btn5Ref.hidden = true;
+      rightArrowRef.hidden = true;
+      afterDotsRef.hidden = true;
+    }
+    
+    numberButtons.forEach(el => {
+      if (Number(el.textContent) < 1) {
+        el.hidden = true;
+      }
+    });
+
+    if (Number(currentPage) <= 4) {
+      numberButtons.forEach(el => el.classList.remove('pagination--current'));
+      btn1Ref.textContent = 1;
+      btn2Ref.textContent = 2;
+      btn3Ref.textContent = 3;
+      btn4Ref.textContent = 4;
+      btn5Ref.textContent = 5;
+      leftArrowRef.hidden = true;
+      firstPageRef.hidden = true;
+      prevDotsRef.hidden = true;
+      if (Number(currentPage) === 4) {
+        btn4Ref.classList.add('pagination--current');
+      };
+      if (Number(currentPage) === 3) {
+        btn3Ref.classList.add('pagination--current');
+      };
+      if (Number(currentPage) === 2) {
+        btn2Ref.classList.add('pagination--current');
+      };
+      if (Number(currentPage) === 1) {
+        btn1Ref.classList.add('pagination--current');
+      }
+    };
+}
 

@@ -6,7 +6,7 @@ import {
 } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
-import { currentFirstBtn } from './pagination';
+import { currentFirstBtn, correctWorkOfPag } from './pagination';
 import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef} from './pagBtnsVar';
 
 const formField = document.querySelector('.form-field');
@@ -20,7 +20,7 @@ const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref]
 
 
 formField?.addEventListener('submit', event => {
-
+buttons.forEach(el => el.removeAttribute('style'));
 
   let currentPage = 1;
   event.preventDefault();
@@ -34,7 +34,7 @@ formField?.addEventListener('submit', event => {
   }
   fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
       
-    buttons.forEach(el => el.removeAttribute('style'));
+    
 
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
@@ -148,18 +148,11 @@ export function loadFetchMovies(currentPage) {
     storage.save('movies', movies);
     lastPageRef.textContent = lastPage;
 
-       if (Number(currentPage) === lastPage || numberButtons.find(el => Number(el.textContent) === lastPage)) {
-      rightArrowRef.setAttribute('style', 'display:none');
-      afterDotsRef.setAttribute('style', 'display:none');
-      lastPageRef.setAttribute('style', 'display:none');
-    }
-
-  
-    numberButtons.forEach(el => {
-      if (Number(el.textContent) > lastPage) {
-        el.setAttribute('style', 'display:none');
-      }
-    });
+    
+    correctWorkOfPag(currentPage, lastPage);
+      
+     
+    
 
     if (Number(btn1Ref.textContent) === Number(currentPage) && Number(btn1Ref.textContent) !== 1) {
       leftArrowRef.hidden = false;
