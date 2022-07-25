@@ -1,0 +1,12 @@
+export const btn1Ref = document.querySelector('[data-index="1"]');
+export const btn2Ref = document.querySelector('[data-index="2"]');
+export const btn3Ref = document.querySelector('[data-index="3"]');
+export const btn4Ref = document.querySelector('[data-index="4"]');
+export const btn5Ref = document.querySelector('[data-index="5"]');
+export const firstPageRef = document.querySelector('.first-button');
+export const lastPageRef = document.querySelector('.last-button');
+export const paginationRef = document.querySelector('.pagination-container');
+export const rightArrowRef = document.querySelector('.arrow-right');
+export const leftArrowRef = document.querySelector('.arrow-left');
+export const prevDotsRef = document.querySelector('#previous');
+export const afterDotsRef = document.querySelector('#after');

@@ -7,27 +7,13 @@ import {
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { currentFirstBtn } from './pagination';
-// import './pagination';
-
+import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef} from './pagBtnsVar';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
-
-const btn1Ref = document.querySelector('[data-index="1"]');
-const btn2Ref = document.querySelector('[data-index="2"]');
-const btn3Ref = document.querySelector('[data-index="3"]');
-const btn4Ref = document.querySelector('[data-index="4"]');
-const btn5Ref = document.querySelector('[data-index="5"]');
-const firstPageRef = document.querySelector('.first-button');
-const lastPageRef = document.querySelector('.last-button');
-const paginationRef = document.querySelector('.pagination-container');
-const rightArrowRef = document.querySelector('.arrow-right');
-const leftArrowRef = document.querySelector('.arrow-left');
-const prevDotsRef = document.querySelector('#previous');
-const afterDotsRef = document.querySelector('#after');
 const buttons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef]
 const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref]
 
@@ -172,12 +158,6 @@ export function loadFetchMovies(currentPage) {
         el.setAttribute('style', 'display:none');
       }
     });
-
-    // if (numberButtons.find(el => Number(el.textContent) === lastPage)) {
-    //   afterDotsRef.setAttribute('style', 'display:none');
-    //   rightArrowRef.setAttribute('style', 'display:none');
-    //   lastPageRef.setAttribute('style', 'display:none');
-    // }
 
 
     homeList.innerHTML = movieCards(movies);
