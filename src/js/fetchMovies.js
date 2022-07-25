@@ -7,17 +7,35 @@ import {
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { currentFirstBtn } from './pagination';
+// import './pagination';
+
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
 const spinner = document.querySelector('.spinner-loader');
 const textError = document.querySelector('.search-result');
 let movieName = '';
+
+const btn1Ref = document.querySelector('[data-index="1"]');
+const btn2Ref = document.querySelector('[data-index="2"]');
+const btn3Ref = document.querySelector('[data-index="3"]');
+const btn4Ref = document.querySelector('[data-index="4"]');
+const btn5Ref = document.querySelector('[data-index="5"]');
+const firstPageRef = document.querySelector('.first-button');
 const lastPageRef = document.querySelector('.last-button');
+const paginationRef = document.querySelector('.pagination-container');
+const rightArrowRef = document.querySelector('.arrow-right');
+const leftArrowRef = document.querySelector('.arrow-left');
+const prevDotsRef = document.querySelector('#previous');
+const afterDotsRef = document.querySelector('#after');
+const buttons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef]
+const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref]
 
 
 
 formField?.addEventListener('submit', event => {
+
+
   let currentPage = 1;
   event.preventDefault();
   textError.classList.add('search-result--hidden');
@@ -29,6 +47,9 @@ formField?.addEventListener('submit', event => {
     return alert('Empty field');
   }
   fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
+      
+    buttons.forEach(el => el.removeAttribute('style'));
+
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       textError.classList.remove('search-result--hidden');
@@ -38,6 +59,30 @@ formField?.addEventListener('submit', event => {
     storage.save(STORAGE_MOVIES_SEARCH, movieName);
     storage.save('movies', movies);
     lastPageRef.textContent = lastPage;
+
+    if (lastPage <= 5) {
+      // firstPageRef.setAttribute('style', 'display:none');
+      lastPageRef.setAttribute('style', 'display:none');
+      rightArrowRef.setAttribute('style', 'display:none');
+      leftArrowRef.setAttribute('style', 'display:none');
+      prevDotsRef.setAttribute('style', 'display:none');
+      afterDotsRef.setAttribute('style', 'display:none');
+      if (lastPage <= 4) {
+        btn5Ref.setAttribute('style', 'display:none');
+        if (lastPage <= 3) {
+          btn4Ref.setAttribute('style', 'display:none');
+          if (lastPage <= 2) {
+            btn3Ref.setAttribute('style', 'display:none');
+            if (lastPage <= 1) {
+              btn2Ref.setAttribute('style', 'display:none');
+            }
+          }
+        } 
+      } 
+    }
+
+
+
     homeList.innerHTML = movieCards(movies);
     setTimeout(() => {
       spinner.classList.add('is-hidden');
@@ -106,12 +151,34 @@ export function loadFetchMovies(currentPage) {
     return alert('Empty field');
   }
   fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
+    buttons.forEach(el => el.removeAttribute('style'));
+
     if (movies.length === 0) {
       spinner.classList.add('is-hidden');
       return alert('Empty field');
     }
     storage.save('movies', movies);
     lastPageRef.textContent = lastPage;
+
+       if (Number(currentPage) === lastPage || numberButtons.find(el => Number(el.textContent) === lastPage)) {
+      rightArrowRef.setAttribute('style', 'display:none');
+      afterDotsRef.setAttribute('style', 'display:none');
+      lastPageRef.setAttribute('style', 'display:none');
+    }
+
+  
+    numberButtons.forEach(el => {
+      if (Number(el.textContent) > lastPage) {
+        el.setAttribute('style', 'display:none');
+      }
+    });
+
+    // if (numberButtons.find(el => Number(el.textContent) === lastPage)) {
+    //   afterDotsRef.setAttribute('style', 'display:none');
+    //   rightArrowRef.setAttribute('style', 'display:none');
+    //   lastPageRef.setAttribute('style', 'display:none');
+    // }
+
 
     homeList.innerHTML = movieCards(movies);
     setTimeout(() => {
