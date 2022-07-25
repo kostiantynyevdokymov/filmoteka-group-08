@@ -47,12 +47,14 @@ formField?.addEventListener('submit', event => {
     lastPageRef.textContent = lastPage;
 
     if (lastPage <= 5) {
+      
       // firstPageRef.setAttribute('style', 'display:none');
       lastPageRef.setAttribute('style', 'display:none');
       rightArrowRef.setAttribute('style', 'display:none');
       leftArrowRef.setAttribute('style', 'display:none');
       prevDotsRef.setAttribute('style', 'display:none');
       afterDotsRef.setAttribute('style', 'display:none');
+    
       if (lastPage <= 4) {
         btn5Ref.setAttribute('style', 'display:none');
         if (lastPage <= 3) {
@@ -158,6 +160,35 @@ export function loadFetchMovies(currentPage) {
         el.setAttribute('style', 'display:none');
       }
     });
+
+    if (Number(btn1Ref.textContent) === Number(currentPage) && Number(btn1Ref.textContent) !== 1) {
+      leftArrowRef.hidden = false;
+      prevDotsRef.hidden = false;
+      firstPageRef.hidden = false;
+    }
+
+    
+    // if (currentPage <= 5) {
+      
+    //   // firstPageRef.setAttribute('style', 'display:none');
+    //   leftArrowRef.setAttribute('style', 'display:none');
+    //   prevDotsRef.setAttribute('style', 'display:none');
+    
+    //   if (lastPage <= 4) {
+    //     btn5Ref.setAttribute('style', 'display:none');
+    //     if (lastPage <= 3) {
+    //       btn4Ref.setAttribute('style', 'display:none');
+    //       if (lastPage <= 2) {
+    //         btn3Ref.setAttribute('style', 'display:none');
+    //         if (lastPage <= 1) {
+    //           btn2Ref.setAttribute('style', 'display:none');
+    //         }
+    //       }
+    //     } 
+    //   } 
+    // }
+
+    
 
 
     homeList.innerHTML = movieCards(movies);
