@@ -184,6 +184,7 @@ const currentStorageBtn = (currentPage) => {
     
 };
 
+
 export function correctWorkOfPag(currentPage, lastPage) {
   if (Number(currentPage) === lastPage || numberButtons.find(el => Number(el.textContent) === lastPage)) {
       rightArrowRef.setAttribute('style', 'display:none');
@@ -251,3 +252,4 @@ export function correctWorkOfPag(currentPage, lastPage) {
       }
     };
 }
+
