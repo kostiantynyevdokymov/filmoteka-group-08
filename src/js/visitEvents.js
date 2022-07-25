@@ -19,7 +19,7 @@ import { currentStorageBtn } from "./pagination";
 let timerId;
 //сессионная метка
 const storageMark = sessionStorage.getItem('mark');
-console.log(storageMark);
+// console.log(storageMark);
     
 (() => {
     if (storageMark !== null) {

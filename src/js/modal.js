@@ -173,7 +173,7 @@ function addMovieToLibrary(button) {
     removeFromStorage(key, value, button);
   } else {
     if (key.includes('watch') && isInLibrary('queue-list', value.id.toString())) {
-      console.log('already in queue');
+      // console.log('already in queue');
       removeFromStorage(
         'queue-list',
         value,

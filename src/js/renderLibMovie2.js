@@ -45,7 +45,7 @@ export function checkWhatToLoad() {
         }
         if (storage.load('activeInStorage') === 'w') {
             window.location.reload()
-            console.log('w')
+            // console.log('w')
             checkStorage(arrWPaged[0], btnOpenWatched);
             btnOpenQue.classList.remove(active_type);
             btnOpenWatched.classList.add(active_type);
@@ -115,7 +115,7 @@ function onPagClick(e) {
     if (e.target.dataset.page !== undefined) {
         const allBtnStyle = document.querySelectorAll('.pag');
         
-       console.log(e.currentTarget.dataset.page)
+    //    console.log(e.currentTarget.dataset.page)
        e.target.style = 'background: orange; color:white; width: 40px; height: 40px; margin-right:10px';
        libList.innerHTML = markUpWithGenres(arrQPaged[Number(e.target.dataset.page)]);
     }

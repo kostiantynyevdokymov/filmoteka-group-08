@@ -46,23 +46,23 @@ function onPaginationClick(event) {
     if (event.target.classList.contains('arrow-right') && currentPage < 1000) {
       btns.forEach(el => el.classList.remove('pagination--current'));
       btn1Ref.classList.add('pagination--current');
-      btn1Ref.textContent = Number(btn1Ref.textContent) + 5;
-      btn2Ref.textContent = Number(btn2Ref.textContent) + 5;
-      btn3Ref.textContent = Number(btn3Ref.textContent) + 5;
-      btn4Ref.textContent = Number(btn4Ref.textContent) + 5;
-      btn5Ref.textContent = Number(btn5Ref.textContent) + 5;
-      currentPage = btn1Ref.textContent;
+      btn1Ref.textContent = Number(btn1Ref.textContent) + 1;
+      btn2Ref.textContent = Number(btn2Ref.textContent) + 1;
+      btn3Ref.textContent = Number(btn3Ref.textContent) + 1;
+      btn4Ref.textContent = Number(btn4Ref.textContent) + 1;
+      btn5Ref.textContent = Number(btn5Ref.textContent) + 1;
+      currentPage = Number(currentPage) + 1;
     }
 
     if (event.target.classList.contains('arrow-left') && currentPage >= 5) {
       btns.forEach(el => el.classList.remove('pagination--current'));
-      btn1Ref.textContent = Number(btn1Ref.textContent) - 5;
-      btn2Ref.textContent = Number(btn2Ref.textContent) - 5;
-      btn3Ref.textContent = Number(btn3Ref.textContent) - 5;
-      btn4Ref.textContent = Number(btn4Ref.textContent) - 5;
-      btn5Ref.textContent = Number(btn5Ref.textContent) - 5;
+      btn1Ref.textContent = Number(btn1Ref.textContent) - 1;
+      btn2Ref.textContent = Number(btn2Ref.textContent) - 1;
+      btn3Ref.textContent = Number(btn3Ref.textContent) - 1;
+      btn4Ref.textContent = Number(btn4Ref.textContent) - 1;
+      btn5Ref.textContent = Number(btn5Ref.textContent) - 1;
       btn5Ref.classList.add('pagination--current');
-      currentPage = btn5Ref.textContent;
+      currentPage = Number(currentPage) - 1;
     }
 
     if (event.target.classList.contains('first-button')) {
@@ -187,15 +187,15 @@ const currentStorageBtn = (currentPage) => {
 
 export function correctWorkOfPag(currentPage, lastPage) {
   if (Number(currentPage) === lastPage || numberButtons.find(el => Number(el.textContent) === lastPage)) {
-      rightArrowRef.setAttribute('style', 'display:none');
-      afterDotsRef.setAttribute('style', 'display:none');
-      lastPageRef.setAttribute('style', 'display:none');
+      rightArrowRef.hidden = true;
+      afterDotsRef.hidden = true;
+      lastPageRef.hidden = true;
     }
 
   
     numberButtons.forEach(el => {
       if (Number(el.textContent) > lastPage) {
-        el.setAttribute('style', 'display:none');
+        el.hidden = true;
       }
     });
 
@@ -238,8 +238,15 @@ export function correctWorkOfPag(currentPage, lastPage) {
       leftArrowRef.hidden = true;
       firstPageRef.hidden = true;
       prevDotsRef.hidden = true;
+      rightArrowRef.hidden = false;
+      lastPageRef.hidden = false;
+      afterDotsRef.hidden = false;
+
       if (Number(currentPage) === 4) {
         btn4Ref.classList.add('pagination--current');
+        rightArrowRef.hidden = false;
+        lastPageRef.hidden = false;
+        afterDotsRef.hidden = false;
       };
       if (Number(currentPage) === 3) {
         btn3Ref.classList.add('pagination--current');
@@ -257,19 +264,19 @@ export function correctWorkOfPag(currentPage, lastPage) {
 export function correctSubmitPag(lastPage) {
     if (lastPage <= 5) {
       // firstPageRef.setAttribute('style', 'display:none');
-      lastPageRef.setAttribute('style', 'display:none');
-      rightArrowRef.setAttribute('style', 'display:none');
-      leftArrowRef.setAttribute('style', 'display:none');
-      prevDotsRef.setAttribute('style', 'display:none');
-      afterDotsRef.setAttribute('style', 'display:none');
+      lastPageRef.hidden = true;
+      rightArrowRef.hidden = true;
+      leftArrowRef.hidden = true;
+      prevDotsRef.hidden = true;
+      afterDotsRef.hidden = true;
       if (lastPage <= 4) {
-        btn5Ref.setAttribute('style', 'display:none');
+        btn5Ref.hidden = true;
         if (lastPage <= 3) {
-          btn4Ref.setAttribute('style', 'display:none');
+          btn4Ref.hidden = true;
           if (lastPage <= 2) {
-            btn3Ref.setAttribute('style', 'display:none');
+            btn3Ref.hidden = true;
             if (lastPage <= 1) {
-              btn2Ref.setAttribute('style', 'display:none');
+              btn2Ref.hidden = true;
             }
           }
         } 
