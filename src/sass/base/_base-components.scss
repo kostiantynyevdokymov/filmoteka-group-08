@@ -27,8 +27,7 @@
      //header pages style
         .base-header {
             position: relative;
-            display: flex;
-            align-items: baseline;
+            display: flex;            
             justify-content: space-between;
             width: 320px;
             margin-left: auto;
@@ -38,6 +37,7 @@
             height: 230px;
     
             @include tab {
+                align-items: baseline;
                 height: 220px;
                 width: 768px;
                 padding: 40px 35px;
