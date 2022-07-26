@@ -27,8 +27,7 @@
      //header pages style
         .base-header {
             position: relative;
-            display: flex;
-            align-items: baseline;
+            display: flex;            
             justify-content: space-between;
             width: 320px;
             margin-left: auto;
@@ -38,6 +37,7 @@
             height: 230px;
     
             @include tab {
+                align-items: baseline;
                 height: 220px;
                 width: 768px;
                 padding: 40px 35px;
@@ -52,8 +52,7 @@
 
          //navigation
          .header-list {
-             @include center;
-             display: inline-flex;
+             @include center;            
     
              &__item+&__item {
                  margin-left: 40px;
@@ -66,13 +65,54 @@
                 line-height: 1.16;
                 text-transform: uppercase;
                 color: $header-text-color;
+                align-items: center;
     
          }
-    
+         .header__logo{
+           display: flex;
+           align-items: baseline;           
+         }
+                   
+         .logo {               
+            height: 24px;
+            width: 24px;
+            mask-image: url(../images/film.svg);
+            background-color: $header-text-color;
+            @include tab {
+                margin-right: 12px;
+            }
+            &:hover,
+            &:focus {
+                height: 24px;
+                background: linear-gradient(rgb(35, 19, 210), gold);
+                background-position: 0 0;
+                animation: background 5s infinite alternate;
+            }
+        
+            @keyframes background {
+                50% {
+                    background: linear-gradient(red, black);
+                    background-position: 0 24px;
+                }
+            }
+        }    
          // logo
          .header__logo--title {
              display: none;
-    
+            &:hover,
+            &:focus {
+                    height:30px;
+                    background: linear-gradient(rgb(35, 19, 210), gold);
+                    background-position: 0 0;
+                    animation: background 5s infinite alternate;
+                }
+            
+                @keyframes background {
+                    50% {
+                        background: linear-gradient(red, black);
+                        background-position: 0 30px;
+                    }
+                }
              @include tab {
                 display: inline-flex;
                     font-weight: 500;
@@ -104,6 +144,4 @@
                      margin-left: 20px;
                  }
              }
-         }
-
-        
+         }             
