@@ -77,24 +77,18 @@
             height: 24px;
             width: 24px;
             mask-image: url(../images/film.svg);
-            background-color: $header-text-color;
-            @include tab {
-                margin-right: 12px;
-            }
-            &:hover,
-            &:focus {
-                height: 24px;
-                background: linear-gradient(rgb(35, 19, 210), gold);
-                background-position: 0 0;
-                animation: background 5s infinite alternate;
-            }
-        
+            background: linear-gradient(rgb(35, 19, 210), gold);
+            background-position: 0 0;
+            animation: background 5s infinite alternate;
             @keyframes background {
                 50% {
                     background: linear-gradient(red, black);
                     background-position: 0 24px;
                 }
             }
+            @include tab {
+                margin-right: 12px;
+            }      
         }    
          // logo
          .header__logo--title {
@@ -144,4 +138,20 @@
                      margin-left: 20px;
                  }
              }
-         }             
+         }  
+            .header__logo:hover > .header__logo--title,
+            .header__logo:focus > .header__logo--title{
+                @include tab {
+                        height: 30px;
+                            background: linear-gradient(rgb(35, 19, 210), gold);
+                            background-position: 0 0;
+                            animation: background 5s infinite alternate;
+                        }
+                        
+                        @keyframes background {
+                            50% {
+                                background: linear-gradient(red, black);
+                                background-position: 0 30px;
+                            }
+                    }
+                }
