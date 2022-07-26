@@ -30,7 +30,9 @@ buttons.forEach(el => el.hidden = false);
   storage.remove(POPULAR_STORAGE_KEY);
   if (movieName === '') {
     spinner.classList.add('is-hidden');
-    return alert('Empty field');
+    textError.classList.remove('search-result--hidden');
+    setTimeout(() => textError.classList.add('search-result--hidden'), 4000);
+    return;
   }
   fetchMovies(movieName, currentPage).then(({ movies, lastPage }) => {
       
