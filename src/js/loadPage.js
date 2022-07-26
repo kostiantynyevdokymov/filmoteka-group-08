@@ -3,7 +3,7 @@ import { POPULAR_STORAGE_KEY } from './storageKeys';
 import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { correctWorkOfPag } from './pagination';
-import { onScroll, onToTopBtn } from './js/scroll';
+import { onScroll, onToTopBtn } from './arrowUp';
 
 
 const KEY = '659c146febfafc17fd54baa17527f7fa';
