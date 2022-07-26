@@ -132,7 +132,7 @@ export function loadFetchMovies(currentPage) {
     
     correctWorkOfPag(currentPage, lastPage);
       
-     
+    correctSubmitPag(lastPage);
     
 
     if (Number(btn1Ref.textContent) === Number(currentPage) && Number(btn1Ref.textContent) !== 1) {
@@ -142,25 +142,6 @@ export function loadFetchMovies(currentPage) {
     }
 
     
-    // if (currentPage <= 5) {
-      
-    //   // firstPageRef.setAttribute('style', 'display:none');
-    //   leftArrowRef.setAttribute('style', 'display:none');
-    //   prevDotsRef.setAttribute('style', 'display:none');
-    
-    //   if (lastPage <= 4) {
-    //     btn5Ref.setAttribute('style', 'display:none');
-    //     if (lastPage <= 3) {
-    //       btn4Ref.setAttribute('style', 'display:none');
-    //       if (lastPage <= 2) {
-    //         btn3Ref.setAttribute('style', 'display:none');
-    //         if (lastPage <= 1) {
-    //           btn2Ref.setAttribute('style', 'display:none');
-    //         }
-    //       }
-    //     } 
-    //   } 
-    // }
 
     
 
