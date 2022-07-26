@@ -1,5 +1,5 @@
 import './js/common';
-import './js/arrowUp';
+// import './js/arrowUp';
 import './js/modal';
 // import './js/pagination';
 import './js/modalFooter';
