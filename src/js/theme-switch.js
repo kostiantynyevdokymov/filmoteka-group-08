@@ -1,6 +1,6 @@
 
 const checkboxEl = document.querySelector('.theme-switch__toggle');
-const modalEl = document.querySelector('.modal');
+const modalEl = document.querySelector('.modal-card');
 const studentsModalEl = document.querySelector('.modal');
 const modalCloseEl = document.querySelector('.close-icon');
 const bodyEl = document.querySelector('body');

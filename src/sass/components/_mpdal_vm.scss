@@ -46,6 +46,10 @@ $header-text-color: #000;
     padding-right: 40px;
     padding-bottom: 42px;
     overflow-y: scroll;
+    &.dark-theme {
+      background-color: #333333;
+      color: rgba(255, 255, 255, 0.8);
+    }
   }
 }
 .modal__closeBtn {
