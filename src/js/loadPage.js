@@ -71,7 +71,10 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
         const year = release_date
           ? `<span>${new Date(release_date).getFullYear()}</span>`
           : '';
-        const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+        const imgUrl = poster_path
+          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+          : // : './images/netuNichego.png';
+            'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
         return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
@@ -159,7 +162,10 @@ export function loadPopularStoragePage(currentPage) {
           const year = release_date
             ? `<span>${new Date(release_date).getFullYear()}</span>`
             : '';
-          const imgUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+          const imgUrl = poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : // : './images/netuNichego.png';
+              'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
           return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
