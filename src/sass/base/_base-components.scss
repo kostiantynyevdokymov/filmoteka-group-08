@@ -93,28 +93,27 @@
          // logo
          .header__logo--title {
              display: none;
-            &:hover,
-            &:focus {
-                    height:30px;
-                    background: linear-gradient(rgb(35, 19, 210), gold);
-                    background-position: 0 0;
-                    animation: background 5s infinite alternate;
-                }
-            
-                @keyframes background {
-                    50% {
-                        background: linear-gradient(red, black);
-                        background-position: 0 30px;
-                    }
-                }
+                            
              @include tab {
-                display: inline-flex;
+                    display: inline-flex;
                     font-weight: 500;
                     font-size: 30px;
                     line-height: 1.16;
                     color: $header-text-color;
-             }
-         }
+                    height: 30px;
+                    background: transparent;
+                    background-position: 0 0;
+                    animation: background 5s infinite alternate;
+                
+                
+                    @keyframes background {
+                        50% {
+                            background: transparent;
+                            background-position: 0 30px;
+                        }
+                    }
+              }
+            }
     
          .header__logo--svg {
              margin-right: 12px;
@@ -142,7 +141,7 @@
             .header__logo:hover > .header__logo--title,
             .header__logo:focus > .header__logo--title{
                 @include tab {
-                        height: 30px;
+                            height: 30px;
                             background: linear-gradient(rgb(35, 19, 210), gold);
                             background-position: 0 0;
                             animation: background 5s infinite alternate;
@@ -155,3 +154,19 @@
                             }
                     }
                 }
+        //     .header__logo:hover >.logo,
+        //     .header__logo:focus >.logo{
+        //         height: 24px;
+        //         width: 24px;
+        //         mask-image: url(../images/film.svg);
+        //         background: linear-gradient(rgb(35, 19, 210), gold);
+        //         background-position: 0 0;
+        //         animation: background 5s infinite alternate;
+            
+        //         @keyframes background {
+        //             50% {
+        //                 background: linear-gradient(red, black);
+        //                 background-position: 0 24px;
+        //             }
+        // }
+        // }
