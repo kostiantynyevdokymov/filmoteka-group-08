@@ -70,15 +70,13 @@
          }
          .header__logo{
            display: flex;
-           align-items: baseline;
-         
-           
-           
+           align-items: baseline;           
          }
+                   
          .logo {               
             height: 24px;
             width: 24px;
-            mask-image: url(/src/images/film.svg);
+            mask-image: url(../images/film.svg);
             background-color: $header-text-color;
             @include tab {
                 margin-right: 12px;
@@ -101,7 +99,20 @@
          // logo
          .header__logo--title {
              display: none;
-    
+            &:hover,
+            &:focus {
+                    height:30px;
+                    background: linear-gradient(rgb(35, 19, 210), gold);
+                    background-position: 0 0;
+                    animation: background 5s infinite alternate;
+                }
+            
+                @keyframes background {
+                    50% {
+                        background: linear-gradient(red, black);
+                        background-position: 0 30px;
+                    }
+                }
              @include tab {
                 display: inline-flex;
                     font-weight: 500;
@@ -133,6 +144,4 @@
                      margin-left: 20px;
                  }
              }
-         }
-
-        
+         }             
