@@ -1,0 +1,33 @@
+.dark {
+    background-color: rgb(38, 38, 46);
+
+    .card-info__title {
+        color: white;
+    }
+}
+
+.theme {
+    display: flex;
+    margin-bottom: 12px;
+
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 20px;
+
+    button {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .passive-btn{
+        opacity: 0.5;
+    }
+
+    button:not(:last-child) {
+        margin-right: 5px;
+
+    }
+}
