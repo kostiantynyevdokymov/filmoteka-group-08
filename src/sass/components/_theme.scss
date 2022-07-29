@@ -8,11 +8,15 @@
 
 .theme {
     display: flex;
-    margin-bottom: 12px;
+    align-self: flex-end;
 
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 10px;
-    margin-left: 20px;
+    padding-left: 20px;
+        @include desk {
+            padding-left: 32px;
+        }
+
 
     button {
         background: transparent;
