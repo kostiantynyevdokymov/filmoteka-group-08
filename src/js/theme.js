@@ -1,3 +1,4 @@
+import { libraryContainer } from "./renderLibMovie";
 import storage from "./storage";
 
 const theme = document.querySelector('.theme');
@@ -25,3 +26,9 @@ function changeBtnClass() {
     storage.load('theme') === 'dark' ? light.classList.add('passive-btn') : light.classList.remove('passive-btn');
     storage.load('theme') === 'light' ? dark.classList.add('passive-btn') : dark.classList.remove('passive-btn');
 }
+
+function posititionThemeForHome() {
+    if (!libraryContainer) theme.classList.add('theme-home-position');
+}
+
+posititionThemeForHome();
