@@ -12,7 +12,7 @@ const active_type = 'header__btn-active';
 const btnOpenWatched = document.querySelector('.js-watched-btn');
 const btnOpenQue = document.querySelector('.js-queue-btn');
 
-const libraryContainer = document.querySelector('.library-container');
+export const libraryContainer = document.querySelector('.library-container');
 
 const queStorage = 'queue-list';
 const watStorage = 'watched-list';

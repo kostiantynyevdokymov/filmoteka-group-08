@@ -7,4 +7,4 @@ import './js/cardListWithGenres';
 import './js/renderLibMovie';
 // import './js/loadPage';
 //import './js/renderLibMovie2';
-
+import './js/theme';

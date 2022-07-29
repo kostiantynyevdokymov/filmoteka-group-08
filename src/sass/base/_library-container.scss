@@ -4,6 +4,7 @@
     margin-right: auto;
     padding: 20px 20px 20px 20px;
     background-color: $main-bg-color;
+    background: inherit;
     min-height: calc(100vh - 330px);
 
     @include tab {
@@ -88,3 +89,6 @@
     }
     
 }
+
+
+
