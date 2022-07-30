@@ -9,4 +9,5 @@ import './js/storage';
 import './js/visitEvents';
 import './js/lazy-loading';
 import './js/theme';
+import './js/genresMarkUp';
 

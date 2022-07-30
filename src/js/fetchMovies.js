@@ -8,6 +8,7 @@ import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { currentFirstBtn, correctWorkOfPag, correctSubmitPag } from './pagination';
 import {btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref, firstPageRef, lastPageRef, rightArrowRef, leftArrowRef, prevDotsRef, afterDotsRef} from './pagBtnsVar';
+import { removeGenresMarkUp } from './genresMarkUp';
 
 const formField = document.querySelector('.form-field');
 const homeList = document.querySelector('.home-list');
@@ -20,6 +21,7 @@ const numberButtons = [btn1Ref, btn2Ref, btn3Ref, btn4Ref, btn5Ref]
 
 
 formField?.addEventListener('submit', event => {
+  removeGenresMarkUp();
 buttons.forEach(el => el.hidden = false);
 
   let currentPage = 1;

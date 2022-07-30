@@ -4,16 +4,16 @@ import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { correctWorkOfPag } from './pagination';
 import { onScroll, onToTopBtn } from './arrowUp';
-
-const KEY = '659c146febfafc17fd54baa17527f7fa';
+export { filterGenres, removeGenresMarkUp } from './genresMarkUp';
+export const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
-const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
+export const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
 const spinner = document.querySelector('.spinner-loader');
 
 onScroll();
 onToTopBtn();
 
-async function fetchFilms(API_URL_POPULAR) {
+export async function fetchFilms(API_URL_POPULAR) {
   let response = await fetch(`${API_URL_POPULAR}`);
   return response.json();
 }
@@ -104,7 +104,6 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
     spinner.classList.add('is-hidden');
   }, 2000);
   removeSceletonLoad();
-
   storage.save('movies', results);
   homeList.insertAdjacentHTML('beforeend', mark);
 });
@@ -190,13 +189,20 @@ export function loadPopularStoragePage(currentPage) {
       )
 
       .join('');
+    
     spinner.classList.remove('is-hidden');
     setTimeout(() => {
       spinner.classList.add('is-hidden');
     }, 2000);
     removeSceletonLoad();
-
     storage.save('movies', results);
-    homeList.insertAdjacentHTML('beforeend', mark);
+    console.log(storage.load('genre'));
+
+    if (storage.load('genre') !== null) {
+      filterGenres(Number(storage.load('genre')));
+    } else {
+      homeList.insertAdjacentHTML('beforeend', mark);
+    }
   });
 }
+

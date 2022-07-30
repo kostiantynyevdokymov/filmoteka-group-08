@@ -95,6 +95,7 @@ function addMarkUpToLibByKey(keyOfActualStorage) {
     libList.innerHTML = markUpWithGenres(storage.load(keyOfActualStorage));
 }
 
+
 /*const pag = document.querySelector('.pag-c');
 
 pag?.addEventListener('click', onPagClick);
