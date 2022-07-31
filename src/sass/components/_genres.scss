@@ -1,0 +1,27 @@
+.genre-span-style {
+    border: 1px solid grey;
+    padding: 5px;
+    display: inline-block;
+    color: green;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    &:last-child{
+        margin-right: 0;
+    }
+}
+
+.genre-span-active {
+    border: 1px solid grey;
+    padding: 5px;
+    display: inline-block;
+    background: #ff6b08;
+    color: white;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 2px;
+}
+
+.hide{
+    display: none;
+}

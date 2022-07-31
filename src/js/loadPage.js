@@ -4,7 +4,8 @@ import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { correctWorkOfPag } from './pagination';
 import { onScroll, onToTopBtn } from './arrowUp';
-export { filterGenres, removeGenresMarkUp } from './genresMarkUp';
+import { filterGenres, removeGenresMarkUp } from './genresMarkUp';
+import { filterGenres } from './genresMarkUp';
 export const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
 export const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
@@ -196,7 +197,7 @@ export function loadPopularStoragePage(currentPage) {
     }, 2000);
     removeSceletonLoad();
     storage.save('movies', results);
-    console.log(storage.load('genre'));
+    console.log(storage.load('genre'), results);
 
     if (storage.load('genre') !== null) {
       filterGenres(Number(storage.load('genre')));
