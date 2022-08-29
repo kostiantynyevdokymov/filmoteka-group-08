@@ -1,43 +1,41 @@
 .dark {
-    background-color: rgb(38, 38, 46);
+  background-color: rgb(38, 38, 46);
 
-    .card-info__title {
-        color: white;
-    }
+  .card-info__title {
+    color: white;
+  }
 }
 
 .theme {
-    display: flex;
-    align-self: flex-end;
+  display: flex;
+  align-self: flex-end;
 
-    justify-content: flex-start;
-    margin-top: 10px;
-    padding-left: 20px;
-        @include desk {
-            padding-left: 32px;
-        }
+  justify-content: flex-start;
+  margin-top: 10px;
+  padding-left: 20px;
+  @include desk {
+    padding-left: 32px;
+  }
 
+  button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
 
-    button {
-        background: transparent;
-        border: 2px solid white;
-        color: white;
-        padding: 5px;
-        border-radius: 5px;
-    }
+  .passive-btn {
+    opacity: 0.5;
+  }
 
-    .passive-btn{
-        opacity: 0.5;
-    }
-
-    button:not(:last-child) {
-        margin-right: 5px;
-
-    }
+  button:not(:last-child) {
+    margin-right: 5px;
+  }
 }
 
-.theme-home-position{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.theme-home-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
