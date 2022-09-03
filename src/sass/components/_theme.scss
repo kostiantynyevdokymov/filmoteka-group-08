@@ -1,5 +1,6 @@
 .dark {
   background-color: rgb(38, 38, 46);
+  color: white;
 
   .card-info__title {
     color: white;
@@ -9,7 +10,7 @@
 .theme {
   display: flex;
   align-self: flex-end;
-
+  color: white;
   justify-content: flex-start;
   margin-top: 10px;
   padding-left: 20px;
