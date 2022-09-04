@@ -5,6 +5,7 @@ import storage from './storage';
 //containers for render, design changes
 export const libList = document.querySelector('.library-list');
 export const spinner = document.querySelector('.spinner-loader');
+const field = document.querySelector('.field');
 //btn accent
 const active_type = 'header__btn-active';
 
@@ -31,14 +32,14 @@ export function checkWhatToLoad(x) {
             btnOpenQue.classList.add(active_type);
             openQueue(queStorage, btnOpenQue);
             funnyGuyOnBg()
-            }
+        }
         if (x == 'w') {
             btnOpenWatched.classList.add(active_type);
             openWatched(watStorage, btnOpenWatched);
             funnyGuyOnBg()
-            }
         }
     }
+}
 
 
 //queue btn is active on load
@@ -66,17 +67,16 @@ export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
-    if(libraryContainer){
-    // console.log(libList.firstChild == null)
-    libList.firstChild == null
-        ? libraryContainer.classList.add('lib-bg-img')
-            : libraryContainer.classList.remove('lib-bg-img');
+    if (libraryContainer) {
+        libList.firstChild === null
+            ? field.style.display = 'flex'
+            : field.style.display = 'none';
     }
 }
 
 //storage
 function checkStorage(key, btn) {
-    // console.log(btn, key)
+    console.log('checkStorage')
     if (libraryContainer) {
         if (storage.load(key) === undefined || storage.load(key).length === 0) {
             btn.classList.remove('.header__btn-active');
