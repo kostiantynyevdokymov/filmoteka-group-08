@@ -71,6 +71,7 @@ export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
+
     if (libraryContainer && libList.firstChild === null) {
         if (storage.load('theme') === 'light') {
             {
@@ -83,6 +84,9 @@ export function funnyGuyOnBg() {
                 darkDiv.style.display = 'flex';
             }
         }
+    } else {
+        lightDiv.style.display = 'none';
+        darkDiv.style.display = 'none';
     }
 }
 //storage
