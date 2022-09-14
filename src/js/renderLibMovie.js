@@ -72,7 +72,6 @@ export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
 
-    console.log(libraryContainer && libList.firstChild === null)
     if (libraryContainer && libList.firstChild === null) {
         if (storage.load('theme') === 'light') {
             {
