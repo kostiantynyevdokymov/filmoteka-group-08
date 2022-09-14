@@ -74,7 +74,6 @@ export function funnyGuyOnBg() {
 
     console.log(libraryContainer && libList.firstChild === null)
     if (libraryContainer && libList.firstChild === null) {
-        console.log(storage.load('theme'))
         if (storage.load('theme') === 'light') {
             {
                 lightDiv.style.display = 'flex';
