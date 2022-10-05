@@ -84,7 +84,7 @@ export function funnyGuyOnBg() {
                 darkDiv.style.display = 'flex';
             }
         }
-    } else {
+    } else if (libraryContainer && libList.firstChild !== null){
         lightDiv.style.display = 'none';
         darkDiv.style.display = 'none';
     }
