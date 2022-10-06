@@ -70,14 +70,23 @@ export const valuesOfGenres = localStorage.getItem('arrow');
 export const arrValuesOfGenres = JSON.parse(valuesOfGenres);
 
 export function funnyGuyOnBg() {
-  if (libraryContainer && libList.firstChild === null) {
-    if (storage.load('theme') === 'light') {
-      lightDiv.style.display = 'flex';
-      darkDiv.style.display = 'none';
-    } else {
-      lightDiv.style.display = 'none';
-      darkDiv.style.display = 'flex';
-    }
+
+
+    if (libraryContainer && libList.firstChild === null) {
+        if (storage.load('theme') === 'light') {
+            {
+                lightDiv.style.display = 'flex';
+                darkDiv.style.display = 'none';
+            }
+        } else {
+            {
+                lightDiv.style.display = 'none';
+                darkDiv.style.display = 'flex';
+            }
+        }
+    } else if (libraryContainer && libList.firstChild !== null){
+        lightDiv.style.display = 'none';
+        darkDiv.style.display = 'none';
   } else {
     lightDiv.style.display = 'none';
     darkDiv.style.display = 'none';

@@ -1,19 +1,15 @@
 import storage from './storage';
 import { markUpWithGenres } from './cardListWithGenres';
 
-//const genreSpanStyle = 'border: 1px solid grey; padding: 5px; display: inline-block; color: green; margin-right: 5px; margin-bottom: 5px; border-radius: 2px';
-//const genreSpanActive = 'border: 1px solid grey; padding: 5px; display: inline-block; background: #ff6b08; color: white; margin-right: 5px; margin-bottom: 5px; border-radius: 2px';
 const genresContainer = document.querySelector('.genres-container');
 const genreSpanStyle = 'genre-span-style';
 const genreSpanActive = 'genre-span-active';
 const list = document.querySelector('.homeList');
-const genresMarkUp = storage
-  .load('arrow')
-  .map(
+const genresMarkUp = storage.load('arrow') !== undefined ? storage.load('arrow').map(
     item =>
       `<button type="button" class="${genreSpanStyle} genre-span" id='${item.id}'>${item.name}</button>`
   )
-  .join('');
+    .join('') : '';
 
 genresContainer.innerHTML = genresMarkUp;
 
