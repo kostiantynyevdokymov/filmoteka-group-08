@@ -7,16 +7,15 @@ import { onScroll, onToTopBtn } from './arrowUp';
 import { filterGenres, removeGenresMarkUp } from './genresMarkUp';
 import { filterGenres } from './genresMarkUp';
 export const KEY = '659c146febfafc17fd54baa17527f7fa';
-let currentPage = 1;
 const homeList = document.querySelector('.home-list');
-export const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`;
+export const API_URL_POPULAR = `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}`;
 const spinner = document.querySelector('.spinner-loader');
 
 onScroll();
 onToTopBtn();
 
-export async function fetchFilms(API_URL_POPULAR) {
-  let response = await fetch(`${API_URL_POPULAR}`);
+export async function fetchFilms(url) {
+  let response = await fetch(`${url}`);
   return response.json();
 }
 
