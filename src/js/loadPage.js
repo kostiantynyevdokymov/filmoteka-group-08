@@ -4,7 +4,6 @@ import { removeSceletonLoad } from './sceletonLoad';
 import { getGenres } from './modal';
 import { correctWorkOfPag } from './pagination';
 import { onScroll, onToTopBtn } from './arrowUp';
-import { filterGenres, removeGenresMarkUp } from './genresMarkUp';
 import { filterGenres } from './genresMarkUp';
 export const KEY = '659c146febfafc17fd54baa17527f7fa';
 const homeList = document.querySelector('.home-list');
@@ -47,28 +46,6 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
         original_name,
         first_air_date,
       }) => {
-        // const genreArr = [];
-        // let other = '';
-        // for (const genreId of genre_ids) {
-        //   for (const value of values) {
-        //     if (genreId === value.id) {
-        //       genreArr.push(value.name);
-        //       if (genre_ids.length > 2) {
-        //         other = ',Other';
-        //       }
-        //     }
-        //   }
-        // }
-
-        // let a = release_date;
-
-        // let b = first_air_date;
-        // if (release_date) {
-        //   a = a.slice(0, 4);
-        // }
-        // if (first_air_date) {
-        //   b = b.slice(0, 4);
-        // }
         const year = release_date
           ? `<span>${new Date(release_date).getFullYear()}</span>`
           : '';
@@ -109,18 +86,9 @@ fetchFilms(API_URL_POPULAR).then(({ results }) => {
   homeList.insertAdjacentHTML('beforeend', mark);
 });
 
-// export default fetchFilms;
-
 export function loadPopularStoragePage(currentPage) {
   homeList.innerHTML = '';
   storage.save(POPULAR_STORAGE_KEY, currentPage);
-
-  // fetchGenres().then(({ genres }) => {
-  //   const arr = [...genres];
-  //   localStorage.setItem('arrow', JSON.stringify(arr));
-  // });
-  // const values = storage.load('arrow');
-
   fetchFilms(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${currentPage}`
   ).then(({ results }) => {
@@ -137,35 +105,12 @@ export function loadPopularStoragePage(currentPage) {
           original_name,
           first_air_date,
         }) => {
-          // const genreArr = [];
-          // let other = '';
-          // for (const genreId of genre_ids) {
-          //   for (const value of values) {
-          //     if (genreId === value.id) {
-          //       genreArr.push(value.name);
-          //       if (genre_ids.length > 2) {
-          //         other = ',Other';
-          //       }
-          //     }
-          //   }
-          // }
-
-          // let a = release_date;
-
-          // let b = first_air_date;
-          // if (release_date) {
-          //   a = a.slice(0, 4);
-          // }
-          // if (first_air_date) {
-          //   b = b.slice(0, 4);
-          // }
           const year = release_date
             ? `<span>${new Date(release_date).getFullYear()}</span>`
             : '';
           const imgUrl = poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
-            : // : './images/netuNichego.png';
-              'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
+            : 'https://via.placeholder.com/395x574/FFFFFF/FF001B?text=No+poster';
           return `<li class="home-card js-modal-open placeholdify" data-card-movie-id="${id}">
             <a href="#" class="home-card__link">
                 <div class="card-info">
@@ -197,9 +142,8 @@ export function loadPopularStoragePage(currentPage) {
     }, 2000);
     removeSceletonLoad();
     storage.save('movies', results);
-    console.log(storage.load('genre'), results);
 
-    if (storage.load('genre') !== null) {
+    if (storage.load('genre')) {
       filterGenres(Number(storage.load('genre')));
     } else {
       homeList.insertAdjacentHTML('beforeend', mark);
